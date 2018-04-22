@@ -1,0 +1,13 @@
+language: java
+sudo: required
+dist: trusty
+
+install: script/install
+script: script/script
+
+jdk:
+- oraclejdk8
+
+notifications:
+  email: false
+  
