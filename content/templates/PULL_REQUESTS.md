@@ -14,5 +14,5 @@ Przedstaw **szczegóły** do stworzenia tej zmiany. Jaki problem rozwiązuje ten
 
 **Formatowanie kodu**: Nasz aktualny styl przestawiony jest [tutaj](https://google.github.io/styleguide/).
 
-**Zamykanie zgłoszenia**: Umieść `Zamyka #XXXX` w opisie Pull Requesta, aby automatycznie zamknąć zgłoszenie, które twój Pull Request rozwiązuje.
+**Zamykanie zgłoszenia**: Umieść `Closes #XXXX` w opisie Pull Requesta, aby automatycznie zamknąć zgłoszenie, które twój Pull Request rozwiązuje.
 ```
