@@ -1,0 +1,6 @@
+[submodule "libraries/commands"]
+	path = libraries/commands
+	url = https://github.com/meleride/MelerideCommands.git
+[submodule "paper"]
+	path = paper
+	url = https://github.com/meleride/Paper.git
