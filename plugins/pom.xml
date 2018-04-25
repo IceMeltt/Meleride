@@ -21,4 +21,11 @@
     <!-- TODO -->
   </modules>
 
+  <dependencies>
+    <dependency>
+      <groupId>com.destroystokyo.paper</groupId>
+      <artifactId>paper-api</artifactId>
+    </dependency>
+  </dependencies>
+
 </project>

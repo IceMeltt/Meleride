@@ -20,7 +20,13 @@
   </modules>
 
   <dependencyManagement>
-    <!-- TODO -->
+    <dependencies>
+      <dependency>
+        <groupId>com.destroystokyo.paper</groupId>
+        <artifactId>paper-api</artifactId>
+        <version>1.12.2-R0.1-SNAPSHOT</version>
+      </dependency>
+    </dependencies>
   </dependencyManagement>
 
   <build>

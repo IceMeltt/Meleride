@@ -16,7 +16,10 @@
   <version>0.3.0</version>
 
   <dependencies>
-    <!-- TODO -->
+    <dependency>
+      <groupId>com.destroystokyo.paper</groupId>
+      <artifactId>paper-api</artifactId>
+    </dependency>
   </dependencies>
 
 </project>
