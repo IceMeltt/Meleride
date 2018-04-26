@@ -1,12 +1,13 @@
 language: java
-sudo: required
+sudo: false
 dist: trusty
 
+before_install: paper/paper patch
 install: script/install
 script: script/script
 
 jdk:
-- oraclejdk8
+  - oraclejdk8
 
 notifications:
   email: false
