@@ -7,4 +7,5 @@ public interface Messageable {
   default String colorize(String text) {
     return ChatColor.translateAlternateColorCodes('&', text);
   }
+  
 }
