@@ -2,6 +2,10 @@ language: java
 sudo: false
 dist: trusty
 
+addons:
+  apt:
+    update: true
+
 before_install: paper/paper patch
 install: script/install
 script: script/script
