@@ -1,16 +1,16 @@
-package pl.meleride.economy.currencysigns;
+package pl.meleride.economy.currencysign;
 
 import org.bukkit.Location;
 import org.bukkit.block.Sign;
 import pl.meleride.economy.currency.Currency;
-import pl.meleride.economy.utils.ColorUtils;
+import pl.meleride.economy.util.ColorUtils;
 
 import java.util.HashMap;
 import java.util.Map;
 
 public class CurrencySign {
 
-  private static Map<Location, CurrencySign> currencySignMap = new HashMap<>();
+  private final static Map<Location, CurrencySign> currencySignMap = new HashMap<>();
 
   private Location signLocation;
   private Currency currency;
@@ -23,7 +23,7 @@ public class CurrencySign {
   }
 
   public void update() {
-    if(!(signLocation.getBlock().getState() instanceof Sign)) {
+    if (!(signLocation.getBlock().getState() instanceof Sign)) {
       delete();
       return;
     }
@@ -48,4 +48,5 @@ public class CurrencySign {
   public static CurrencySign getCurrencySign(Location location) {
     return currencySignMap.getOrDefault(location, null);
   }
+
 }

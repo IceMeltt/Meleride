@@ -3,13 +3,14 @@ package pl.meleride.economy.currency;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonObject;
-import pl.meleride.economy.utils.MathUtils;
-import pl.meleride.economy.utils.URLUtils;
+import pl.meleride.economy.util.MathUtils;
+import pl.meleride.economy.util.URLUtils;
 
 import java.io.IOException;
 import java.net.UnknownHostException;
 
 public enum Currency {
+
   PLN("Zl", "Złoty polski", true, 1.0),
   EUR("€", "Euro", false, 4.28),
   USD("$", "Dolar amerykański", false, 3.60),
@@ -67,7 +68,9 @@ public enum Currency {
   }
 
   public void updateExchangeRate() throws IOException {
-    if(this.isDefault) return;
+    if (this.isDefault) {
+      return;
+    }
 
     try {
       String apiResponse = URLUtils.getURLContent("http://api.nbp.pl/api/exchangerates/rates/A/" + this.name() + "/?format=json");
@@ -80,14 +83,14 @@ public enum Currency {
 
       this.realExchangeRate = jsonObject.getAsJsonArray("rates").get(0).getAsJsonObject().get("mid").getAsDouble();
       this.exchangeRate = MathUtils.round(this.realExchangeRate, 2);
-    } catch(UnknownHostException ex) {
+    } catch (UnknownHostException ex) {
       this.previousExchangeRate = this.realExchangeRate;
       this.exchangeRate = this.defaultValue;
     }
 
-    if(this.previousExchangeRate > this.realExchangeRate) {
+    if (this.previousExchangeRate > this.realExchangeRate) {
       this.tendency = Tendency.DECREASE;
-    } else if(this.realExchangeRate > this.previousExchangeRate) {
+    } else if (this.realExchangeRate > this.previousExchangeRate) {
       this.tendency = Tendency.INCREASE;
     } else {
       this.tendency = Tendency.STATIC;
@@ -95,8 +98,10 @@ public enum Currency {
   }
 
   public static Currency getCurrency(String name) {
-    for(Currency currency : Currency.values()) {
-      if(currency.name().equalsIgnoreCase(name)) return currency;
+    for (Currency currency : Currency.values()) {
+      if (currency.name().equalsIgnoreCase(name)) {
+        return currency;
+      }
     }
 
     return null;

@@ -1,6 +1,7 @@
 package pl.meleride.economy.currency;
 
 public enum Tendency {
+
   DECREASE("&c\\/"),
   INCREASE("&a/\\"),
   STATIC("&7-");

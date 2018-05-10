@@ -4,11 +4,11 @@ import org.bukkit.Bukkit;
 import org.bukkit.event.Listener;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
-import pl.meleride.economy.commands.CurrencyCommand;
-import pl.meleride.economy.listeners.BlockBreakListener;
-import pl.meleride.economy.listeners.PlayerJoinListener;
-import pl.meleride.economy.listeners.SignChangeListener;
-import pl.meleride.economy.runnables.CurrencyUpdaterRunnable;
+import pl.meleride.economy.command.CurrencyCommand;
+import pl.meleride.economy.listener.BlockBreakListener;
+import pl.meleride.economy.listener.PlayerJoinListener;
+import pl.meleride.economy.listener.SignChangeListener;
+import pl.meleride.economy.runnable.CurrencyUpdaterRunnable;
 
 public class MelerideEconomy extends JavaPlugin {
 
@@ -16,7 +16,7 @@ public class MelerideEconomy extends JavaPlugin {
 
   @Override
   public void onEnable() {
-    currencyUpdaterRunnable = new CurrencyUpdaterRunnable(this);
+    this.currencyUpdaterRunnable = new CurrencyUpdaterRunnable(this);
 
     getCommands().registerCommandObjects(new CurrencyCommand(this));
 
@@ -29,6 +29,8 @@ public class MelerideEconomy extends JavaPlugin {
 
   private void registerListeners(Listener... listeners) {
     PluginManager pluginManager = Bukkit.getPluginManager();
-    for(Listener listener : listeners) pluginManager.registerEvents(listener, this);
+    for (Listener listener : listeners) {
+      pluginManager.registerEvents(listener, this);
+    }
   }
 }

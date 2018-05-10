@@ -1,4 +1,4 @@
-package pl.meleride.economy.listeners;
+package pl.meleride.economy.listener;
 
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -12,7 +12,7 @@ public class PlayerJoinListener implements Listener {
   public void onJoin(PlayerJoinEvent event) {
     Player player = event.getPlayer();
 
-    if(EconPlayer.getPlayer(player.getUniqueId()) == null) {
+    if (EconPlayer.getPlayer(player.getUniqueId()) == null) {
       new EconPlayer(player.getUniqueId(), player.getName());
     } else {
       //Updatowanie nicku podczas zmiany na stronie Mojangu

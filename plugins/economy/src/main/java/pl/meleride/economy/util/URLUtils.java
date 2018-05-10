@@ -1,4 +1,4 @@
-package pl.meleride.economy.utils;
+package pl.meleride.economy.util;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -8,8 +8,6 @@ import java.net.URLConnection;
 import java.nio.charset.Charset;
 
 public final class URLUtils {
-
-  private URLUtils() {}
 
   public static String getURLContent(String url) throws IOException {
     URL apiUrl = new URL(url);
@@ -21,9 +19,14 @@ public final class URLUtils {
     StringBuilder output = new StringBuilder();
 
     String line;
-    while((line = bufferedReader.readLine()) != null) output.append(line);
+    while ((line = bufferedReader.readLine()) != null) {
+      output.append(line);
+    }
 
     return output.toString();
+  }
+
+  private URLUtils() {
   }
 
 }
