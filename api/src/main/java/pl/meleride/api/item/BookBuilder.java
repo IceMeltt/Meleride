@@ -1,4 +1,4 @@
-package pl.meleride.api.items;
+package pl.meleride.api.item;
 
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
@@ -11,7 +11,7 @@ public class BookBuilder {
   private ItemStack book;
   private BookMeta bookMeta;
 
-  public BookBuilder(int amount){
+  public BookBuilder(int amount) {
     this.book = new ItemStack(Material.WRITTEN_BOOK, amount);
     this.bookMeta = (BookMeta) book.getItemMeta();
   }

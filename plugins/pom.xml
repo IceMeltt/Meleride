@@ -23,8 +23,8 @@
 
   <dependencies>
     <dependency>
-      <groupId>com.destroystokyo.paper</groupId>
-      <artifactId>paper-api</artifactId>
+      <groupId>pl.meleride</groupId>
+      <artifactId>api</artifactId>
     </dependency>
   </dependencies>
 

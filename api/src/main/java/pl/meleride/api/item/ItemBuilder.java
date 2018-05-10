@@ -1,4 +1,4 @@
-package pl.meleride.api.items;
+package pl.meleride.api.item;
 
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
@@ -18,32 +18,32 @@ public class ItemBuilder {
   private ItemStack itemStack;
   private ItemMeta itemMeta;
 
-  public ItemBuilder(Material material){
+  public ItemBuilder(Material material) {
     this.itemStack = new ItemStack(material, 1);
     this.itemMeta = this.itemStack.getItemMeta();
   }
 
-  public ItemBuilder(Material material, int amount){
+  public ItemBuilder(Material material, int amount) {
     this.itemStack = new ItemStack(material, amount);
     this.itemMeta = this.itemStack.getItemMeta();
   }
 
-  public ItemBuilder(Material material, int amount, int damage){
+  public ItemBuilder(Material material, int amount, int damage) {
     this.itemStack = new ItemStack(material, amount, (short) damage);
     this.itemMeta = this.itemStack.getItemMeta();
   }
 
-  public ItemBuilder(ItemStack itemStack){
+  public ItemBuilder(ItemStack itemStack) {
     this.itemStack = itemStack;
     this.itemMeta = this.itemStack.getItemMeta();
   }
 
-  public ItemBuilder setName(String displayName){
+  public ItemBuilder setName(String displayName) {
     this.itemMeta.setDisplayName(ChatColor.translateAlternateColorCodes('&', displayName));
     return this;
   }
 
-  public ItemBuilder setLore(String... lore){
+  public ItemBuilder setLore(String... lore) {
     List<String> modifiedLore = Arrays.stream(lore)
             .map(entry -> ChatColor.translateAlternateColorCodes('&', entry))
             .collect(Collectors.toList());
@@ -53,47 +53,47 @@ public class ItemBuilder {
     return this;
   }
 
-  public ItemBuilder setAmount(int amount){
+  public ItemBuilder setAmount(int amount) {
     this.itemStack.setAmount(amount);
     return this;
   }
 
-  public ItemBuilder setDamage(int damage){
+  public ItemBuilder setDamage(int damage) {
     this.itemStack.setDurability((short) damage);
     return this;
   }
 
-  public ItemBuilder addEnchantment(Enchantment enchantment, int level){
+  public ItemBuilder addEnchantment(Enchantment enchantment, int level) {
     this.itemStack.addEnchantment(enchantment, level);
     return this;
   }
 
-  public ItemBuilder addEnchantments(Map<Enchantment, Integer> enchantments){
+  public ItemBuilder addEnchantments(Map<Enchantment, Integer> enchantments) {
     this.itemStack.addEnchantments(enchantments);
     return this;
   }
 
-  public ItemBuilder setType(Material type){
+  public ItemBuilder setType(Material type) {
     this.itemStack.setType(type);
     return this;
   }
 
-  public ItemBuilder addItemFlags(ItemFlag... itemFlags){
+  public ItemBuilder addItemFlags(ItemFlag... itemFlags) {
     this.itemMeta.addItemFlags(itemFlags);
     return this;
   }
 
-  public ItemBuilder setUnbreakable(boolean unbreakable){
+  public ItemBuilder setUnbreakable(boolean unbreakable) {
     this.itemMeta.setUnbreakable(unbreakable);
     return this;
   }
 
-  public ItemBuilder setMaterialData(MaterialData materialData){
+  public ItemBuilder setMaterialData(MaterialData materialData) {
     this.itemStack.setData(materialData);
     return this;
   }
 
-  public ItemStack build(){
+  public ItemStack build() {
     this.itemStack.setItemMeta(this.itemMeta);
 
     return this.itemStack;
