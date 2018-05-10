@@ -2,7 +2,6 @@ language: java
 sudo: false
 dist: trusty
 
-before_install: paper/paper patch
 install: script/install
 script: script/script
 
