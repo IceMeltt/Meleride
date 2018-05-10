@@ -14,4 +14,5 @@ public enum Tendency {
   public String getSign() {
     return sign;
   }
+
 }

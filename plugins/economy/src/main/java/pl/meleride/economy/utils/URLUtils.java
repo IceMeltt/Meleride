@@ -7,7 +7,9 @@ import java.net.URL;
 import java.net.URLConnection;
 import java.nio.charset.Charset;
 
-public class URLUtils {
+public final class URLUtils {
+
+  private URLUtils() {}
 
   public static String getURLContent(String url) throws IOException {
     URL apiUrl = new URL(url);
@@ -23,4 +25,5 @@ public class URLUtils {
 
     return output.toString();
   }
+
 }

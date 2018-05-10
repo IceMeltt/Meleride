@@ -3,6 +3,7 @@ package pl.meleride.economy.runnables;
 import org.bukkit.scheduler.BukkitRunnable;
 import pl.meleride.economy.MelerideEconomy;
 import pl.meleride.economy.currency.Currency;
+import pl.meleride.economy.currencysigns.CurrencySign;
 
 import java.io.IOException;
 import java.util.Arrays;
@@ -14,7 +15,7 @@ public class CurrencyUpdaterRunnable extends BukkitRunnable {
   public CurrencyUpdaterRunnable(MelerideEconomy plugin) {
     this.plugin = plugin;
 
-    runTaskTimerAsynchronously(this.plugin, 0, 300*20);
+    runTaskTimerAsynchronously(this.plugin, 0, 1800 * 20);
   }
 
   @Override
@@ -33,5 +34,8 @@ public class CurrencyUpdaterRunnable extends BukkitRunnable {
 
               this.plugin.getLogger().info("Pomyslnie zaktualizowano kurs waluty " + currency.getFullName());
             });
+
+    CurrencySign.getCurrencySignMap().values().forEach(CurrencySign::update);
   }
+
 }
