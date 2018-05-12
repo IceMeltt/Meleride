@@ -6,7 +6,6 @@ addons:
   apt:
     update: true
 
-before_install: paper/paper patch
 install: script/install
 script: script/script
 
