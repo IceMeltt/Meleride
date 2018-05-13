@@ -20,8 +20,6 @@ public class UserManagerImpl implements UserManager {
   private final ConcurrentMap<String, User> userNameMap = new ConcurrentHashMap<>(16, 0.9F, 1);
   private final ConcurrentMap<UUID, User> userUniqueIdMap = new ConcurrentHashMap<>(16, 0.9F, 1);
 
-  public UserManagerImpl() {}
-
   public UserManagerImpl(MelerideAPI plugin) {
     this.plugin = plugin;
   }
@@ -72,7 +70,6 @@ public class UserManagerImpl implements UserManager {
   @Override
   public Set<User> getOnlineUsers() {
     Set<User> users = new LinkedHashSet<>();
-    //noinspection ConstantConditions
     this.plugin.getServer().getOnlinePlayers().forEach(player -> users.add(this.getUser(player.getUniqueId()).get()));
     return users;
   }
