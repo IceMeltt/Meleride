@@ -26,7 +26,7 @@
 
     <repository>
       <id>opengui</id>
-      <url>http://repo.socketbyte.pl/repository/nexus-releases/</url>
+      <url>https://repo.socketbyte.pl/repository/nexus-releases/</url>
     </repository>
   </repositories>
 
@@ -41,7 +41,7 @@
 
       <dependency>
         <groupId>pl.socketbyte</groupId>
-        <artifactId>opengui</artifactId>
+        <artifactId>OpenGUI</artifactId>
         <version>1.2</version>
       </dependency>
 
