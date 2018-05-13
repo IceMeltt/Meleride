@@ -23,6 +23,11 @@
       <id>spigot-repo</id>
       <url>https://hub.spigotmc.org/nexus/content/repositories/snapshots/</url>
     </repository>
+
+    <repository>
+      <id>opengui</id>
+      <url>http://repo.socketbyte.pl/repository/nexus-releases/</url>
+    </repository>
   </repositories>
 
   <dependencyManagement>
@@ -32,6 +37,12 @@
         <artifactId>spigot-api</artifactId>
         <version>1.12.2-R0.1-SNAPSHOT</version>
         <scope>provided</scope>
+      </dependency>
+
+      <dependency>
+        <groupId>pl.socketbyte</groupId>
+        <artifactId>opengui</artifactId>
+        <version>1.2</version>
       </dependency>
 
       <dependency>
