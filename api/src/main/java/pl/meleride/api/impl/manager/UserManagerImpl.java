@@ -1,13 +1,13 @@
 package pl.meleride.api.impl.manager;
 
 import org.apache.commons.lang.Validate;
-import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
+import pl.meleride.api.MelerideAPI;
 import pl.meleride.api.basic.User;
-import pl.meleride.api.impl.basic.UserImpl;
 import pl.meleride.api.manager.UserManager;
 
 import java.util.LinkedHashSet;
+import java.util.Optional;
 import java.util.Set;
 import java.util.UUID;
 import java.util.concurrent.ConcurrentHashMap;
@@ -15,33 +15,39 @@ import java.util.concurrent.ConcurrentMap;
 
 public class UserManagerImpl implements UserManager {
 
-  private final ConcurrentMap<String, User> userNameMap = new ConcurrentHashMap<>();
-  private final ConcurrentMap<UUID, User> userUniqueIdMap = new ConcurrentHashMap<>();
+  private MelerideAPI plugin;
+
+  private final ConcurrentMap<String, User> userNameMap = new ConcurrentHashMap<>(16, 0.9F, 1);
+  private final ConcurrentMap<UUID, User> userUniqueIdMap = new ConcurrentHashMap<>(16, 0.9F, 1);
+
+  public UserManagerImpl() {}
+
+  public UserManagerImpl(MelerideAPI plugin) {
+    this.plugin = plugin;
+  }
 
   @Override
-  public User getUser(String name) {
+  public Optional<User> getUser(String name) {
     Validate.notNull(name, "Player name cannot be null!");
 
     return this.userNameMap.values()
         .stream()
         .filter(user -> user.getName().equalsIgnoreCase(name))
-        .findFirst()
-        .orElse(new UserImpl(name));
+        .findFirst();
   }
 
   @Override
-  public User getUser(UUID uniqueId) {
+  public Optional<User> getUser(UUID uniqueId) {
     Validate.notNull(uniqueId, "Player unique id cannot be null!");
 
     return this.userUniqueIdMap.values()
         .stream()
         .filter(user -> user.getUniqueId().equals(uniqueId))
-        .findFirst()
-        .orElse(new UserImpl(uniqueId));
+        .findFirst();
   }
 
   @Override
-  public User getUser(Player player) {
+  public Optional<User> getUser(Player player) {
     Validate.notNull(player, "Player object cannot be null!");
 
     return this.getUser(player.getUniqueId());
@@ -66,8 +72,8 @@ public class UserManagerImpl implements UserManager {
   @Override
   public Set<User> getOnlineUsers() {
     Set<User> users = new LinkedHashSet<>();
-    Bukkit.getOnlinePlayers().forEach(player -> users.add(this.getUser(player.getUniqueId())));
-
+    //noinspection ConstantConditions
+    this.plugin.getServer().getOnlinePlayers().forEach(player -> users.add(this.getUser(player.getUniqueId()).get()));
     return users;
   }
 

@@ -8,6 +8,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerLoginEvent;
 import pl.meleride.api.MelerideAPI;
 import pl.meleride.api.basic.User;
+import pl.meleride.api.impl.event.UserAbortEvent;
 import pl.meleride.api.impl.event.UserLoadEvent;
 
 public class PlayerLoginListener implements Listener {
@@ -22,7 +23,15 @@ public class PlayerLoginListener implements Listener {
   public void onPlayerLogin(PlayerLoginEvent event) {
     Player player = event.getPlayer();
     User user = this.plugin.getUserManager().getUser(player.getUniqueId());
+
     UserLoadEvent userLoadEvent = new UserLoadEvent(user);
+
+    if (!userLoadEvent.isCancelled()) {
+      UserAbortEvent userAbortEvent = new UserAbortEvent(user);
+      Bukkit.getPluginManager().callEvent(userAbortEvent);
+      event.disallow(PlayerLoginEvent.Result.KICK_OTHER, "Session abort.");
+      return;
+    }
 
     Bukkit.getPluginManager().callEvent(userLoadEvent);
   }

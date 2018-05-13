@@ -12,8 +12,6 @@ public interface User {
 
   void setName(String name);
 
-  void setUniqueId(UUID uniqueId);
-
   Player getBukkitPlayer();
 
 }

@@ -3,16 +3,17 @@ package pl.meleride.api.manager;
 import org.bukkit.entity.Player;
 import pl.meleride.api.basic.User;
 
+import java.util.Optional;
 import java.util.Set;
 import java.util.UUID;
 
 public interface UserManager {
 
-  User getUser(String name);
+  Optional<User> getUser(String name);
 
-  User getUser(UUID uniqueId);
+  Optional<User> getUser(UUID uniqueId);
 
-  User getUser(Player player);
+  Optional<User> getUser(Player player);
 
   void addUser(User user);
 
