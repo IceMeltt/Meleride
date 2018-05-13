@@ -21,7 +21,7 @@ public class PlayerQuitListener implements Listener {
   @EventHandler(priority = EventPriority.LOWEST)
   public void onPlayerQuit(PlayerQuitEvent event) {
     Player player = event.getPlayer();
-    User user = this.plugin.getUserManager().getUser(player.getUniqueId());
+    User user = this.plugin.getUserManager().getUser(player.getUniqueId()).get();
 
     UserQuitEvent userQuitEvent = new UserQuitEvent(user);
     Bukkit.getPluginManager().callEvent(userQuitEvent);

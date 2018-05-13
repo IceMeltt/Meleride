@@ -20,7 +20,7 @@ public class PlayerPreLoginListener implements Listener {
 
   @EventHandler(priority = EventPriority.LOWEST)
   public void onPlayerPreLogin(AsyncPlayerPreLoginEvent event) {
-    User user = this.plugin.getUserManager().getUser(event.getUniqueId());
+    User user = this.plugin.getUserManager().getUser(event.getUniqueId()).get();
 
     UserInitEvent userInitEvent = new UserInitEvent(user);
     Bukkit.getPluginManager().callEvent(userInitEvent);

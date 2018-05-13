@@ -22,11 +22,11 @@ public class PlayerLoginListener implements Listener {
   @EventHandler(priority = EventPriority.LOWEST)
   public void onPlayerLogin(PlayerLoginEvent event) {
     Player player = event.getPlayer();
-    User user = this.plugin.getUserManager().getUser(player.getUniqueId());
+    User user = this.plugin.getUserManager().getUser(player.getUniqueId()).get();
 
     UserLoadEvent userLoadEvent = new UserLoadEvent(user);
 
-    if (!userLoadEvent.isCancelled()) {
+    if (userLoadEvent.isCancelled()) {
       UserAbortEvent userAbortEvent = new UserAbortEvent(user);
       Bukkit.getPluginManager().callEvent(userAbortEvent);
       event.disallow(PlayerLoginEvent.Result.KICK_OTHER, "Session abort.");
