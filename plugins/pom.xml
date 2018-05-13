@@ -26,6 +26,11 @@
       <groupId>pl.meleride</groupId>
       <artifactId>api</artifactId>
     </dependency>
+
+    <dependency>
+      <groupId>org.spigotmc</groupId>
+      <artifactId>spigot-api</artifactId>
+    </dependency>
   </dependencies>
 
 </project>
