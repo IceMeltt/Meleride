@@ -1,8 +1,9 @@
-package pl.meleride.api.item;
+package pl.meleride.api.impl.item;
 
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.BookMeta;
+import pl.meleride.api.item.Builder;
 
 import java.util.List;
 
@@ -40,7 +41,6 @@ public class BookBuilder implements Builder<ItemStack> {
     this.bookMeta.setPages(pages);
     return this;
   }
-
 
   public BookBuilder setGeneration(BookMeta.Generation generation) {
     this.bookMeta.setGeneration(generation);

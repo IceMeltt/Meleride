@@ -1,4 +1,4 @@
-package pl.meleride.api.item;
+package pl.meleride.api.impl.item;
 
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
@@ -7,6 +7,7 @@ import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.material.MaterialData;
+import pl.meleride.api.item.Builder;
 
 import java.util.Arrays;
 import java.util.List;
