@@ -13,7 +13,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-public class ItemBuilder {
+public class ItemBuilder implements Builder<ItemStack> {
 
   private ItemStack itemStack;
   private ItemMeta itemMeta;
@@ -93,6 +93,7 @@ public class ItemBuilder {
     return this;
   }
 
+  @Override
   public ItemStack build() {
     this.itemStack.setItemMeta(this.itemMeta);
 

@@ -6,7 +6,7 @@ import org.bukkit.inventory.meta.BookMeta;
 
 import java.util.List;
 
-public class BookBuilder {
+public class BookBuilder implements Builder<ItemStack> {
 
   private ItemStack book;
   private BookMeta bookMeta;
@@ -52,9 +52,11 @@ public class BookBuilder {
     return this;
   }
 
+  @Override
   public ItemStack build() {
     this.book.setItemMeta(this.bookMeta);
 
     return this.book;
   }
+
 }
