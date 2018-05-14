@@ -2,6 +2,3 @@ name: MelerideAPI
 version: 1.0.0
 main: pl.meleride.api.MelerideAPI
 author: Wjiczek
-
-commands:
-  test:
