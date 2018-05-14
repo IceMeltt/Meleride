@@ -9,7 +9,7 @@ import java.util.ResourceBundle;
 
 public final class MessageBuilder {
 
-  private static ResourceBundle RESOURCE_BUNDLE;
+  private final static ResourceBundle RESOURCE_BUNDLE;
 
   private final String key;
   private String messageContent;
