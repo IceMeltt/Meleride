@@ -9,6 +9,8 @@ import org.bukkit.event.player.PlayerQuitEvent;
 import pl.meleride.api.MelerideAPI;
 import pl.meleride.api.basic.User;
 import pl.meleride.api.impl.event.UserQuitEvent;
+import pl.meleride.api.impl.i18n.MessageBundle;
+import pl.meleride.api.impl.type.MessageType;
 
 public class PlayerQuitListener implements Listener {
 
@@ -21,6 +23,12 @@ public class PlayerQuitListener implements Listener {
   @EventHandler(priority = EventPriority.LOWEST)
   public void onPlayerQuit(PlayerQuitEvent event) {
     Player player = event.getPlayer();
+
+    MessageBundle.create("duzyChuj")
+        .withField("CHUJ", "duzy chuj")
+        .target(MessageType.CHAT)
+        .sendTo(player);
+
     User user = this.plugin.getUserManager().getUser(player.getUniqueId()).get();
 
     UserQuitEvent userQuitEvent = new UserQuitEvent(user);
