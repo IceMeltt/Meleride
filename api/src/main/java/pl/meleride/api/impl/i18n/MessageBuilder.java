@@ -19,15 +19,15 @@ public final class MessageBuilder {
   }
 
   MessageBuilder(String key) {
-    this.messageContent = "Key doesn't exist!";
     this.key = key;
+    this.messageContent = RESOURCE_BUNDLE.getString(key);
   }
 
   public MessageBuilder withField(String field, String value) {
     Validate.notNull(field, "Field cannot be null!");
     Validate.notNull(value, "Value cannot be null!");
 
-    this.messageContent = StringUtils.replace(RESOURCE_BUNDLE.getString(this.key), "{" + field + "}", value);
+    this.messageContent = StringUtils.replace(this.messageContent, "{" + field + "}", value);
     return this;
   }
 

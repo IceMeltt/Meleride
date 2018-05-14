@@ -1,4 +1,4 @@
-name: MelerideAPI
+name: MeleAPI
 version: 1.0.0
 main: pl.meleride.api.MelerideAPI
-author: Wjiczek
+author: Meleride
