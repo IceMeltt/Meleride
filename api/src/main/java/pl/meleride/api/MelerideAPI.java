@@ -26,6 +26,7 @@ public final class MelerideAPI extends JavaPlugin {
         new PlayerQuitListener(this)
     );
 
+    this.saveDefaultConfig();
   }
 
   private void registerListeners(Listener... listeners) {
