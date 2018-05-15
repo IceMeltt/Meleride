@@ -2,3 +2,5 @@ name: MeleAPI
 version: 1.0.0
 main: pl.meleride.api.MelerideAPI
 author: Meleride
+commands:
+  test:

@@ -37,4 +37,8 @@ public final class MessageBuilder {
     return new MessageSender(messageType, this.messageContent);
   }
 
+  public String toString() {
+    return this.messageContent;
+  }
+
 }

@@ -1,5 +1,7 @@
 package pl.meleride.api.impl.i18n;
 
+import net.md_5.bungee.api.ChatMessageType;
+import net.md_5.bungee.api.chat.TextComponent;
 import org.apache.commons.lang.Validate;
 import org.bukkit.entity.Player;
 import pl.meleride.api.basic.User;
@@ -26,13 +28,13 @@ public final class MessageSender {
         player.sendMessage(colored(this.messageContent));
         break;
       case TITLE:
-        // todo
+        player.sendTitle(colored(this.messageContent), "", -1, -1, -1);
         break;
       case SUB_TITLE:
-        // todo
+        player.sendTitle("", colored(this.messageContent), -1, -1, -1);
         break;
       case ACTION_BAR:
-        // todo
+        player.spigot().sendMessage(ChatMessageType.ACTION_BAR, new TextComponent(colored(this.messageContent)));
         break;
 
       default: player.sendMessage(colored(this.messageContent));
