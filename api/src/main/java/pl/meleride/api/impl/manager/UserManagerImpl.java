@@ -7,12 +7,10 @@ import pl.meleride.api.basic.User;
 import pl.meleride.api.manager.UserManager;
 
 import javax.inject.Inject;
-import java.util.LinkedHashSet;
-import java.util.Optional;
-import java.util.Set;
-import java.util.UUID;
+import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
+import java.util.stream.Collectors;
 
 public class UserManagerImpl implements UserManager {
 
@@ -67,9 +65,10 @@ public class UserManagerImpl implements UserManager {
 
   @Override
   public Set<User> getOnlineUsers() {
-    Set<User> users = new LinkedHashSet<>();
-    this.server.getOnlinePlayers().forEach(player -> users.add(this.getUser(player.getUniqueId()).get()));
-    return users;
+    return this.server.getOnlinePlayers().stream()
+      .map(player -> this.getUser(player.getUniqueId())).filter(Optional::isPresent)
+      .map(Optional::get)
+      .collect(Collectors.toCollection(LinkedHashSet::new));
   }
 
 }

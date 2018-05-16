@@ -35,7 +35,7 @@ public final class MelerideAPI extends JavaPlugin {
   }
 
   private void initialize() {
-    this.injector = new InjectorBuilder().addDefaultHandlers("pl.meleride.api").create();
+    this.injector = new InjectorBuilder().addDefaultHandlers("pl.meleride").create();
     this.commands = new BukkitCommands(this);
     this.injector.register(MelerideAPI.class, this);
     this.injector.register(Server.class, this.getServer());
