@@ -5,22 +5,21 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.AsyncPlayerPreLoginEvent;
-import pl.meleride.api.MelerideAPI;
 import pl.meleride.api.basic.User;
 import pl.meleride.api.impl.event.UserAbortEvent;
 import pl.meleride.api.impl.event.UserInitEvent;
+import pl.meleride.api.manager.UserManager;
+
+import javax.inject.Inject;
 
 public class PlayerPreLoginListener implements Listener {
 
-  private final MelerideAPI plugin;
-
-  public PlayerPreLoginListener(MelerideAPI plugin) {
-    this.plugin = plugin;
-  }
+  @Inject
+  private UserManager userManager;
 
   @EventHandler(priority = EventPriority.LOWEST)
   public void onPlayerPreLogin(AsyncPlayerPreLoginEvent event) {
-    User user = this.plugin.getUserManager().getUser(event.getUniqueId()).get();
+    User user = this.userManager.getUser(event.getUniqueId()).get();
 
     UserInitEvent userInitEvent = new UserInitEvent(user);
     Bukkit.getPluginManager().callEvent(userInitEvent);
@@ -32,7 +31,7 @@ public class PlayerPreLoginListener implements Listener {
       return;
     }
 
-    this.plugin.getUserManager().addUser(user);
+    this.userManager.addUser(user);
   }
 
 }

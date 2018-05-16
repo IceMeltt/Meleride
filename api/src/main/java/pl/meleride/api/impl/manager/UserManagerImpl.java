@@ -1,28 +1,24 @@
 package pl.meleride.api.impl.manager;
 
 import org.apache.commons.lang.Validate;
+import org.bukkit.Server;
 import org.bukkit.entity.Player;
-import pl.meleride.api.MelerideAPI;
 import pl.meleride.api.basic.User;
 import pl.meleride.api.manager.UserManager;
 
-import java.util.LinkedHashSet;
-import java.util.Optional;
-import java.util.Set;
-import java.util.UUID;
+import javax.inject.Inject;
+import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
+import java.util.stream.Collectors;
 
 public class UserManagerImpl implements UserManager {
 
-  private MelerideAPI plugin;
+  @Inject
+  private Server server;
 
   private final ConcurrentMap<String, User> userNameMap = new ConcurrentHashMap<>(16, 0.9F, 1);
   private final ConcurrentMap<UUID, User> userUniqueIdMap = new ConcurrentHashMap<>(16, 0.9F, 1);
-
-  public UserManagerImpl(MelerideAPI plugin) {
-    this.plugin = plugin;
-  }
 
   @Override
   public Optional<User> getUser(String name) {
@@ -69,9 +65,11 @@ public class UserManagerImpl implements UserManager {
 
   @Override
   public Set<User> getOnlineUsers() {
-    Set<User> users = new LinkedHashSet<>();
-    this.plugin.getServer().getOnlinePlayers().forEach(player -> users.add(this.getUser(player.getUniqueId()).get()));
-    return users;
+    return this.server.getOnlinePlayers().stream()
+      .map(player -> this.getUser(player.getUniqueId()))
+      .filter(Optional::isPresent)
+      .map(Optional::get)
+      .collect(Collectors.toCollection(LinkedHashSet::new));
   }
 
 }
