@@ -66,7 +66,8 @@ public class UserManagerImpl implements UserManager {
   @Override
   public Set<User> getOnlineUsers() {
     return this.server.getOnlinePlayers().stream()
-      .map(player -> this.getUser(player.getUniqueId())).filter(Optional::isPresent)
+      .map(player -> this.getUser(player.getUniqueId()))
+      .filter(Optional::isPresent)
       .map(Optional::get)
       .collect(Collectors.toCollection(LinkedHashSet::new));
   }
