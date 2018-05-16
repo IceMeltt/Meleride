@@ -6,22 +6,21 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerQuitEvent;
-import pl.meleride.api.MelerideAPI;
 import pl.meleride.api.basic.User;
 import pl.meleride.api.impl.event.UserQuitEvent;
+import pl.meleride.api.manager.UserManager;
+
+import javax.inject.Inject;
 
 public class PlayerQuitListener implements Listener {
 
-  private final MelerideAPI plugin;
-
-  public PlayerQuitListener(MelerideAPI plugin) {
-    this.plugin = plugin;
-  }
+  @Inject
+  private UserManager userManager;
 
   @EventHandler(priority = EventPriority.LOWEST)
   public void onPlayerQuit(PlayerQuitEvent event) {
     Player player = event.getPlayer();
-    User user = this.plugin.getUserManager().getUser(player.getUniqueId()).get();
+    User user = this.userManager.getUser(player.getUniqueId()).get();
 
     UserQuitEvent userQuitEvent = new UserQuitEvent(user);
     Bukkit.getPluginManager().callEvent(userQuitEvent);
