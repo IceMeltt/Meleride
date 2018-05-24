@@ -1,34 +1,27 @@
 package pl.meleride.base.drug;
 
 import java.util.Set;
-
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.potion.PotionEffect;
 
-import static pl.meleride.api.impl.util.MessageUtil.*;
-
-
-public class Drug {
-
-  private String name;
-  private int prize;
+/*
+ * Meleride (c) 2017-present
+ * All Rights Reserved.
+ * Don't even think about stealing the code ;).
+ */
+public class DrugPackager {
   private String usage;
   private ItemStack itemStack;
+  private int price;
+
   private Set<PotionEffect> potionEffects;
 
-  public Drug(String name, int prize, String usage, ItemStack itemStack, Set<PotionEffect> potionEffects) {
-    this.name = name;
-    this.prize = prize;
+  public DrugPackager(String usage, ItemStack itemStack, Set<PotionEffect> potionEffects, int price) {
     this.usage = usage;
     this.itemStack = itemStack;
+    this.price = price;
     this.potionEffects = potionEffects;
   }
-
-  public String getName() {
-    return colored(name);
-  }
-
-  public int getPrize() { return prize; }
 
   public String getUsage() {
     return usage;
@@ -36,6 +29,10 @@ public class Drug {
 
   public ItemStack getItemStack() {
     return itemStack;
+  }
+
+  public int getPrice() {
+    return price;
   }
 
   public Set<PotionEffect> getPotionEffects() {

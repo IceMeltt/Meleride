@@ -2,7 +2,6 @@ package pl.meleride.base.impl.drug;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Optional;
 import java.util.UUID;
 
 import org.bukkit.Sound;
@@ -19,8 +18,8 @@ import org.bukkit.potion.PotionEffect;
 import pl.meleride.api.impl.i18n.MessageBundle;
 import pl.meleride.api.impl.type.MessageType;
 
-import pl.meleride.base.drug.Drug;
 import pl.meleride.base.drug.DrugFactory;
+import pl.meleride.base.drug.DrugPackager;
 
 
 public class DrugListener implements Listener {
@@ -32,7 +31,7 @@ public class DrugListener implements Listener {
   public void onRightClick(PlayerInteractEvent e) {
     Player player = e.getPlayer();
     ItemStack itemStack = e.getItem();
-    Drug drug;
+    DrugPackager drug;
 
     if (!(e.getAction().equals(Action.RIGHT_CLICK_AIR) || e.getAction().equals(Action.RIGHT_CLICK_BLOCK))) {
       return;
@@ -76,7 +75,7 @@ public class DrugListener implements Listener {
     Inventory inv = e.getClickedInventory();
     ItemStack itemStack = e.getCurrentItem();
     Player player = (Player) e.getWhoClicked();
-    Optional<Drug> drug;
+    DrugPackager drug;
 
     if (!inv.getName().equals(drugShop.getInventory().getName())) {
       return;
@@ -86,9 +85,9 @@ public class DrugListener implements Listener {
       return;
     }
 
-    drug = Optional.of(DrugFactory.getDrugByName(itemStack.getItemMeta().getDisplayName()));
+    drug = DrugFactory.getDrugByName(itemStack.getItemMeta().getDisplayName());
 
-    if (!itemStack.isSimilar(drug.get().getItemStack())) {
+    if (!itemStack.isSimilar(drug.getItemStack())) {
       return;
     }
 
@@ -99,7 +98,7 @@ public class DrugListener implements Listener {
     player.playSound(player.getLocation(), Sound.ENTITY_PLAYER_LEVELUP, 100.0F, 8.0F);
     player.getInventory().addItem(itemStack);
     MessageBundle.create("drugs.doneTrade")
-        .withField("{DRUG}", drug.get().getItemStack().getItemMeta().getDisplayName())
+        .withField("{DRUG}", drug.getItemStack().getItemMeta().getDisplayName())
         .target(MessageType.CHAT)
         .sendTo(player);
 

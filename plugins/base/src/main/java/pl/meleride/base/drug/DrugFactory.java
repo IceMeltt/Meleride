@@ -2,66 +2,52 @@ package pl.meleride.base.drug;
 
 import java.util.Optional;
 
-import org.bukkit.Material;
-import org.bukkit.potion.PotionEffect;
-import org.bukkit.potion.PotionEffectType;
-
-import pl.meleride.api.impl.i18n.MessageBundle;
 import pl.meleride.base.exception.NoSuchDrugException;
-import pl.meleride.base.impl.drug.DrugBuilder;
-
-import static pl.meleride.api.impl.util.MessageUtil.*;
+import pl.meleride.base.impl.drug.builders.Creator;
+import pl.meleride.base.impl.drug.builders.Drug;
+import pl.meleride.base.impl.drug.builders.type.Cannabis;
+import pl.meleride.base.impl.drug.builders.type.Cocaine;
+import pl.meleride.base.impl.drug.builders.type.Heroine;
+import pl.meleride.base.impl.drug.builders.type.MDMA;
 
 
 public class DrugFactory {
 
-  public static Drug getDrugByName(String type) {
+  public static DrugPackager getDrugByName(String type) {
 
-    Optional<Drug> optionalDrug = Optional.empty();
+    Optional<DrugPackager> optionalDrug = Optional.empty();
     switch (type) {
       case "§2Marihuana":
-        optionalDrug = Optional.of(new DrugBuilder()
-            .withName(colored("&2Marihuana"))
-            .withMaterial(Material.INK_SACK)
-            .withPrize(2)
-            .withDamage((byte) 2)
-            .withEffect(new PotionEffect(PotionEffectType.JUMP, 480 * 20, 3))
-            .withEffect(new PotionEffect(PotionEffectType.HUNGER, 480 * 20, 1))
-            .withUsage(MessageBundle.create("drugtype.cannabis").toString())
-            .build());
+        Creator cannabisCreator = new Creator(new Cannabis());
+        Drug cannabis = cannabisCreator.createDrug();
+        optionalDrug = Optional.of(new DrugPackager(cannabis.getDrugConfig().getUsage(),
+            cannabis.getItemStack(),
+            cannabis.getDrugConfig().getPotionEffects(),
+            cannabis.getDrugConfig().getPrice()));
         break;
       case "Heroina":
-        optionalDrug = Optional.of(new DrugBuilder()
-            .withName(colored("Heroina"))
-            .withMaterial(Material.INK_SACK)
-            .withPrize(2)
-            .withDamage((byte) 3)
-            .withEffect(new PotionEffect(PotionEffectType.NIGHT_VISION, 180 * 20, 1))
-            .withEffect(new PotionEffect(PotionEffectType.HUNGER, 360 * 20, 2))
-            .withUsage(MessageBundle.create("drugtype.heroine").toString())
-            .build());
+        Creator heroineCreator = new Creator(new Heroine());
+        Drug heroine = heroineCreator.createDrug();
+        optionalDrug = Optional.of(new DrugPackager(heroine.getDrugConfig().getUsage(),
+                heroine.getItemStack(),
+                heroine.getDrugConfig().getPotionEffects(),
+            heroine.getDrugConfig().getPrice()));
         break;
       case "§bEcstazy":
-        optionalDrug = Optional.of(new DrugBuilder()
-            .withName(colored("&bEcstazy"))
-            .withMaterial(Material.PRISMARINE_CRYSTALS)
-            .withPrize(3)
-            .withDamage(0)
-            .withEffect(new PotionEffect(PotionEffectType.JUMP, 480 * 20, 3))
-            .withEffect(new PotionEffect(PotionEffectType.HUNGER, 480 * 20, 2))
-            .withUsage(MessageBundle.create("drugtype.mdma").toString())
-            .build());
+        Creator mdmaCreator = new Creator(new MDMA());
+        Drug mdma = mdmaCreator.createDrug();
+        optionalDrug = Optional.of(new DrugPackager(mdma.getDrugConfig().getUsage(),
+            mdma.getItemStack(),
+            mdma.getDrugConfig().getPotionEffects(),
+            mdma.getDrugConfig().getPrice()));
         break;
       case "Kokaina":
-        optionalDrug = Optional.of(new DrugBuilder()
-            .withMaterial(Material.SUGAR)
-            .withName("Kokaina")
-            .withPrize(4)
-            .withDamage(0)
-            .withEffect(new PotionEffect(PotionEffectType.SPEED, 480 * 20, 2))
-            .withEffect(new PotionEffect(PotionEffectType.FAST_DIGGING, 480 * 20, 3))
-            .withUsage(MessageBundle.create("drugtype.cocaine").toString())
-            .build());
+        Creator cocaineCreator = new Creator(new Cocaine());
+        Drug cocaine = cocaineCreator.createDrug();
+        optionalDrug = Optional.of(new DrugPackager(cocaine.getDrugConfig().getUsage(),
+            cocaine.getItemStack(),
+            cocaine.getDrugConfig().getPotionEffects(),
+            cocaine.getDrugConfig().getPrice()));
         break;
     }
     return optionalDrug.orElseThrow(NoSuchDrugException::new);
