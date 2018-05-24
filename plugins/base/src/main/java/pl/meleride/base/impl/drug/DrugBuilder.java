@@ -15,11 +15,7 @@ import pl.meleride.base.drug.Drug;
 
 import static pl.meleride.api.impl.util.MessageUtil.*;
 
-/*
- * Meleride (c) 2017-present
- * All Rights Reserved.
- * Don't even think about stealing the code ;).
- */
+
 public class DrugBuilder {
 
   private String name = "Nieznany";

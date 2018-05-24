@@ -22,30 +22,31 @@ import pl.meleride.api.impl.type.MessageType;
 import pl.meleride.base.drug.Drug;
 import pl.meleride.base.drug.DrugFactory;
 
-/*
- * Meleride (c) 2017-present
- * All Rights Reserved.
- * Don't even think about stealing the code ;).
- */
 
 public class DrugListener implements Listener {
 
-  private Map<UUID, Long> userUsing = new HashMap<>(); //TODO Zmiana do Usera, jak User zdobedzie mozliwosc laczenia z DB
+  private final Map<UUID, Long> userUsing = new HashMap<>(); //TODO Zmiana do Usera, jak User zdobedzie mozliwosc laczenia z DB
   private final DrugShop drugShop = new DrugShop();
 
   @EventHandler
   public void onRightClick(PlayerInteractEvent e) {
     Player player = e.getPlayer();
     ItemStack itemStack = e.getItem();
-    Optional<Drug> drug;
+    Drug drug;
 
-    if (!(e.getAction().equals(Action.RIGHT_CLICK_AIR) || e.getAction().equals(Action.RIGHT_CLICK_BLOCK))) return;
+    if (!(e.getAction().equals(Action.RIGHT_CLICK_AIR) || e.getAction().equals(Action.RIGHT_CLICK_BLOCK))) {
+      return;
+    }
 
-    if(itemStack == null || !itemStack.hasItemMeta()) return;
+    if(itemStack == null || !itemStack.hasItemMeta()) {
+      return;
+    }
 
-    drug = Optional.of(DrugFactory.getDrugByName(itemStack.getItemMeta().getDisplayName()));
+    drug = DrugFactory.getDrugByName(itemStack.getItemMeta().getDisplayName());
 
-    if (!player.getInventory().getItemInMainHand().isSimilar(drug.get().getItemStack())) return;
+    if (!player.getInventory().getItemInMainHand().isSimilar(drug.getItemStack())) {
+      return;
+    }
 
     if (!player.isSneaking()) {
       MessageBundle.create("base.haveToShift")
@@ -57,11 +58,11 @@ public class DrugListener implements Listener {
     if (System.currentTimeMillis() - userUsing.getOrDefault(player.getUniqueId(), 0L)
         >= 1000 * 60L) {
       userUsing.put(player.getUniqueId(), System.currentTimeMillis());
-      for (PotionEffect effect : drug.get().getPotionEffects()) {
+      for (PotionEffect effect : drug.getPotionEffects()) {
         player.addPotionEffect(effect);
       }
-      player.getInventory().remove(drug.get().getItemStack());
-      player.sendMessage(drug.get().getUsage());
+      player.getInventory().remove(drug.getItemStack());
+      player.sendMessage(drug.getUsage());
       e.setCancelled(true);
     } else {
       MessageBundle.create("drugs.isUsing")
@@ -77,13 +78,19 @@ public class DrugListener implements Listener {
     Player player = (Player) e.getWhoClicked();
     Optional<Drug> drug;
 
-    if (!inv.getName().equals(drugShop.getInventory().getName())) return;
+    if (!inv.getName().equals(drugShop.getInventory().getName())) {
+      return;
+    }
 
-    if(itemStack == null || !itemStack.hasItemMeta()) return;
+    if(itemStack == null || !itemStack.hasItemMeta()) {
+      return;
+    }
 
     drug = Optional.of(DrugFactory.getDrugByName(itemStack.getItemMeta().getDisplayName()));
 
-    if (!itemStack.isSimilar(drug.get().getItemStack())) return;
+    if (!itemStack.isSimilar(drug.get().getItemStack())) {
+      return;
+    }
 
     if (!e.isRightClick()) {
         MessageBundle.create("base.haveToPPM").target(MessageType.CHAT).sendTo(player);

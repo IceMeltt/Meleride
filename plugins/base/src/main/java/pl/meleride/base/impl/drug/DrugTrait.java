@@ -8,11 +8,7 @@ import org.bukkit.event.EventHandler;
 
 import static pl.meleride.api.impl.util.MessageUtil.*;
 
-/*
- * Meleride (c) 2017-present
- * All Rights Reserved.
- * Don't even think about stealing the code ;).
- */
+
 public class DrugTrait extends Trait {
 
   private DrugShop shop = new DrugShop();
@@ -25,7 +21,7 @@ public class DrugTrait extends Trait {
   public void onClick(NPCRightClickEvent e) {
     Player player = e.getClicker();
 
-    if (e.getNPC() == this.getNPC()) {
+    if (e.getNPC().equals(this.getNPC())) {
       if (!e.getNPC().getName().equalsIgnoreCase(colored("&aDealer"))) {
         return;
       }

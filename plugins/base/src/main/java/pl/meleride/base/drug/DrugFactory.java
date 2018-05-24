@@ -12,22 +12,18 @@ import pl.meleride.base.impl.drug.DrugBuilder;
 
 import static pl.meleride.api.impl.util.MessageUtil.*;
 
-/*
- * Meleride (c) 2017-present
- * All Rights Reserved.
- * Don't even think about stealing the code ;).
- */
+
 public class DrugFactory {
 
-  public static Drug getDrugByName(String type){
+  public static Drug getDrugByName(String type) {
 
     Optional<Drug> optionalDrug = Optional.empty();
     switch (type) {
       case "§2Marihuana":
         optionalDrug = Optional.of(new DrugBuilder()
             .withName(colored("&2Marihuana"))
-            .withPrize(2)
             .withMaterial(Material.INK_SACK)
+            .withPrize(2)
             .withDamage((byte) 2)
             .withEffect(new PotionEffect(PotionEffectType.JUMP, 480 * 20, 3))
             .withEffect(new PotionEffect(PotionEffectType.HUNGER, 480 * 20, 1))
@@ -37,8 +33,8 @@ public class DrugFactory {
       case "Heroina":
         optionalDrug = Optional.of(new DrugBuilder()
             .withName(colored("Heroina"))
-            .withPrize(2)
             .withMaterial(Material.INK_SACK)
+            .withPrize(2)
             .withDamage((byte) 3)
             .withEffect(new PotionEffect(PotionEffectType.NIGHT_VISION, 180 * 20, 1))
             .withEffect(new PotionEffect(PotionEffectType.HUNGER, 360 * 20, 2))
@@ -48,9 +44,9 @@ public class DrugFactory {
       case "§bEcstazy":
         optionalDrug = Optional.of(new DrugBuilder()
             .withName(colored("&bEcstazy"))
+            .withMaterial(Material.PRISMARINE_CRYSTALS)
             .withPrize(3)
             .withDamage(0)
-            .withMaterial(Material.PRISMARINE_CRYSTALS)
             .withEffect(new PotionEffect(PotionEffectType.JUMP, 480 * 20, 3))
             .withEffect(new PotionEffect(PotionEffectType.HUNGER, 480 * 20, 2))
             .withUsage(MessageBundle.create("drugtype.mdma").toString())
@@ -58,9 +54,9 @@ public class DrugFactory {
         break;
       case "Kokaina":
         optionalDrug = Optional.of(new DrugBuilder()
+            .withMaterial(Material.SUGAR)
             .withName("Kokaina")
             .withPrize(4)
-            .withMaterial(Material.SUGAR)
             .withDamage(0)
             .withEffect(new PotionEffect(PotionEffectType.SPEED, 480 * 20, 2))
             .withEffect(new PotionEffect(PotionEffectType.FAST_DIGGING, 480 * 20, 3))

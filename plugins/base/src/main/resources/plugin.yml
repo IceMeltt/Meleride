@@ -1,6 +1,6 @@
 name: MeleBase
-version: 0.3.0
 main: pl.meleride.base.MelerideBase
-
-
+version: 0.3.0
+author: Meleride
+website: https://meleride.pl
 depend: [MeleEconomy, Citizens]

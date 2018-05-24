@@ -13,11 +13,6 @@ import org.bukkit.plugin.java.JavaPlugin;
 import pl.meleride.base.impl.drug.DrugShop;
 import pl.meleride.base.impl.drug.DrugTrait;
 
-/*
- * Meleride (c) 2017-present
- * All Rights Reserved.
- * Don't even think about stealing the code ;).
- */
 
 public class MelerideBase extends JavaPlugin {
 
