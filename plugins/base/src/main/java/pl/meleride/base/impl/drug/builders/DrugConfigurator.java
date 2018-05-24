@@ -1,15 +1,10 @@
 package pl.meleride.base.impl.drug.builders;
 
-
 import java.util.LinkedHashSet;
 import java.util.Set;
 import org.bukkit.potion.PotionEffect;
 
-/*
- * Meleride (c) 2017-present
- * All Rights Reserved.
- * Don't even think about stealing the code ;).
- */
+
 public class DrugConfigurator {
 
   private String usage = "Czujesz, jak do Twoich zyl wplywa narkotyk...";

@@ -13,11 +13,7 @@ import pl.meleride.base.drug.DrugBuilder;
 import pl.meleride.base.impl.drug.builders.Drug;
 import pl.meleride.base.impl.drug.builders.DrugConfigurator;
 
-/*
- * Meleride (c) 2017-present
- * All Rights Reserved.
- * Don't even think about stealing the code ;).
- */
+
 public class Heroine implements DrugBuilder {
 
   private Drug drug;

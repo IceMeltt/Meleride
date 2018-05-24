@@ -13,11 +13,7 @@ import pl.meleride.base.impl.drug.builders.DrugConfigurator;
 
 import static pl.meleride.api.impl.util.MessageUtil.colored;
 
-/*
- * Meleride (c) 2017-present
- * All Rights Reserved.
- * Don't even think about stealing the code ;).
- */
+
 public class MDMA implements DrugBuilder {
 
   private Drug drug;

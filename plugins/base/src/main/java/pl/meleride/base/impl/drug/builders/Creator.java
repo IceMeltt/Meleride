@@ -2,11 +2,7 @@ package pl.meleride.base.impl.drug.builders;
 
 import pl.meleride.base.drug.DrugBuilder;
 
-/*
- * Meleride (c) 2017-present
- * All Rights Reserved.
- * Don't even think about stealing the code ;).
- */
+
 public class Creator {
   private final DrugBuilder builder;
 
