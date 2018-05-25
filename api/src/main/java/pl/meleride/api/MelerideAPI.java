@@ -5,11 +5,11 @@ import ch.jalu.injector.InjectorBuilder;
 import org.bukkit.Server;
 import org.bukkit.event.Listener;
 import org.bukkit.plugin.java.JavaPlugin;
-import pl.meleride.api.impl.listener.PlayerLoginListener;
-import pl.meleride.api.impl.listener.PlayerPreLoginListener;
-import pl.meleride.api.impl.listener.PlayerQuitListener;
-import pl.meleride.api.impl.manager.UserManagerImpl;
-import pl.meleride.api.manager.UserManager;
+import pl.meleride.api.user.caller.PlayerLoginListener;
+import pl.meleride.api.user.caller.PlayerPreLoginListener;
+import pl.meleride.api.user.caller.PlayerQuitListener;
+import pl.meleride.api.user.manager.UserManagerImpl;
+import pl.meleride.api.user.manager.UserManager;
 import pl.meleride.commands.Commands;
 import pl.meleride.commands.bukkit.BukkitCommands;
 
