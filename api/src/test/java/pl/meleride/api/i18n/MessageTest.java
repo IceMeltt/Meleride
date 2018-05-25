@@ -40,7 +40,7 @@ public class MessageTest {
   }
 
   @Test
-  public void builderTestViaBundler() {
+  public void builderViaBundlerTest() {
     String expected = "Hello world!";
     String actual = MessageBundler.create(plugin, "test-field")
         .withField("VARIABLE", "world").toString();
