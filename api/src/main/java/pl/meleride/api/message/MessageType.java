@@ -5,6 +5,6 @@ public enum MessageType {
   CHAT,
   TITLE,
   SUB_TITLE,
-  ACTION_BAR;
+  ACTION_BAR
 
 }
