@@ -3,15 +3,17 @@ package pl.meleride.base.impl.drug;
 import net.citizensnpcs.api.event.NPCRightClickEvent;
 import net.citizensnpcs.api.trait.Trait;
 
+import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
+import pl.meleride.base.MelerideBase;
 
 import static pl.meleride.api.impl.util.MessageUtil.*;
 
 
 public class DrugTrait extends Trait {
 
-  private DrugShop shop = new DrugShop();
+  private MelerideBase main = (MelerideBase) Bukkit.getPluginManager().getPlugin("MeleBase");
 
   public DrugTrait() {
     super("dealerTrait");
@@ -26,7 +28,7 @@ public class DrugTrait extends Trait {
         return;
       }
 
-      player.openInventory(shop.getInventory());
+      player.openInventory(main.getDrugShop().getInventory());
     }
   }
 }

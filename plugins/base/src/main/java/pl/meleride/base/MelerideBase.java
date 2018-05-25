@@ -18,17 +18,18 @@ import pl.meleride.base.impl.drug.DrugTrait;
 public class MelerideBase extends JavaPlugin {
 
   private DrugShop drugShop;
-  private Injector injector;
 
   @Override
   public void onEnable() {
-    getLogger().info("Registering an instance...");
-    this.injector = new InjectorBuilder().addDefaultHandlers("pl.meleride.base").create();
-    this.injector.register(MelerideBase.class, this);
-    this.injector.register(Server.class, this.getServer());
+    getLogger().info("Rejestrowanie instancji...");
+    Injector injector = new InjectorBuilder().addDefaultHandlers("pl.meleride.base").create();
+    injector.register(MelerideBase.class, this);
+    injector.register(Server.class, this.getServer());
 
-    getLogger().info("Przygotowywanie GUI narkotykow...");
-    this.drugShop = this.injector.getSingleton(DrugShop.class);
+    injector.register(DrugShop.class, new DrugShop());
+
+    getLogger().info("Przygotowywanie GUI...");
+    this.drugShop = injector.getSingleton(DrugShop.class);
     this.drugShop.initialize();
 
     getLogger().info("Rejestrowanie NPC Traitow...");
@@ -36,7 +37,7 @@ public class MelerideBase extends JavaPlugin {
         .registerTrait(TraitInfo.create(DrugTrait.class).withName("dealerTrait"));
 
     getLogger().info("Rejestrowanie listenerow...");
-    Bukkit.getPluginManager().registerEvents(this.injector.getSingleton(DrugListener.class), this);
+    Bukkit.getPluginManager().registerEvents(injector.getSingleton(DrugListener.class), this);
   }
 
   @Override

@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
 
+import javax.inject.Inject;
 import org.bukkit.Sound;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -25,7 +26,8 @@ import pl.meleride.base.drug.DrugPackager;
 public class DrugListener implements Listener {
 
   private final Map<UUID, Long> userUsing = new HashMap<>(); //TODO Zmiana do Usera, jak User zdobedzie mozliwosc laczenia z DB
-  private final DrugShop drugShop = new DrugShop();
+  @Inject
+  private DrugShop drugShop;
 
   @EventHandler
   public void onRightClick(PlayerInteractEvent e) {
