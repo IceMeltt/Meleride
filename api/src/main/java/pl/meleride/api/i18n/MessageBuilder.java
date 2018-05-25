@@ -12,7 +12,6 @@ public final class MessageBuilder {
 
   MessageBuilder(JavaPlugin plugin, String key) {
     this.messageContent = plugin.getConfig().getString(key);
-    Validate.notNull(this.messageContent);
   }
 
   public MessageBuilder withField(String field, String value) {
