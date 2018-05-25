@@ -30,7 +30,7 @@ public class MelerideBase extends JavaPlugin {
     this.injector.register(DrugShop.class, new DrugShop());
 
     getLogger().info("Przygotowywanie GUI...");
-    this.drugShop = injector.getSingleton(DrugShop.class);
+    this.drugShop = this.injector.getSingleton(DrugShop.class);
     this.drugShop.initialize();
 
     getLogger().info("Rejestrowanie NPC Traitow...");
