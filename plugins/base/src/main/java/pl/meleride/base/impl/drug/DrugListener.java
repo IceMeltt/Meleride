@@ -26,8 +26,7 @@ import pl.meleride.base.drug.DrugPackager;
 public class DrugListener implements Listener {
 
   private final Map<UUID, Long> userUsing = new HashMap<>(); //TODO Zmiana do Usera, jak User zdobedzie mozliwosc laczenia z DB
-  @Inject
-  private DrugShop drugShop;
+  @Inject private DrugShop drugShop;
 
   @EventHandler
   public void onRightClick(PlayerInteractEvent e) {

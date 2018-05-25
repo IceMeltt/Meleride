@@ -13,7 +13,7 @@ import static pl.meleride.api.impl.util.MessageUtil.*;
 
 public class DrugTrait extends Trait {
 
-  private MelerideBase main = (MelerideBase) Bukkit.getPluginManager().getPlugin("MeleBase");
+  private final MelerideBase main = (MelerideBase) Bukkit.getPluginManager().getPlugin("MeleBase");
 
   public DrugTrait() {
     super("dealerTrait");
