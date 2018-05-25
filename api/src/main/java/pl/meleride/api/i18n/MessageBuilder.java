@@ -4,6 +4,7 @@ import org.apache.commons.lang.StringUtils;
 import org.apache.commons.lang.Validate;
 import org.bukkit.plugin.java.JavaPlugin;
 import pl.meleride.api.message.MessageType;
+import static pl.meleride.api.message.MessageUtil.colored;
 
 public final class MessageBuilder {
 
@@ -11,6 +12,7 @@ public final class MessageBuilder {
 
   MessageBuilder(JavaPlugin plugin, String key) {
     this.messageContent = plugin.getConfig().getString(key);
+    Validate.notNull(this.messageContent);
   }
 
   public MessageBuilder withField(String field, String value) {
@@ -24,7 +26,7 @@ public final class MessageBuilder {
   public MessageSender target(MessageType messageType) {
     Validate.notNull(messageType, "Message type cannot be null!");
 
-    return new MessageSender(messageType, this.messageContent);
+    return new MessageSender(messageType, colored(this.messageContent));
   }
 
   public String toString() {
