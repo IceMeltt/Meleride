@@ -1,9 +1,9 @@
 package pl.meleride.api.user.event;
 
-import pl.meleride.api.event.EventImpl;
+import pl.meleride.api.event.CustomEvent;
 import pl.meleride.api.user.User;
 
-public class UserLoadEvent extends EventImpl {
+public class UserLoadEvent extends CustomEvent {
 
   private final User user;
 
