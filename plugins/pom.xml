@@ -18,7 +18,7 @@
   <packaging>pom</packaging>
 
   <modules>
-    <!-- TODO -->
+    <module>base</module>
   </modules>
 
   <dependencies>
