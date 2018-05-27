@@ -16,8 +16,8 @@ import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.potion.PotionEffect;
 
-import pl.meleride.api.impl.i18n.MessageBundle;
-import pl.meleride.api.impl.type.MessageType;
+import pl.meleride.api.i18n.MessageBundle;
+import pl.meleride.api.message.MessageType;
 
 import pl.meleride.base.drug.DrugFactory;
 import pl.meleride.base.drug.DrugPackager;

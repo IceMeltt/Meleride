@@ -5,7 +5,7 @@ import org.bukkit.inventory.Inventory;
 
 import pl.meleride.base.drug.DrugFactory;
 
-import static pl.meleride.api.impl.util.MessageUtil.*;
+import static pl.meleride.api.message.MessageUtil.colored;
 
 
 public class DrugShop {

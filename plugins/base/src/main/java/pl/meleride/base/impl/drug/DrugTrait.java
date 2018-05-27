@@ -8,7 +8,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import pl.meleride.base.MelerideBase;
 
-import static pl.meleride.api.impl.util.MessageUtil.*;
+import static pl.meleride.api.message.MessageUtil.colored;
 
 
 public class DrugTrait extends Trait {

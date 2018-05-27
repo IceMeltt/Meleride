@@ -5,13 +5,13 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
-import pl.meleride.api.impl.i18n.MessageBundle;
-import pl.meleride.api.impl.item.ItemBuilder;
+import pl.meleride.api.builder.item.ItemBuilder;
+import pl.meleride.api.i18n.MessageBundle;
 import pl.meleride.base.drug.DrugBuilder;
 import pl.meleride.base.impl.drug.builders.Drug;
 import pl.meleride.base.impl.drug.builders.DrugConfigurator;
 
-import static pl.meleride.api.impl.util.MessageUtil.*;
+import static pl.meleride.api.message.MessageUtil.colored;
 
 
 public class Cannabis implements DrugBuilder {
