@@ -1,0 +1,7 @@
+database:
+  mysql:
+    databaseName: meleride
+    serverName: localhost
+    username: root
+    password: root
+    port: 3306
