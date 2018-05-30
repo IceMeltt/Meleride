@@ -14,8 +14,6 @@ import pl.meleride.api.user.manager.UserManager;
 import javax.inject.Inject;
 import java.util.Optional;
 
-import static pl.meleride.api.message.MessageUtil.*;
-
 public class PlayerPreLoginListener implements Listener {
 
   private final UserManager userManager;
