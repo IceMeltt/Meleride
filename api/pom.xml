@@ -35,6 +35,16 @@
       <groupId>ch.jalu</groupId>
       <artifactId>injector</artifactId>
     </dependency>
+
+    <dependency>
+      <groupId>com.zaxxer</groupId>
+      <artifactId>HikariCP</artifactId>
+    </dependency>
+
+    <dependency>
+      <groupId>org.jooq</groupId>
+      <artifactId>jooq</artifactId>
+    </dependency>
   </dependencies>
 
 </project>
