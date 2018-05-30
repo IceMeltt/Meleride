@@ -45,7 +45,6 @@ public class PlayerPreLoginListener implements Listener {
     if (!optionalUser.isPresent()) {
       User user = new UserImpl(event.getUniqueId());
       this.userManager.addUser(user);
-      event.disallow(AsyncPlayerPreLoginEvent.Result.KICK_OTHER, colored("&aAccount has been created! Log In Again"));
     }
   }
 
