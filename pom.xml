@@ -69,12 +69,6 @@
         <artifactId>HikariCP</artifactId>
         <version>3.1.0</version>
       </dependency>
-
-      <dependency>
-        <groupId>org.jooq</groupId>
-        <artifactId>jooq</artifactId>
-        <version>3.10.7</version>
-      </dependency>
     </dependencies>
   </dependencyManagement>
 
