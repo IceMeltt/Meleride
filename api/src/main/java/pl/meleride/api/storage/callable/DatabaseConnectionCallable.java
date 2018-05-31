@@ -29,7 +29,7 @@ public class DatabaseConnectionCallable implements Callable<Void> {
     dataSource.addDataSourceProperty("prepStmtCacheSize", 250);
     dataSource.addDataSourceProperty("prepStmtCacheSqlLimit", 2048);
     dataSource.addDataSourceProperty("useServerPrepStmts", true);
-    dataSource.setMaximumPoolSize((cores * 2) + 1);
+    dataSource.setMaximumPoolSize(3);
 
     return null;
   }

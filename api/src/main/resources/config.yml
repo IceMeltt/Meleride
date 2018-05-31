@@ -5,3 +5,6 @@ database:
     username: root
     password: root
     port: 3306
+messages:
+  login-error: "&cWystąpił błąd z tworzeniem twojego konta! \n &cProsimy, zaloguj się ponownie!"
+  session-abort: "&cSesja odrzucona!"

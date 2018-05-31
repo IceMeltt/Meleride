@@ -43,6 +43,7 @@ public final class MelerideAPI extends JavaPlugin {
       PlayerQuitListener.class
     );
 
+    this.getConfig().options().copyDefaults(true);
     this.saveDefaultConfig();
   }
 
@@ -50,7 +51,7 @@ public final class MelerideAPI extends JavaPlugin {
     this.injector = new InjectorBuilder().addDefaultHandlers("pl.meleride").create();
     this.commands = new BukkitCommands(this);
 
-    this.executorService = Executors.newCachedThreadPool();
+    this.executorService = Executors.newFixedThreadPool(3);
 
     this.injector.register(ExecutorService.class, this.executorService);
     this.injector.register(MelerideAPI.class, this);
