@@ -3,14 +3,14 @@ package pl.meleride.api.user;
 import com.google.common.base.Charsets;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
-import pl.meleride.api.user.User;
 
+import java.util.Optional;
 import java.util.UUID;
 
 public class UserImpl implements User {
 
-  private String name;
   private final UUID uniqueId;
+  private String name;
 
   public UserImpl(String name) {
     this.name = name;
@@ -28,8 +28,8 @@ public class UserImpl implements User {
   }
 
   @Override
-  public String getName() {
-    return this.name;
+  public Optional<String> getName() {
+    return Optional.ofNullable(this.name);
   }
 
   @Override

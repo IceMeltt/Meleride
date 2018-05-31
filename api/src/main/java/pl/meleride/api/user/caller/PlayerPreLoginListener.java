@@ -6,32 +6,44 @@ import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.AsyncPlayerPreLoginEvent;
 import pl.meleride.api.user.User;
+import pl.meleride.api.user.UserImpl;
 import pl.meleride.api.user.event.UserAbortEvent;
 import pl.meleride.api.user.event.UserInitEvent;
 import pl.meleride.api.user.manager.UserManager;
 
 import javax.inject.Inject;
+import java.util.Optional;
 
 public class PlayerPreLoginListener implements Listener {
 
+  private final UserManager userManager;
+
   @Inject
-  private UserManager userManager;
+  PlayerPreLoginListener(UserManager userManager) {
+    this.userManager = userManager;
+  }
 
   @EventHandler(priority = EventPriority.LOWEST)
   public void onPlayerPreLogin(AsyncPlayerPreLoginEvent event) {
-    User user = this.userManager.getUser(event.getUniqueId()).get();
+    Optional<User> optionalUser = this.userManager.getUser(event.getUniqueId());
 
-    UserInitEvent userInitEvent = new UserInitEvent(user);
-    Bukkit.getPluginManager().callEvent(userInitEvent);
+    optionalUser.ifPresent(user -> {
+      UserInitEvent userInitEvent = new UserInitEvent(user);
 
-    if (userInitEvent.isCancelled()) {
-      UserAbortEvent userAbortEvent = new UserAbortEvent(user);
-      Bukkit.getPluginManager().callEvent(userAbortEvent);
-      event.disallow(AsyncPlayerPreLoginEvent.Result.KICK_OTHER, "Session abort.");
-      return;
+      if (userInitEvent.isCancelled()) {
+        UserAbortEvent userAbortEvent = new UserAbortEvent(user);
+        Bukkit.getPluginManager().callEvent(userAbortEvent);
+        event.disallow(AsyncPlayerPreLoginEvent.Result.KICK_OTHER, "Session aborted.");
+        return;
+      }
+
+      this.userManager.addUser(user);
+    });
+
+    if (!optionalUser.isPresent()) {
+      User user = new UserImpl(event.getUniqueId());
+      this.userManager.addUser(user);
     }
-
-    this.userManager.addUser(user);
   }
 
 }

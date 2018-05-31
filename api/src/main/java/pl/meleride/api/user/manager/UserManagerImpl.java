@@ -25,9 +25,9 @@ public class UserManagerImpl implements UserManager {
     Validate.notNull(name, "Player name cannot be null!");
 
     return this.userNameMap.values()
-        .stream()
-        .filter(user -> user.getName().equalsIgnoreCase(name))
-        .findFirst();
+      .stream()
+      .filter(user -> user.getName().get().equals(name))
+      .findFirst();
   }
 
   @Override
@@ -35,9 +35,9 @@ public class UserManagerImpl implements UserManager {
     Validate.notNull(uniqueId, "Player unique id cannot be null!");
 
     return this.userUniqueIdMap.values()
-        .stream()
-        .filter(user -> user.getUniqueId().equals(uniqueId))
-        .findFirst();
+      .stream()
+      .filter(user -> user.getUniqueId().equals(uniqueId))
+      .findFirst();
   }
 
   @Override
@@ -52,7 +52,9 @@ public class UserManagerImpl implements UserManager {
     Validate.notNull(user, "User object cannot be null!");
 
     this.userUniqueIdMap.put(user.getUniqueId(), user);
-    this.userNameMap.put(user.getName(), user);
+    if (user.getName().isPresent()) {
+      this.userNameMap.put(user.getName().get(), user);
+    }
   }
 
   @Override
@@ -60,7 +62,7 @@ public class UserManagerImpl implements UserManager {
     Validate.notNull(user, "User object cannot be null!");
 
     this.userUniqueIdMap.remove(user.getUniqueId());
-    this.userNameMap.remove(user.getName());
+    this.userNameMap.remove(user.getName().get());
   }
 
   @Override
