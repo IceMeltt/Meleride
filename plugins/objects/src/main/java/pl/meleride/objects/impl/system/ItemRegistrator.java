@@ -30,7 +30,7 @@ public class ItemRegistrator {
   }
 
   public static Map<String, AbstractItem> getObjectMap() {
-    return objects;
+    return new HashMap<>(objects);
   }
 
   private ItemRegistrator() {}

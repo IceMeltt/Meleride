@@ -12,5 +12,8 @@
 
   <artifactId>objects</artifactId>
 
+  <name>Meleride :: Plugins :: Objects</name>
+  <description>Plugin wprowadzajacy podstawowe rzeczy na serwer</description>
+
 
 </project>
