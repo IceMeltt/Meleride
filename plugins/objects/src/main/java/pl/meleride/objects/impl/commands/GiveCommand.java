@@ -21,7 +21,6 @@ public class GiveCommand {
       usage = "/daj [nazwa]",
       userOnly = true)
   public void giveCommand(CommandSender sender, CommandContext context) {
-
     Player player = CommandUtils.toPlayer(sender);
 
     if(!ItemRegistrator.checkIfExist(context.getParam(0))) {
