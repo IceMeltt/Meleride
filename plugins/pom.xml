@@ -19,6 +19,7 @@
 
   <modules>
     <!-- TODO -->
+    <module>objects</module>
   </modules>
 
   <dependencies>

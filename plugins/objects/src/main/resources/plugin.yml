@@ -1,0 +1,10 @@
+name: MeleObjects
+version: 0.3.0
+main: pl.meleride.objects.MelerideObjects
+author: Meleride
+website: https://meleride.pl
+
+commands:
+  daj:
+    description: Komenda pozwalająca na przydzielanie graczom danych rzeczy.
+    permission: meleride.admin.daj
