@@ -15,6 +15,7 @@ public class ItemRegistrator {
   public static void register(AbstractItem abstractItem) {
     Validate.notNull(abstractItem, "AbstractItem cannot be null!");
       objects.put(abstractItem.getName(), abstractItem);
+
       Bukkit.getPluginManager().registerEvents(abstractItem, INSTANCE);
   }
 
@@ -23,9 +24,10 @@ public class ItemRegistrator {
   }
 
   public static AbstractItem getRegisteredObject(String name) {
-    if(!checkIfExist(name)) {
+    if(!(checkIfExist(name))) {
       Bukkit.getLogger().severe("Obiekt o nazwie " + name + " nie istnieje w systemie!");
     }
+
     return objects.get(name);
   }
 
@@ -33,5 +35,7 @@ public class ItemRegistrator {
     return new HashMap<>(objects);
   }
 
-  private ItemRegistrator() {}
+  private ItemRegistrator() {
+  }
+
 }

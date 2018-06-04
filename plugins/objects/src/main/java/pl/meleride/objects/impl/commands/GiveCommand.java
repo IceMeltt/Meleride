@@ -23,7 +23,7 @@ public class GiveCommand {
   public void giveCommand(CommandSender sender, CommandContext context) {
     Player player = CommandUtils.toPlayer(sender);
 
-    if(!ItemRegistrator.checkIfExist(context.getParam(0))) {
+    if(!(ItemRegistrator.checkIfExist(context.getParam(0)))) {
       player.sendMessage(colored("&8» &cNie znaleziono przedmiotu &7" + context.getParam(0) + "&c w bazie!"));
     } else {
       AbstractItem item = ItemManager.getObject(context.getParam(0));
@@ -31,4 +31,5 @@ public class GiveCommand {
       player.sendMessage(colored("&8» &aOtrzymano item &7" + context.getParam(0) + "&a!"));
     }
   }
+
 }

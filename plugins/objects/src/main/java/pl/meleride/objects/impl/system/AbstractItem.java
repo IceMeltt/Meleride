@@ -1,5 +1,6 @@
 package pl.meleride.objects.impl.system;
 
+import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.ItemStack;
@@ -21,7 +22,8 @@ public class AbstractItem implements Listener {
     return this.itemStack;
   }
 
+  @EventHandler
   public void onPlayerInteract(PlayerInteractEvent e) {
-
   }
+
 }

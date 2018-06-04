@@ -15,6 +15,7 @@ public class MelerideObjects extends JavaPlugin {
 
   @Override
   public void onEnable() {
+
     getLogger().info("Rejestrowanie injectora...");
     this.injector = new InjectorBuilder().addDefaultHandlers("pl.meleride.objects").create();
     this.injector.register(MelerideObjects.class, this);
@@ -27,4 +28,13 @@ public class MelerideObjects extends JavaPlugin {
     this.commands = new BukkitCommands(this);
     this.commands.registerCommandObjects(this.injector.getSingleton(GiveCommand.class));
   }
+
+  public Injector getInjector() {
+    return this.injector;
+  }
+
+  public Commands getCommands() {
+    return this.commands;
+  }
+
 }
