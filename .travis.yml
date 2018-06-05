@@ -15,4 +15,3 @@ jdk:
 
 notifications:
   email: false
-  webhooks: http://164.132.235.115/cdn/travis-ci.php
