@@ -6,6 +6,9 @@ addons:
   apt:
     update: true
 
+services:
+  - mysql
+
 install: script/install
 script: script/script
 
