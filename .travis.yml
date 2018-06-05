@@ -10,6 +10,7 @@ install: script/install
 script: script/script
 
 jdk:
+  - openjdk8
   - oraclejdk8
 
 notifications:
