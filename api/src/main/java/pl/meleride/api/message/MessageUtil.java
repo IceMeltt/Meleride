@@ -1,8 +1,10 @@
 package pl.meleride.api.message;
 
+import java.util.Objects;
+import java.util.stream.Collectors;
+import org.apache.commons.lang.Validate;
 import org.bukkit.ChatColor;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public final class MessageUtil {
@@ -12,9 +14,12 @@ public final class MessageUtil {
   }
 
   public static List<String> colored(List<String> messages) {
-    List<String> colored = new ArrayList<>();
-    messages.forEach(message -> colored.add(colored(message)));
-    return colored;
+    Validate.notEmpty(messages, "Messages cannot be empty!");
+
+    return messages.stream()
+        .map(MessageUtil::colored)
+        .filter(Objects::nonNull)
+        .collect(Collectors.toList());
   }
 
   private MessageUtil() {}

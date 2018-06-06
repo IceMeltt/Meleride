@@ -6,7 +6,6 @@ import org.apache.commons.lang.Validate;
 import org.bukkit.entity.Player;
 import pl.meleride.api.user.User;
 import pl.meleride.api.message.MessageType;
-import static pl.meleride.api.message.MessageUtil.*;
 
 import java.util.Collection;
 
@@ -25,19 +24,19 @@ public final class MessageSender {
 
     switch (this.messageType) {
       case CHAT:
-        player.sendMessage(colored(this.messageContent));
+        player.sendMessage(this.messageContent);
         break;
       case TITLE:
-        player.sendTitle(colored(this.messageContent), "", -1, -1, -1);
+        player.sendTitle(this.messageContent, "", -1, -1, -1);
         break;
       case SUB_TITLE:
-        player.sendTitle("", colored(this.messageContent), -1, -1, -1);
+        player.sendTitle("", this.messageContent, -1, -1, -1);
         break;
       case ACTION_BAR:
-        player.spigot().sendMessage(ChatMessageType.ACTION_BAR, new TextComponent(colored(this.messageContent)));
+        player.spigot().sendMessage(ChatMessageType.ACTION_BAR, new TextComponent(this.messageContent));
         break;
-
-      default: player.sendMessage(colored(this.messageContent));
+      default:
+        player.sendMessage(this.messageContent);
     }
   }
 
