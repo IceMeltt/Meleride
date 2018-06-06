@@ -1,6 +1,4 @@
-package pl.meleride.base.impl.drug.builders.type;
-
-import static pl.meleride.api.message.MessageUtil.colored;
+package pl.meleride.base.impl.drug.builder.type;
 
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
@@ -10,21 +8,19 @@ import org.bukkit.potion.PotionEffectType;
 import pl.meleride.api.builder.item.ItemBuilder;
 import pl.meleride.api.i18n.MessageBundler;
 import pl.meleride.base.drug.DrugBuilder;
-import pl.meleride.base.impl.drug.builders.Drug;
-import pl.meleride.base.impl.drug.builders.DrugConfigurator;
-
+import pl.meleride.base.impl.drug.builder.Drug;
+import pl.meleride.base.impl.drug.builder.DrugConfigurator;
 
 public class Heroine implements DrugBuilder {
 
-  private Drug drug;
+  private DrugConfigurator drugConfig;
+  private ItemStack itemStack;
 
-  public Heroine() {
-    drug = new Drug();
-  }
+  private final Drug drug = new Drug();
 
   @Override
   public void addDrugConfig() {
-    DrugConfigurator drugConfig = new DrugConfigurator();
+    drugConfig = new DrugConfigurator();
     drugConfig.setPrice(2);
     drugConfig.addPotionEffect(new PotionEffect(PotionEffectType.NIGHT_VISION, 180 * 20, 1));
     drugConfig.addPotionEffect(new PotionEffect(PotionEffectType.HUNGER, 360 * 20, 2));
@@ -35,9 +31,9 @@ public class Heroine implements DrugBuilder {
 
   @Override
   public void addItemStack() {
-    ItemStack itemStack = new ItemBuilder(Material.INK_SACK)
+    itemStack = new ItemBuilder(Material.INK_SACK)
         .setDamage((byte) 3)
-        .setName(colored("Heroina"))
+        .setName("Heroina")
         .build();
     drug.setItemStack(itemStack);
   }
@@ -46,4 +42,5 @@ public class Heroine implements DrugBuilder {
   public Drug getDrug() {
     return drug;
   }
+
 }

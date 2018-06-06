@@ -10,7 +10,6 @@ import pl.meleride.base.MelerideBase;
 
 import static pl.meleride.api.message.MessageUtil.colored;
 
-
 public class DrugTrait extends Trait {
 
   private final MelerideBase main = (MelerideBase) Bukkit.getPluginManager().getPlugin("MeleBase");
@@ -31,4 +30,5 @@ public class DrugTrait extends Trait {
       player.openInventory(main.getDrugShop().getInventory());
     }
   }
+
 }

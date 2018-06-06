@@ -1,4 +1,4 @@
-package pl.meleride.base.impl.drug.builders.type;
+package pl.meleride.base.impl.drug.builder.type;
 
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
@@ -8,23 +8,22 @@ import org.bukkit.potion.PotionEffectType;
 import pl.meleride.api.builder.item.ItemBuilder;
 import pl.meleride.api.i18n.MessageBundler;
 import pl.meleride.base.drug.DrugBuilder;
-import pl.meleride.base.impl.drug.builders.Drug;
-import pl.meleride.base.impl.drug.builders.DrugConfigurator;
+import pl.meleride.base.impl.drug.builder.Drug;
+import pl.meleride.base.impl.drug.builder.DrugConfigurator;
 
 import static pl.meleride.api.message.MessageUtil.colored;
 
 
 public class MDMA implements DrugBuilder {
 
-  private Drug drug;
+  private DrugConfigurator drugConfig;
+  private ItemStack itemStack;
 
-  public MDMA() {
-    drug = new Drug();
-  }
+  private final Drug drug = new Drug();
 
   @Override
   public void addDrugConfig() {
-    DrugConfigurator drugConfig = new DrugConfigurator();
+    drugConfig = new DrugConfigurator();
     drugConfig.setPrice(3);
     drugConfig.addPotionEffect(new PotionEffect(PotionEffectType.JUMP, 480 * 20, 3));
     drugConfig.addPotionEffect(new PotionEffect(PotionEffectType.HUNGER, 480 * 20, 2));
@@ -34,7 +33,7 @@ public class MDMA implements DrugBuilder {
 
   @Override
   public void addItemStack() {
-    ItemStack itemStack = new ItemBuilder(Material.PRISMARINE_CRYSTALS)
+    itemStack = new ItemBuilder(Material.PRISMARINE_CRYSTALS)
         .setName(colored("&bEcstazy"))
         .setDamage(0)
         .build();
@@ -45,4 +44,5 @@ public class MDMA implements DrugBuilder {
   public Drug getDrug() {
     return drug;
   }
+
 }

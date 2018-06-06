@@ -1,7 +1,6 @@
-package pl.meleride.base.impl.drug.builders;
+package pl.meleride.base.impl.drug.builder;
 
 import org.bukkit.inventory.ItemStack;
-
 
 public class Drug {
 
@@ -23,4 +22,5 @@ public class Drug {
   public ItemStack getItemStack() {
     return itemStack;
   }
+
 }

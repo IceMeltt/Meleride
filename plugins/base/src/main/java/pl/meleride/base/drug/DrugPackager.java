@@ -4,8 +4,8 @@ import java.util.Set;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.potion.PotionEffect;
 
-
 public class DrugPackager {
+
   private String usage;
   private ItemStack itemStack;
   private int price;
@@ -34,4 +34,5 @@ public class DrugPackager {
   public Set<PotionEffect> getPotionEffects() {
     return potionEffects;
   }
+
 }

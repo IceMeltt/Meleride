@@ -1,15 +1,15 @@
-package pl.meleride.base.impl.drug.builders;
+package pl.meleride.base.impl.drug.builder;
 
 import java.util.LinkedHashSet;
 import java.util.Set;
 import org.bukkit.potion.PotionEffect;
-
+import pl.meleride.api.i18n.MessageBundler;
 
 public class DrugConfigurator {
 
-  private String usage = "Czujesz, jak do Twoich zyl wplywa narkotyk...";
+  private String usage = MessageBundler.create("drug.usage.default").toString();
   private int price = 0;
-  private Set<PotionEffect> potionEffects = new LinkedHashSet<>();
+  private final Set<PotionEffect> potionEffects = new LinkedHashSet<>();
 
   public void setUsage(String usage) {
     this.usage = usage;
@@ -34,4 +34,5 @@ public class DrugConfigurator {
   public Set<PotionEffect> getPotionEffects() {
     return potionEffects;
   }
+
 }

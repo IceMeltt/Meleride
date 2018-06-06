@@ -1,6 +1,4 @@
-package pl.meleride.base.impl.drug.builders.type;
-
-import static pl.meleride.api.message.MessageUtil.colored;
+package pl.meleride.base.impl.drug.builder.type;
 
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
@@ -10,21 +8,19 @@ import org.bukkit.potion.PotionEffectType;
 import pl.meleride.api.builder.item.ItemBuilder;
 import pl.meleride.api.i18n.MessageBundler;
 import pl.meleride.base.drug.DrugBuilder;
-import pl.meleride.base.impl.drug.builders.Drug;
-import pl.meleride.base.impl.drug.builders.DrugConfigurator;
-
+import pl.meleride.base.impl.drug.builder.Drug;
+import pl.meleride.base.impl.drug.builder.DrugConfigurator;
 
 public class Cocaine implements DrugBuilder {
 
-  private Drug drug;
+  private DrugConfigurator drugConfig;
+  private ItemStack itemStack;
 
-  public Cocaine() {
-    drug = new Drug();
-  }
+  private Drug drug = new Drug();
 
   @Override
   public void addDrugConfig() {
-    DrugConfigurator drugConfig = new DrugConfigurator();
+    drugConfig = new DrugConfigurator();
     drugConfig.setPrice(4);
     drugConfig.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, 480 * 20, 2));
     drugConfig.addPotionEffect(new PotionEffect(PotionEffectType.FAST_DIGGING, 480 * 20, 3));
@@ -34,9 +30,9 @@ public class Cocaine implements DrugBuilder {
 
   @Override
   public void addItemStack() {
-    ItemStack itemStack = new ItemBuilder(Material.SUGAR)
+    itemStack = new ItemBuilder(Material.SUGAR)
         .setDamage(0)
-        .setName(colored("Kokaina"))
+        .setName("Kokaina")
         .build();
     drug.setItemStack(itemStack);
   }
@@ -45,4 +41,5 @@ public class Cocaine implements DrugBuilder {
   public Drug getDrug() {
     return drug;
   }
+
 }

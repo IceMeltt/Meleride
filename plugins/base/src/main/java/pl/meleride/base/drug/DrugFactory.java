@@ -3,13 +3,12 @@ package pl.meleride.base.drug;
 import java.util.Optional;
 
 import pl.meleride.base.exception.NoSuchDrugException;
-import pl.meleride.base.impl.drug.builders.Creator;
-import pl.meleride.base.impl.drug.builders.Drug;
-import pl.meleride.base.impl.drug.builders.type.Cannabis;
-import pl.meleride.base.impl.drug.builders.type.Cocaine;
-import pl.meleride.base.impl.drug.builders.type.Heroine;
-import pl.meleride.base.impl.drug.builders.type.MDMA;
-
+import pl.meleride.base.impl.drug.builder.Creator;
+import pl.meleride.base.impl.drug.builder.Drug;
+import pl.meleride.base.impl.drug.builder.type.Cannabis;
+import pl.meleride.base.impl.drug.builder.type.Cocaine;
+import pl.meleride.base.impl.drug.builder.type.Heroine;
+import pl.meleride.base.impl.drug.builder.type.MDMA;
 
 public class DrugFactory {
 

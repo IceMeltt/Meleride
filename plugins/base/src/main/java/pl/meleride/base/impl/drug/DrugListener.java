@@ -22,7 +22,6 @@ import pl.meleride.api.message.MessageType;
 import pl.meleride.base.drug.DrugFactory;
 import pl.meleride.base.drug.DrugPackager;
 
-
 public class DrugListener implements Listener {
 
   private final Map<UUID, Long> userUsing = new HashMap<>(); //TODO Zmiana do Usera, jak User zdobedzie mozliwosc laczenia z DB
@@ -55,9 +54,9 @@ public class DrugListener implements Listener {
       return;
     }
 
-    if (System.currentTimeMillis() - userUsing.getOrDefault(player.getUniqueId(), 0L)
+    if (System.currentTimeMillis() - this.userUsing.getOrDefault(player.getUniqueId(), 0L)
         >= 1000 * 60L) {
-      userUsing.put(player.getUniqueId(), System.currentTimeMillis());
+      this.userUsing.put(player.getUniqueId(), System.currentTimeMillis());
       for (PotionEffect effect : drug.getPotionEffects()) {
         player.addPotionEffect(effect);
       }
@@ -78,7 +77,7 @@ public class DrugListener implements Listener {
     Player player = (Player) e.getWhoClicked();
     DrugPackager drug;
 
-    if (!inv.getName().equals(drugShop.getInventory().getName())) {
+    if (!inv.getName().equals(this.drugShop.getInventory().getName())) {
       return;
     }
 
@@ -104,4 +103,5 @@ public class DrugListener implements Listener {
         .sendTo(player);
 
   }
+
 }

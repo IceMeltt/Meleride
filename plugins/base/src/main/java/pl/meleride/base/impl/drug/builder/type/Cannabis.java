@@ -1,4 +1,4 @@
-package pl.meleride.base.impl.drug.builders.type;
+package pl.meleride.base.impl.drug.builder.type;
 
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
@@ -8,23 +8,21 @@ import org.bukkit.potion.PotionEffectType;
 import pl.meleride.api.builder.item.ItemBuilder;
 import pl.meleride.api.i18n.MessageBundler;
 import pl.meleride.base.drug.DrugBuilder;
-import pl.meleride.base.impl.drug.builders.Drug;
-import pl.meleride.base.impl.drug.builders.DrugConfigurator;
+import pl.meleride.base.impl.drug.builder.Drug;
+import pl.meleride.base.impl.drug.builder.DrugConfigurator;
 
 import static pl.meleride.api.message.MessageUtil.colored;
 
-
 public class Cannabis implements DrugBuilder {
 
-  private Drug drug;
+  private DrugConfigurator drugConfig;
+  private ItemStack itemStack;
 
-  public Cannabis() {
-    drug = new Drug();
-  }
+  private final Drug drug = new Drug();
 
   @Override
   public void addDrugConfig() {
-    DrugConfigurator drugConfig = new DrugConfigurator();
+    drugConfig = new DrugConfigurator();
     drugConfig.setPrice(2);
     drugConfig.addPotionEffect(new PotionEffect(PotionEffectType.JUMP, 480 * 20, 3));
     drugConfig.addPotionEffect(new PotionEffect(PotionEffectType.HUNGER, 480 * 20, 1));
@@ -34,7 +32,7 @@ public class Cannabis implements DrugBuilder {
 
   @Override
   public void addItemStack() {
-    ItemStack itemStack = new ItemBuilder(Material.INK_SACK)
+    itemStack = new ItemBuilder(Material.INK_SACK)
         .setDamage((byte) 2)
         .setName(colored("&2Marihuana"))
         .build();
@@ -45,6 +43,5 @@ public class Cannabis implements DrugBuilder {
   public Drug getDrug() {
     return drug;
   }
-
 
 }

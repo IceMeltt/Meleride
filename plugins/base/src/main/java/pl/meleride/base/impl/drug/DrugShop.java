@@ -4,9 +4,7 @@ import org.bukkit.Bukkit;
 import org.bukkit.inventory.Inventory;
 
 import pl.meleride.base.drug.DrugFactory;
-
 import static pl.meleride.api.message.MessageUtil.colored;
-
 
 public class DrugShop {
 
@@ -26,4 +24,5 @@ public class DrugShop {
     }
     return inventory;
   }
+
 }
