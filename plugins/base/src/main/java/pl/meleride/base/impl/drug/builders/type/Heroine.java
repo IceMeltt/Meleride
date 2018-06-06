@@ -8,7 +8,7 @@ import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
 import pl.meleride.api.builder.item.ItemBuilder;
-import pl.meleride.api.i18n.MessageBundle;
+import pl.meleride.api.i18n.MessageBundler;
 import pl.meleride.base.drug.DrugBuilder;
 import pl.meleride.base.impl.drug.builders.Drug;
 import pl.meleride.base.impl.drug.builders.DrugConfigurator;
@@ -28,7 +28,7 @@ public class Heroine implements DrugBuilder {
     drugConfig.setPrice(2);
     drugConfig.addPotionEffect(new PotionEffect(PotionEffectType.NIGHT_VISION, 180 * 20, 1));
     drugConfig.addPotionEffect(new PotionEffect(PotionEffectType.HUNGER, 360 * 20, 2));
-    drugConfig.setUsage(MessageBundle.create("drugtype.heroine").toString());
+    drugConfig.setUsage(MessageBundler.create("drugtype.heroine").toString());
     drug.setDrugConfig(drugConfig);
   }
 

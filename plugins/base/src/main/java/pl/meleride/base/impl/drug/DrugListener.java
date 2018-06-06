@@ -16,7 +16,7 @@ import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.potion.PotionEffect;
 
-import pl.meleride.api.i18n.MessageBundle;
+import pl.meleride.api.i18n.MessageBundler;
 import pl.meleride.api.message.MessageType;
 
 import pl.meleride.base.drug.DrugFactory;
@@ -49,7 +49,7 @@ public class DrugListener implements Listener {
     }
 
     if (!player.isSneaking()) {
-      MessageBundle.create("base.haveToShift")
+      MessageBundler.create("base.haveToShift")
           .target(MessageType.CHAT)
           .sendTo(player);
       return;
@@ -65,7 +65,7 @@ public class DrugListener implements Listener {
       player.sendMessage(drug.getUsage());
       e.setCancelled(true);
     } else {
-      MessageBundle.create("drugs.isUsing")
+      MessageBundler.create("drugs.isUsing")
           .target(MessageType.CHAT)
           .sendTo(player);
     }
@@ -93,12 +93,12 @@ public class DrugListener implements Listener {
     }
 
     if (!e.isRightClick()) {
-        MessageBundle.create("base.haveToPPM").target(MessageType.CHAT).sendTo(player);
+        MessageBundler.create("base.haveToPPM").target(MessageType.CHAT).sendTo(player);
         return;
     }
     player.playSound(player.getLocation(), Sound.ENTITY_PLAYER_LEVELUP, 100.0F, 8.0F);
     player.getInventory().addItem(itemStack);
-    MessageBundle.create("drugs.doneTrade")
+    MessageBundler.create("drugs.doneTrade")
         .withField("{DRUG}", drug.getItemStack().getItemMeta().getDisplayName())
         .target(MessageType.CHAT)
         .sendTo(player);

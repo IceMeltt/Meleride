@@ -8,7 +8,7 @@ import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
 import pl.meleride.api.builder.item.ItemBuilder;
-import pl.meleride.api.i18n.MessageBundle;
+import pl.meleride.api.i18n.MessageBundler;
 import pl.meleride.base.drug.DrugBuilder;
 import pl.meleride.base.impl.drug.builders.Drug;
 import pl.meleride.base.impl.drug.builders.DrugConfigurator;
@@ -28,7 +28,7 @@ public class Cocaine implements DrugBuilder {
     drugConfig.setPrice(4);
     drugConfig.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, 480 * 20, 2));
     drugConfig.addPotionEffect(new PotionEffect(PotionEffectType.FAST_DIGGING, 480 * 20, 3));
-    drugConfig.setUsage(MessageBundle.create("drugtype.cocaine").toString());
+    drugConfig.setUsage(MessageBundler.create("drugtype.cocaine").toString());
     drug.setDrugConfig(drugConfig);
   }
 

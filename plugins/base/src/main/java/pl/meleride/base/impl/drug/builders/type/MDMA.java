@@ -6,7 +6,7 @@ import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
 import pl.meleride.api.builder.item.ItemBuilder;
-import pl.meleride.api.i18n.MessageBundle;
+import pl.meleride.api.i18n.MessageBundler;
 import pl.meleride.base.drug.DrugBuilder;
 import pl.meleride.base.impl.drug.builders.Drug;
 import pl.meleride.base.impl.drug.builders.DrugConfigurator;
@@ -28,7 +28,7 @@ public class MDMA implements DrugBuilder {
     drugConfig.setPrice(3);
     drugConfig.addPotionEffect(new PotionEffect(PotionEffectType.JUMP, 480 * 20, 3));
     drugConfig.addPotionEffect(new PotionEffect(PotionEffectType.HUNGER, 480 * 20, 2));
-    drugConfig.setUsage(MessageBundle.create("drugtype.mdma").toString());
+    drugConfig.setUsage(MessageBundler.create("drugtype.mdma").toString());
     drug.setDrugConfig(drugConfig);
   }
 
