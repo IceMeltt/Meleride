@@ -18,6 +18,7 @@
   <packaging>pom</packaging>
 
   <modules>
+    <module>base</module>
     <module>objects</module>
   </modules>
 
