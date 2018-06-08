@@ -10,11 +10,8 @@ import pl.meleride.api.user.event.UserAbortEvent;
 import pl.meleride.api.user.event.UserInitEvent;
 import pl.meleride.api.user.manager.UserManager;
 
-import javax.inject.Inject;
-
 public class PlayerPreLoginListener implements Listener {
 
-  @Inject
   private UserManager userManager;
 
   @EventHandler(priority = EventPriority.LOWEST)
