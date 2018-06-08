@@ -15,8 +15,6 @@ public final class MelerideAPI extends JavaPlugin {
   private Commands commands;
   private UserManager userManager;
 
-  public MelerideAPI() {}
-
   @Override
   public void onEnable() {
     this.initialize();
