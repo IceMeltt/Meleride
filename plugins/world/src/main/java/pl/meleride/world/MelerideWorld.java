@@ -32,7 +32,9 @@ public class MelerideWorld extends JavaPlugin implements CommandExecutor {
   public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
     Weather weather = this.getWeatherInstance();
     sender.sendMessage("Aktualna pogoda: " + weather.getTemperature());
-    sender.sendMessage("Forecast: " + weather.getForecast());
+    sender.sendMessage("Forecast: " + weather.getNewerForecast());
+    sender.sendMessage("Older: " + weather.getOlderForecast());
+    weather.newForecast = "Nowa";
     return false;
   }
 

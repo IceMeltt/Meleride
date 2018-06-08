@@ -4,15 +4,18 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonObject;
 import java.io.IOException;
+import org.bukkit.Bukkit;
 import pl.meleride.api.i18n.MessageBundler;
+import pl.meleride.api.message.MessageType;
 import pl.meleride.world.util.UrlUtils;
 
 import static pl.meleride.api.message.MessageUtil.colored;
 
 public class Weather {
 
-  private int actualTemp;
-  private String forecast;
+  private int actualTemp = -1;
+  public String newForecast = "Brak informacji";
+  private String olderForecast = "Brak informacji";
 
   public static String translate(String input) {
     return colored(MessageBundler.create("forecast." + input).toString());
@@ -22,9 +25,11 @@ public class Weather {
     return this.actualTemp;
   }
 
-  public String getForecast() {
-    return this.forecast;
+  public String getNewerForecast() {
+    return this.newForecast;
   }
+
+  public String getOlderForecast() { return this.olderForecast; }
 
   public void updateWeather() throws IOException {
 
@@ -41,7 +46,13 @@ public class Weather {
 
     this.actualTemp = Integer.parseInt(template.get("temp").getAsString());
 
-    this.forecast = template.get("text").getAsString();
+    this.olderForecast = this.newForecast;
+    this.newForecast = template.get("text").getAsString();
+
+    if(!(this.newForecast.equalsIgnoreCase(this.olderForecast))) {
+      MessageBundler.create("forecast.newforecast").withField("FORECAST", this.newForecast).target(
+          MessageType.CHAT).sendTo(Bukkit.getOnlinePlayers());
+    }
   }
 
 }
