@@ -14,18 +14,54 @@
 
   <modules>
     <module>api</module>
-    <module>paper</module>
     <module>libraries</module>
     <module>plugins</module>
   </modules>
 
+  <repositories>
+    <repository>
+      <id>spigot-repo</id>
+      <url>https://hub.spigotmc.org/nexus/content/repositories/snapshots/</url>
+    </repository>
+
+    <repository>
+      <id>opengui</id>
+      <url>https://repo.socketbyte.pl/repository/nexus-releases/</url>
+    </repository>
+  </repositories>
+
   <dependencyManagement>
     <dependencies>
       <dependency>
-        <groupId>com.destroystokyo.paper</groupId>
-        <artifactId>paper-api</artifactId>
+        <groupId>org.spigotmc</groupId>
+        <artifactId>spigot-api</artifactId>
         <version>1.12.2-R0.1-SNAPSHOT</version>
         <scope>provided</scope>
+      </dependency>
+
+      <dependency>
+        <groupId>pl.socketbyte</groupId>
+        <artifactId>OpenGUI</artifactId>
+        <version>1.2</version>
+      </dependency>
+
+      <dependency>
+        <groupId>pl.meleride</groupId>
+        <artifactId>api</artifactId>
+        <version>0.3.0</version>
+        <scope>provided</scope>
+      </dependency>
+
+      <dependency>
+        <groupId>pl.meleride</groupId>
+        <artifactId>commands</artifactId>
+        <version>1.0.0</version>
+      </dependency>
+
+      <dependency>
+        <groupId>ch.jalu</groupId>
+        <artifactId>injector</artifactId>
+        <version>1.0</version>
       </dependency>
     </dependencies>
   </dependencyManagement>

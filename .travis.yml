@@ -2,13 +2,16 @@ language: java
 sudo: false
 dist: trusty
 
-before_install: paper/paper patch
+addons:
+  apt:
+    update: true
+
 install: script/install
 script: script/script
 
 jdk:
+  - openjdk8
   - oraclejdk8
 
 notifications:
   email: false
-  

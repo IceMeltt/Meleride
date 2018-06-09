@@ -1,6 +1,3 @@
-# Issues
-
-```
 * **Chciałbym zgłosić...**
   - [ ] błąd
   - [ ] pomysł
@@ -17,4 +14,3 @@
 * **Jeżeli zgłoszenie jest opisaniem bugu, poinformuj nas o swoim środowisku.**
 
 * **Inne informacje** (takie jak szczegółowe wyjaśnienie, linie błędów, relatywne zgłoszenia, sugestie jak naprawić błąd)
-```

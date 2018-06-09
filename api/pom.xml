@@ -17,8 +17,23 @@
 
   <dependencies>
     <dependency>
-      <groupId>com.destroystokyo.paper</groupId>
-      <artifactId>paper-api</artifactId>
+      <groupId>org.spigotmc</groupId>
+      <artifactId>spigot-api</artifactId>
+    </dependency>
+
+    <dependency>
+      <groupId>pl.socketbyte</groupId>
+      <artifactId>OpenGUI</artifactId>
+    </dependency>
+
+    <dependency>
+      <groupId>pl.meleride</groupId>
+      <artifactId>commands</artifactId>
+    </dependency>
+
+    <dependency>
+      <groupId>ch.jalu</groupId>
+      <artifactId>injector</artifactId>
     </dependency>
   </dependencies>
 

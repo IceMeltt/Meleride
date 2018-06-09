@@ -18,14 +18,20 @@
   <packaging>pom</packaging>
 
   <modules>
-    <!-- TODO -->
+    <module>base</module>
+    <module>objects</module>
     <module>economy</module>
   </modules>
 
   <dependencies>
     <dependency>
-      <groupId>com.destroystokyo.paper</groupId>
-      <artifactId>paper-api</artifactId>
+      <groupId>pl.meleride</groupId>
+      <artifactId>api</artifactId>
+    </dependency>
+
+    <dependency>
+      <groupId>org.spigotmc</groupId>
+      <artifactId>spigot-api</artifactId>
     </dependency>
   </dependencies>
 
