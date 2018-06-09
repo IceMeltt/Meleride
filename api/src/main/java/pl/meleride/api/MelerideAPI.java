@@ -48,5 +48,5 @@ public final class MelerideAPI extends JavaPlugin {
       this.getServer().getPluginManager().registerEvents(listener, this);
     }
   }
-
+  
 }
