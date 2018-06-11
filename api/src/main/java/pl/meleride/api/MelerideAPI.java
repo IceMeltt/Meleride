@@ -38,7 +38,7 @@ public final class MelerideAPI extends JavaPlugin {
       this.getServer().getPluginManager().registerEvents(listener, this);
     }
   }
-
+  
   public Commands getCommands() {
     return commands;
   }
@@ -46,5 +46,5 @@ public final class MelerideAPI extends JavaPlugin {
   public UserManager getUserManager() {
     return userManager;
   }
-
+  
 }
