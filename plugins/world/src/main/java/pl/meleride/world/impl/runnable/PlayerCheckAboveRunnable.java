@@ -61,9 +61,17 @@ public class PlayerCheckAboveRunnable extends BukkitRunnable {
       if(rnd <= 10) {
         user.addDisease(DiseaseStatus.FEVER);
 
-        MessageBundler.create("disease.fever.title").target(MessageType.TITLE).sendTo(player);
-        MessageBundler.create("disease.fever.subtitle").target(MessageType.SUB_TITLE).sendTo(player);
-        MessageBundler.create("disease.fever.message").target(MessageType.CHAT).sendTo(player);
+        MessageBundler.create("disease.fever.title")
+            .target(MessageType.TITLE)
+            .sendTo(player);
+
+        MessageBundler.create("disease.fever.subtitle")
+            .target(MessageType.SUB_TITLE)
+            .sendTo(player);
+
+        MessageBundler.create("disease.fever.message")
+            .target(MessageType.CHAT)
+            .sendTo(player);
       }
     }
   }
