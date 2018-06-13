@@ -44,7 +44,7 @@ public class PlayerCheckAboveRunnable extends BukkitRunnable {
         world = player.getLocation().getWorld();
 
         if (world.getHighestBlockAt(location).getY() < player.getEyeLocation().getY()) {
-          if(player.getInventory().getChestplate() == null) {
+          if (player.getInventory().getChestplate() == null) {
             this.freezingConditions(player);
           }
         }
@@ -56,9 +56,9 @@ public class PlayerCheckAboveRunnable extends BukkitRunnable {
     ThreadLocalRandom random = ThreadLocalRandom.current();
     this.user = this.manager.getUser(player).get();
 
-    if(!(user.hasDisease(DiseaseStatus.FEVER))) {
+    if (!(user.hasDisease(DiseaseStatus.FEVER))) {
       int rnd = random.nextInt(100);
-      if(rnd <= 10) {
+      if (rnd <= 10) {
         user.addDisease(DiseaseStatus.FEVER);
 
         MessageBundler.create("disease.fever.title")

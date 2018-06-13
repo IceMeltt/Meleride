@@ -49,7 +49,7 @@ public class Weather {
     this.olderForecast = this.newForecast;
     this.newForecast = template.get("text").getAsString();
 
-    if(!(this.newForecast.equalsIgnoreCase(this.olderForecast))) {
+    if (!(this.newForecast.equalsIgnoreCase(this.olderForecast))) {
       MessageBundler.create("forecast.newforecast").withField("FORECAST", this.newForecast).target(
           MessageType.CHAT).sendTo(Bukkit.getOnlinePlayers());
     }
