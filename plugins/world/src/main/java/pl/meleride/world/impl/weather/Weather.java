@@ -14,7 +14,7 @@ import static pl.meleride.api.message.MessageUtil.colored;
 public class Weather {
 
   private int actualTemp = -1;
-  public String newForecast = "Brak informacji";
+  private String newForecast = "Brak informacji";
   private String olderForecast = "Brak informacji";
 
   public static String translate(String input) {

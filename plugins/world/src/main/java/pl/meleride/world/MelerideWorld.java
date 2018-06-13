@@ -4,6 +4,7 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.plugin.java.JavaPlugin;
+import pl.meleride.world.impl.runnable.PlayerCheckAboveRunnable;
 import pl.meleride.world.impl.runnable.WeatherUpdaterRunnable;
 import pl.meleride.world.impl.weather.Weather;
 
@@ -17,6 +18,7 @@ public class MelerideWorld extends JavaPlugin implements CommandExecutor {
     weather = new Weather();
 
     new WeatherUpdaterRunnable(this);
+    new PlayerCheckAboveRunnable(this);
 
     getCommand("pogoda").setExecutor(this);
   }
@@ -34,7 +36,6 @@ public class MelerideWorld extends JavaPlugin implements CommandExecutor {
     sender.sendMessage("Aktualna pogoda: " + weather.getTemperature());
     sender.sendMessage("Forecast: " + weather.getNewerForecast());
     sender.sendMessage("Older: " + weather.getOlderForecast());
-    weather.newForecast = "Nowa";
     return false;
   }
 

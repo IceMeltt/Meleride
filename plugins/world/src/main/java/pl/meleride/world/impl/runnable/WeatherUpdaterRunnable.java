@@ -6,7 +6,7 @@ import pl.meleride.world.impl.weather.Weather;
 
 public class WeatherUpdaterRunnable extends BukkitRunnable {
 
-  private MelerideWorld instance;
+  private final MelerideWorld instance;
 
   public WeatherUpdaterRunnable(MelerideWorld instance) {
     this.instance = instance;
