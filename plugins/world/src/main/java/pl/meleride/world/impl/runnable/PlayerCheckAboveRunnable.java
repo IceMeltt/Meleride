@@ -46,8 +46,6 @@ public class PlayerCheckAboveRunnable extends BukkitRunnable {
         if (world.getHighestBlockAt(location).getY() < player.getEyeLocation().getY()) {
           if(player.getInventory().getChestplate() == null) {
             this.freezingConditions(player);
-        } else {
-            player.sendMessage("Tera to ty na powierzchni wariat");
           }
         }
       }
