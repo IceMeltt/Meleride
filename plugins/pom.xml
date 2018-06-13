@@ -20,7 +20,6 @@
   <modules>
     <module>base</module>
     <module>objects</module>
-    <module>economy</module>
   </modules>
 
   <dependencies>
