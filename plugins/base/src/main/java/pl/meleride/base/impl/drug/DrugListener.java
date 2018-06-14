@@ -4,7 +4,6 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
 
-import javax.inject.Inject;
 import org.bukkit.Sound;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -14,18 +13,22 @@ import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.potion.PotionEffect;
 
 import pl.meleride.api.i18n.MessageBundler;
 import pl.meleride.api.message.MessageType;
 
+import pl.meleride.base.MelerideBase;
 import pl.meleride.base.drug.DrugFactory;
 import pl.meleride.base.drug.DrugPackager;
 
 public class DrugListener implements Listener {
 
+  private MelerideBase main = JavaPlugin.getPlugin(MelerideBase.class);
+
   private final Map<UUID, Long> userUsing = new HashMap<>(); //TODO Zmiana do Usera, jak User zdobedzie mozliwosc laczenia z DB
-  @Inject private DrugShop drugShop;
+  private DrugShop drugShop = this.main.getDrugShop();
 
   @EventHandler
   public void onRightClick(PlayerInteractEvent e) {

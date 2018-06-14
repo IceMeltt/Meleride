@@ -1,8 +1,5 @@
 package pl.meleride.api;
 
-import ch.jalu.injector.Injector;
-import ch.jalu.injector.InjectorBuilder;
-import org.bukkit.Server;
 import org.bukkit.event.Listener;
 import org.bukkit.plugin.java.JavaPlugin;
 import pl.meleride.api.user.caller.PlayerLoginListener;
@@ -17,9 +14,6 @@ public final class MelerideAPI extends JavaPlugin {
 
   private Commands commands;
   private UserManager userManager;
-  private Injector injector;
-
-  public MelerideAPI() {}
 
   @Override
   public void onEnable() {
@@ -35,12 +29,8 @@ public final class MelerideAPI extends JavaPlugin {
   }
 
   private void initialize() {
-    this.injector = new InjectorBuilder().addDefaultHandlers("pl.meleride").create();
     this.commands = new BukkitCommands(this);
-    this.injector.register(MelerideAPI.class, this);
-    this.injector.register(Server.class, this.getServer());
-    this.userManager = this.injector.getSingleton(UserManagerImpl.class);
-    this.injector.register(UserManager.class, this.userManager);
+    this.userManager = new UserManagerImpl();
   }
 
   private void registerListeners(Listener... listeners) {
@@ -48,5 +38,13 @@ public final class MelerideAPI extends JavaPlugin {
       this.getServer().getPluginManager().registerEvents(listener, this);
     }
   }
+  
+  public Commands getCommands() {
+    return commands;
+  }
 
+  public UserManager getUserManager() {
+    return userManager;
+  }
+  
 }

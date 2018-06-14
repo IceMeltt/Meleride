@@ -57,12 +57,6 @@
         <artifactId>commands</artifactId>
         <version>1.0.0</version>
       </dependency>
-
-      <dependency>
-        <groupId>ch.jalu</groupId>
-        <artifactId>injector</artifactId>
-        <version>1.0</version>
-      </dependency>
     </dependencies>
   </dependencyManagement>
 

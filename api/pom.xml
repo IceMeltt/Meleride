@@ -30,11 +30,6 @@
       <groupId>pl.meleride</groupId>
       <artifactId>commands</artifactId>
     </dependency>
-
-    <dependency>
-      <groupId>ch.jalu</groupId>
-      <artifactId>injector</artifactId>
-    </dependency>
   </dependencies>
 
 </project>
