@@ -29,7 +29,13 @@
       <version>2.0.22-SNAPSHOT</version>
       <scope>provided</scope>
     </dependency>
-  </dependencies>
 
+    <dependency>
+      <groupId>pl.meleride</groupId>
+      <artifactId>objects</artifactId>
+      <version>0.3.0</version>
+      <scope>provided</scope>
+    </dependency>
+  </dependencies>
 
 </project>

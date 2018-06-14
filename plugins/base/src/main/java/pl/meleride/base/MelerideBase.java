@@ -33,5 +33,5 @@ public class MelerideBase extends JavaPlugin {
   public DrugShop getDrugShop() {
     return drugShop;
   }
-  
+
 }
