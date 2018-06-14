@@ -15,5 +15,14 @@
   <name>Meleride :: Plugins :: Objects</name>
   <description>Plugin wprowadzajacy podstawowe rzeczy na serwer</description>
 
+  <dependencies>
+    <dependency>
+      <groupId>pl.meleride</groupId>
+      <artifactId>base</artifactId>
+      <version>0.3.0</version>
+      <scope>provided</scope>
+    </dependency>
+  </dependencies>
+
 
 </project>

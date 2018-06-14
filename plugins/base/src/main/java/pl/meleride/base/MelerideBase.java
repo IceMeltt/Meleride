@@ -6,7 +6,6 @@ import net.citizensnpcs.api.trait.TraitInfo;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 
-import pl.meleride.base.impl.drug.DrugListener;
 import pl.meleride.base.impl.drug.DrugShop;
 import pl.meleride.base.impl.drug.DrugTrait;
 
@@ -24,9 +23,6 @@ public class MelerideBase extends JavaPlugin {
     getLogger().info("Rejestrowanie NPC Traitow...");
     CitizensAPI.getTraitFactory()
         .registerTrait(TraitInfo.create(DrugTrait.class).withName("dealerTrait"));
-
-    getLogger().info("Rejestrowanie listenerow...");
-    Bukkit.getPluginManager().registerEvents(new DrugListener(), this);
   }
 
   @Override
@@ -37,4 +33,5 @@ public class MelerideBase extends JavaPlugin {
   public DrugShop getDrugShop() {
     return drugShop;
   }
+  
 }

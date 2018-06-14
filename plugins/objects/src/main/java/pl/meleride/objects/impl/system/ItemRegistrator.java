@@ -12,18 +12,21 @@ public class ItemRegistrator {
   private static final MelerideObjects INSTANCE = JavaPlugin.getPlugin(MelerideObjects.class);
   private static Map<String, AbstractItem> objects = new HashMap<>();
 
-  public static void register(AbstractItem abstractItem) {
-    Validate.notNull(abstractItem, "AbstractItem cannot be null!");
-      objects.put(abstractItem.getName(), abstractItem);
+  public static void register(AbstractItem... abstractItems) {
+    Validate.notNull(abstractItems, "AbstractItem cannot be null!");
 
-      Bukkit.getPluginManager().registerEvents(abstractItem, INSTANCE);
+    for(AbstractItem item : abstractItems) {
+      objects.put(item.getName(), item);
+
+      Bukkit.getPluginManager().registerEvents(item, INSTANCE);
+    }
   }
 
   public static boolean checkIfExist(String name) {
     return objects.get(name) != null;
   }
 
-  public static AbstractItem getRegisteredObject(String name) {
+  static AbstractItem getRegisteredObject(String name) {
     if(!(checkIfExist(name))) {
       Bukkit.getLogger().severe("Obiekt o nazwie " + name + " nie istnieje w systemie!");
     }
