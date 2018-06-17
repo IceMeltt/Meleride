@@ -3,7 +3,7 @@ package pl.meleride.base.impl.drug;
 import org.bukkit.Bukkit;
 import org.bukkit.inventory.Inventory;
 
-import pl.meleride.objects.impl.system.ItemRegistrator;
+import pl.meleride.api.object.system.ItemRegistrator;
 
 import static pl.meleride.api.message.MessageUtil.colored;
 

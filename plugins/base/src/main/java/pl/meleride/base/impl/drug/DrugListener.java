@@ -1,4 +1,4 @@
-package pl.meleride.objects.relationlisteners.other;
+package pl.meleride.base.impl.drug;
 
 import java.util.Set;
 import org.bukkit.Sound;
@@ -12,13 +12,12 @@ import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.potion.PotionEffect;
 import pl.meleride.api.i18n.MessageBundler;
 import pl.meleride.api.message.MessageType;
-import pl.meleride.base.impl.drug.DrugShop;
-import pl.meleride.objects.MelerideObjects;
-import pl.meleride.objects.impl.system.AbstractItem;
+import pl.meleride.base.MelerideBase;
+import pl.meleride.api.object.system.AbstractItem;
 
 public class DrugListener {
 
-  private MelerideObjects instance = JavaPlugin.getPlugin(MelerideObjects.class);
+  private MelerideBase instance = JavaPlugin.getPlugin(MelerideBase.class);
 
   public void invoke(Player player, AbstractItem drug, Set<PotionEffect> effects, String usage, PlayerInteractEvent e) {
     ItemStack itemStack = e.getItem();

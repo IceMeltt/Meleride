@@ -1,4 +1,4 @@
-package pl.meleride.objects.impl.commands;
+package pl.meleride.api.object.command;
 
 import static pl.meleride.api.message.MessageUtil.colored;
 
@@ -7,9 +7,9 @@ import org.bukkit.entity.Player;
 import pl.meleride.commands.CommandInfo;
 import pl.meleride.commands.context.CommandContext;
 import pl.meleride.commands.util.CommandUtils;
-import pl.meleride.objects.impl.system.AbstractItem;
-import pl.meleride.objects.impl.system.ItemManager;
-import pl.meleride.objects.impl.system.ItemRegistrator;
+import pl.meleride.api.object.system.AbstractItem;
+import pl.meleride.api.object.system.ItemManager;
+import pl.meleride.api.object.system.ItemRegistrator;
 
 public class GiveCommand {
 

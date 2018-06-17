@@ -1,4 +1,4 @@
-package pl.meleride.objects.items.other.drugs;
+package pl.meleride.base.impl.drug.item;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -13,32 +13,32 @@ import org.bukkit.potion.PotionEffectType;
 import pl.meleride.api.builder.item.ItemBuilder;
 import pl.meleride.api.i18n.MessageBundler;
 import pl.meleride.base.impl.drug.DrugShop;
-import pl.meleride.objects.impl.system.AbstractItem;
-import pl.meleride.objects.relationlisteners.other.DrugListener;
+import pl.meleride.api.object.system.AbstractItem;
+import pl.meleride.base.impl.drug.DrugListener;
 
-public class Heroine extends AbstractItem {
+public class MDMA extends AbstractItem {
 
-  public Heroine() {
-    super("drug_heroine");
+  public MDMA() {
+    super("drug_mdma");
     initialize();
   }
 
-  private final String usage = MessageBundler.create("drugtype.heroine").toString();
-  private final int prize = Integer.parseInt(MessageBundler.create("drugprize.heroine").toString());
+  private final String usage = MessageBundler.create("drugtype.mdma").toString();
+  private final int prize = Integer.parseInt(MessageBundler.create("drugprize.mdma").toString());
   private final Set<PotionEffect> effects = new HashSet<>();
 
   //---
 
   private void initialize() {
-    effects.add(new PotionEffect(PotionEffectType.NIGHT_VISION, 180 * 20, 1));
-    effects.add(new PotionEffect(PotionEffectType.HUNGER, 360 * 20, 2));
+    effects.add(new PotionEffect(PotionEffectType.JUMP, 480 * 20, 3));
+    effects.add(new PotionEffect(PotionEffectType.HUNGER, 480 * 20, 2));
   }
 
   //---
 
-  private ItemStack itemStack = new ItemBuilder(Material.INK_SACK)
-      .setDamage((byte) 3)
-      .setName("Heroina")
+  private ItemStack itemStack = new ItemBuilder(Material.PRISMARINE_CRYSTALS)
+      .setName("&bEcstazy")
+      .setDamage(0)
       .build();
 
   private Set<PotionEffect> getEffects() {

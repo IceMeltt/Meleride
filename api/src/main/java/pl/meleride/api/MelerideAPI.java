@@ -2,11 +2,14 @@ package pl.meleride.api;
 
 import org.bukkit.event.Listener;
 import org.bukkit.plugin.java.JavaPlugin;
+
+import pl.meleride.api.object.command.GiveCommand;
 import pl.meleride.api.user.caller.PlayerLoginListener;
 import pl.meleride.api.user.caller.PlayerPreLoginListener;
 import pl.meleride.api.user.caller.PlayerQuitListener;
 import pl.meleride.api.user.manager.UserManagerImpl;
 import pl.meleride.api.user.manager.UserManager;
+
 import pl.meleride.commands.Commands;
 import pl.meleride.commands.bukkit.BukkitCommands;
 
@@ -30,6 +33,8 @@ public final class MelerideAPI extends JavaPlugin {
 
   private void initialize() {
     this.commands = new BukkitCommands(this);
+    this.commands.registerCommandObjects(new GiveCommand());
+
     this.userManager = new UserManagerImpl();
   }
 

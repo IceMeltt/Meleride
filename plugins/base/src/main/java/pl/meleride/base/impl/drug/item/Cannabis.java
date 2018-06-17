@@ -1,4 +1,4 @@
-package pl.meleride.objects.items.other.drugs;
+package pl.meleride.base.impl.drug.item;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -13,8 +13,8 @@ import org.bukkit.potion.PotionEffectType;
 import pl.meleride.api.builder.item.ItemBuilder;
 import pl.meleride.api.i18n.MessageBundler;
 import pl.meleride.base.impl.drug.DrugShop;
-import pl.meleride.objects.impl.system.AbstractItem;
-import pl.meleride.objects.relationlisteners.other.DrugListener;
+import pl.meleride.api.object.system.AbstractItem;
+import pl.meleride.base.impl.drug.DrugListener;
 
 public class Cannabis extends AbstractItem {
 
