@@ -10,11 +10,8 @@ import pl.meleride.api.user.User;
 import pl.meleride.api.user.event.UserQuitEvent;
 import pl.meleride.api.user.manager.UserManager;
 
-import javax.inject.Inject;
-
 public class PlayerQuitListener implements Listener {
 
-  @Inject
   private UserManager userManager;
 
   @EventHandler(priority = EventPriority.LOWEST)
