@@ -1,44 +1,44 @@
 package pl.meleride.base;
 
-import ch.jalu.injector.Injector;
-import ch.jalu.injector.InjectorBuilder;
-
+import java.util.HashMap;
+import java.util.Map;
+import java.util.UUID;
 import net.citizensnpcs.api.CitizensAPI;
 import net.citizensnpcs.api.trait.TraitInfo;
 
 import org.bukkit.Bukkit;
-import org.bukkit.Server;
 import org.bukkit.plugin.java.JavaPlugin;
 
-import pl.meleride.base.impl.drug.DrugListener;
+import pl.meleride.api.object.system.ItemRegistrator;
 import pl.meleride.base.impl.drug.DrugShop;
 import pl.meleride.base.impl.drug.DrugTrait;
-
+import pl.meleride.base.impl.drug.item.Cannabis;
+import pl.meleride.base.impl.drug.item.Cocaine;
+import pl.meleride.base.impl.drug.item.Heroine;
+import pl.meleride.base.impl.drug.item.MDMA;
 
 public class MelerideBase extends JavaPlugin {
 
+  private Map<UUID, Long> userUsing; //TODO wynocha so schnell wie möglich (ง ͠° ͟ل͜ ͡°)ง!
   private DrugShop drugShop;
-  private Injector injector;
 
   @Override
   public void onEnable() {
-    getLogger().info("Rejestrowanie instancji...");
-    this.injector = new InjectorBuilder().addDefaultHandlers("pl.meleride.base").create();
-    this.injector.register(MelerideBase.class, this);
-    this.injector.register(Server.class, this.getServer());
+    userUsing = new HashMap<>();
 
-    this.injector.register(DrugShop.class, new DrugShop());
+    getLogger().info("Rejestrowanie przedmiotow...");
+    ItemRegistrator.register(new MDMA(),
+        new Cannabis(),
+        new Heroine(),
+        new Cocaine());
 
     getLogger().info("Przygotowywanie GUI...");
-    this.drugShop = this.injector.getSingleton(DrugShop.class);
+    drugShop = new DrugShop();
     this.drugShop.initialize();
 
     getLogger().info("Rejestrowanie NPC Traitow...");
     CitizensAPI.getTraitFactory()
         .registerTrait(TraitInfo.create(DrugTrait.class).withName("dealerTrait"));
-
-    getLogger().info("Rejestrowanie listenerow...");
-    Bukkit.getPluginManager().registerEvents(this.injector.getSingleton(DrugListener.class), this);
   }
 
   @Override
@@ -49,4 +49,9 @@ public class MelerideBase extends JavaPlugin {
   public DrugShop getDrugShop() {
     return drugShop;
   }
+
+  public Map<UUID, Long> getUserUsing() {
+    return userUsing;
+  }
+
 }

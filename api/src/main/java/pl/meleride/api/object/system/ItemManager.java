@@ -1,6 +1,6 @@
-package pl.meleride.objects.impl.system;
+package pl.meleride.api.object.system;
 
-import pl.meleride.objects.exceptions.NoSuchItemException;
+import pl.meleride.api.exception.NoSuchItemException;
 
 public class ItemManager {
 

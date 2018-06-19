@@ -1,4 +1,4 @@
-package pl.meleride.objects.impl.system;
+package pl.meleride.api.object.system;
 
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;

@@ -1,4 +1,4 @@
-package pl.meleride.objects.exceptions;
+package pl.meleride.api.exception;
 
 public class NoSuchItemException extends RuntimeException {
 

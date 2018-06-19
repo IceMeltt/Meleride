@@ -1,21 +1,16 @@
 package pl.meleride.api.user.manager;
 
 import org.apache.commons.lang.Validate;
-import org.bukkit.Server;
+import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import pl.meleride.api.user.User;
-import pl.meleride.api.user.manager.UserManager;
 
-import javax.inject.Inject;
 import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
 import java.util.stream.Collectors;
 
 public class UserManagerImpl implements UserManager {
-
-  @Inject
-  private Server server;
 
   private final ConcurrentMap<String, User> userNameMap = new ConcurrentHashMap<>(16, 0.9F, 1);
   private final ConcurrentMap<UUID, User> userUniqueIdMap = new ConcurrentHashMap<>(16, 0.9F, 1);
@@ -65,7 +60,7 @@ public class UserManagerImpl implements UserManager {
 
   @Override
   public Set<User> getOnlineUsers() {
-    return this.server.getOnlinePlayers().stream()
+    return Bukkit.getServer().getOnlinePlayers().stream()
       .map(player -> this.getUser(player.getUniqueId()))
       .filter(Optional::isPresent)
       .map(Optional::get)
