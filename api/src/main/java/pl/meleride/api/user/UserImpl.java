@@ -14,7 +14,7 @@ public class UserImpl implements User {
   private String name;
   private final UUID uniqueId;
 
-  private Set<DiseaseStatus> disease = new HashSet<>();
+  private final Set<DiseaseStatus> disease = new HashSet<>();
 
   public UserImpl(String name) {
     this.name = name;
