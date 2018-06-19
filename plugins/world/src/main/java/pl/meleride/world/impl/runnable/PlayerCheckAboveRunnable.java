@@ -23,8 +23,6 @@ public class PlayerCheckAboveRunnable extends BukkitRunnable {
 
   public PlayerCheckAboveRunnable(MelerideWorld instance) {
     this.instance = instance;
-
-    runTaskTimerAsynchronously(instance, 0, 60 * 20);
   }
 
   @Override

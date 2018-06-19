@@ -10,8 +10,6 @@ public class WeatherUpdaterRunnable extends BukkitRunnable {
 
   public WeatherUpdaterRunnable(MelerideWorld instance) {
     this.instance = instance;
-
-    runTaskTimerAsynchronously(instance, 0, 10 * 60 * 20);
   }
 
   @Override
@@ -20,11 +18,8 @@ public class WeatherUpdaterRunnable extends BukkitRunnable {
     try {
       Weather weather = this.instance.getWeatherInstance();
       weather.updateWeather();
-//      System.out.println("Forecast: " + weather.getForecast());
-//      System.out.println("Temperature: " + weather.getTemperature());
     } catch (Exception ex) {
       this.instance.getLogger().severe("Wystapil nieprzewidziany blad przy aktualizowaniu pogody!");
-      ex.printStackTrace();
     }
   }
 

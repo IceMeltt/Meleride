@@ -3,6 +3,3 @@ version: 0.3.0
 main: pl.meleride.world.MelerideWorld
 author: Meleride
 website: https://meleride.pl
-
-commands:
-  pogoda:

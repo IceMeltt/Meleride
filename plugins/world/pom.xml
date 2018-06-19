@@ -15,5 +15,13 @@
   <name>Meleride :: Plugins :: World</name>
   <description>Modul odpowiadajacy za obsluge swiata</description>
 
+  <dependencies>
+    <dependency>
+      <groupId>com.mashape.unirest</groupId> <!-- Przygotowanie pod serwisową obsługę. -->
+      <artifactId>unirest-java</artifactId>
+      <version>1.4.9</version>
+    </dependency>
+  </dependencies>
+
 
 </project>

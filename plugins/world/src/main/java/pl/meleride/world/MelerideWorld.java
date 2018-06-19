@@ -1,8 +1,6 @@
 package pl.meleride.world;
 
-import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
-import org.bukkit.command.CommandSender;
 import org.bukkit.plugin.java.JavaPlugin;
 import pl.meleride.world.impl.runnable.PlayerCheckAboveRunnable;
 import pl.meleride.world.impl.runnable.WeatherUpdaterRunnable;
@@ -17,26 +15,14 @@ public class MelerideWorld extends JavaPlugin implements CommandExecutor {
     getLogger().info("Trwa uruchamianie schedulerow...");
     weather = new Weather();
 
-    new WeatherUpdaterRunnable(this);
-    new PlayerCheckAboveRunnable(this);
-
-    getCommand("pogoda").setExecutor(this);
+    new WeatherUpdaterRunnable(this).runTaskTimerAsynchronously(this, 0, 10 * 60 * 20);
+    new PlayerCheckAboveRunnable(this).runTaskTimerAsynchronously(this, 0, 60 * 20);
   }
 
   @Override
   public void onDisable() {
     getLogger().info("Zamykanie wszelkich schedulerow...");
     getServer().getScheduler().cancelAllTasks();
-  }
-
-  //TODO Usunąć w późniejszym czasie
-  @Override
-  public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
-    Weather weather = this.getWeatherInstance();
-    sender.sendMessage("Aktualna pogoda: " + weather.getTemperature());
-    sender.sendMessage("Forecast: " + weather.getNewerForecast());
-    sender.sendMessage("Older: " + weather.getOlderForecast());
-    return false;
   }
 
   public Weather getWeatherInstance() {
