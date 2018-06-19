@@ -19,6 +19,7 @@
 
   <modules>
     <module>base</module>
+    <module>jobs</module>
   </modules>
 
   <dependencies>
