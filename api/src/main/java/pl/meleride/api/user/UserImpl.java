@@ -73,9 +73,7 @@ public class UserImpl implements User {
 
   @Override
   public void removeDisease(DiseaseStatus disease) {
-    if (this.disease.contains(disease)) {
-      this.disease.remove(disease);
-    }
+    this.disease.remove(disease);
   }
 
 }
