@@ -20,6 +20,7 @@ public class WeatherUpdaterRunnable extends BukkitRunnable {
       weather.updateWeather();
     } catch (Exception ex) {
       this.instance.getLogger().severe("Wystapil nieprzewidziany blad przy aktualizowaniu pogody!");
+      ex.printStackTrace();
     }
   }
 
