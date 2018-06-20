@@ -1,12 +1,12 @@
 package pl.meleride.world;
 
-import org.bukkit.command.CommandExecutor;
 import org.bukkit.plugin.java.JavaPlugin;
+
 import pl.meleride.world.impl.runnable.PlayerCheckAboveRunnable;
 import pl.meleride.world.impl.runnable.WeatherUpdaterRunnable;
 import pl.meleride.world.impl.weather.Weather;
 
-public class MelerideWorld extends JavaPlugin implements CommandExecutor {
+public class MelerideWorld extends JavaPlugin {
 
   private Weather weather;
 

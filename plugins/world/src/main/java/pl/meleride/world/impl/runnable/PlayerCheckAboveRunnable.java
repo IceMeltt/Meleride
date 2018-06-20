@@ -1,11 +1,13 @@
 package pl.meleride.world.impl.runnable;
 
-import java.util.concurrent.ThreadLocalRandom;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.World;
 import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitRunnable;
+
+import java.util.concurrent.ThreadLocalRandom;
+
 import pl.meleride.api.i18n.MessageBundler;
 import pl.meleride.api.message.MessageType;
 import pl.meleride.api.user.User;

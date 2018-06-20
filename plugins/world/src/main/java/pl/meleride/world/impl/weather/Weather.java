@@ -1,19 +1,23 @@
 package pl.meleride.world.impl.weather;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.google.gson.JsonObject;
-import java.io.IOException;
 import org.bukkit.Bukkit;
+import org.json.JSONObject;
+
+import com.mashape.unirest.http.HttpResponse;
+import com.mashape.unirest.http.JsonNode;
+import com.mashape.unirest.http.Unirest;
+import com.mashape.unirest.http.exceptions.UnirestException;
+
 import pl.meleride.api.i18n.MessageBundler;
 import pl.meleride.api.message.MessageType;
-import pl.meleride.world.util.UrlUtils;
 
 public class Weather {
 
   private int actualTemp = -1;
   private String newForecast = "Brak informacji";
   private String olderForecast = "Brak informacji";
+
+  private final String updateUrl = "https://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20weather.forecast%20where%20woeid%20in%20(select%20woeid%20from%20geo.places(1)%20where%20text%3D%22Warsaw%22)%20and%20u%3D'c'&format=json";
 
   public static String translate(String input) {
     return MessageBundler.create("forecast." + input).toString();
@@ -31,27 +35,26 @@ public class Weather {
     return this.olderForecast;
   }
 
-  public void updateWeather() throws IOException {
+  public void updateWeather() throws UnirestException {
+    HttpResponse<JsonNode> response = Unirest.get(updateUrl).asJson();
 
-    String response = UrlUtils.getContent("https://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20weather.forecast%20where%20woeid%20in%20(select%20woeid%20from%20geo.places(1)%20where%20text%3D%22Warsaw%22)%20and%20u%3D'c'&format=json");
-    Gson gson = new GsonBuilder().create();
-    JsonObject json = gson.fromJson(response, JsonObject.class);
+    JSONObject template = response.getBody().getObject()
+        .getJSONObject("query")
+        .getJSONObject("results")
+        .getJSONObject("channel")
+        .getJSONObject("item")
+        .getJSONObject("condition");
 
-    JsonObject template = json.get("query")
-        .getAsJsonObject().get("results")
-        .getAsJsonObject().get("channel")
-        .getAsJsonObject().get("item")
-        .getAsJsonObject().get("condition")
-        .getAsJsonObject();
-
-    this.actualTemp = Integer.parseInt(template.get("temp").getAsString());
+    this.actualTemp = Integer.parseInt(template.get("temp").toString());
 
     this.olderForecast = this.newForecast;
-    this.newForecast = template.get("text").getAsString();
+    this.newForecast = template.get("text").toString();
 
     if (!this.newForecast.equalsIgnoreCase(this.olderForecast)) {
-      MessageBundler.create("forecast.newforecast").withField("FORECAST", this.newForecast).target(
-          MessageType.CHAT).sendTo(Bukkit.getOnlinePlayers());
+      MessageBundler.create("forecast.newforecast")
+          .withField("FORECAST", this.newForecast)
+          .target(MessageType.CHAT)
+          .sendTo(Bukkit.getOnlinePlayers());
     }
   }
 
