@@ -8,9 +8,9 @@ public interface Job<T extends Event> extends Listener {
 
   String getName();
 
-  double getMinWage();
+  double getMinReward();
 
-  double getMaxWage();
+  double getMaxReward();
 
   @EventHandler
   void onJob(T event);

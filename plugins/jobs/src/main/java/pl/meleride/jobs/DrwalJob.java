@@ -16,12 +16,12 @@ public class DrwalJob extends JobExtender<BlockBreakEvent> {
   }
 
   @Override
-  public double getMinWage() {
+  public double getMinReward() {
     return 0.70;
   }
 
   @Override
-  public double getMaxWage() {
+  public double getMaxReward() {
     return 1;
   }
 
