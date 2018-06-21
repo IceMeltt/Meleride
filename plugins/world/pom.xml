@@ -5,33 +5,23 @@
   <modelVersion>4.0.0</modelVersion>
 
   <parent>
+    <artifactId>plugins-parent</artifactId>
     <groupId>pl.meleride</groupId>
-    <artifactId>parent</artifactId>
     <version>0.3.0</version>
   </parent>
 
-  <name>Meleride :: Plugins :: Parent</name>
+  <artifactId>world</artifactId>
 
-  <artifactId>plugins-parent</artifactId>
-  <version>0.3.0</version>
-
-  <packaging>pom</packaging>
-
-  <modules>
-    <module>base</module>
-    <module>world</module>
-  </modules>
+  <name>Meleride :: Plugins :: World</name>
+  <description>Modul odpowiadajacy za obsluge swiata</description>
 
   <dependencies>
     <dependency>
-      <groupId>pl.meleride</groupId>
-      <artifactId>api</artifactId>
-    </dependency>
-
-    <dependency>
-      <groupId>org.spigotmc</groupId>
-      <artifactId>spigot-api</artifactId>
+      <groupId>com.mashape.unirest</groupId> <!-- Przygotowanie pod serwisową obsługę. -->
+      <artifactId>unirest-java</artifactId>
+      <version>1.4.9</version>
     </dependency>
   </dependencies>
+
 
 </project>
