@@ -47,7 +47,7 @@ public class EconPlayer {
   }
 
   public boolean exchange(Currency from, Currency to, double amount) {
-    if(this.pocketBalance.get(from) == null || this.pocketBalance.get(from) == 0.0) {
+    if (this.pocketBalance.get(from) == null || this.pocketBalance.get(from) == 0.0) {
       return false;
     }
 

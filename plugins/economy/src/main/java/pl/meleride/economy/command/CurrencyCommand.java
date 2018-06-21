@@ -31,7 +31,7 @@ public class CurrencyCommand {
     if (context.getArgs().length == 0) {
       player.sendMessage(ColorUtils.colorize("&8> &fW portfelu posiadasz&8:"));
       econPlayer.getPocketBalance().forEach((currency, balance) -> player.sendMessage(
-          ColorUtils.colorize("&8> &e" + currency.name() + " &8- &f" + balance)
+              ColorUtils.colorize("&8> &e" + currency.name() + " &8- &f" + balance)
       ));
       return;
     }
@@ -39,17 +39,17 @@ public class CurrencyCommand {
     switch (context.getParam(0)) {
       case "status":
         Arrays.stream(Currency.values()).forEach(currency -> {
-                  player.sendMessage(ColorUtils.colorize(currency.getFullName() +
-                      " (" + currency.name() +
-                      " " + currency.getSign() +
-                      ") - " + currency.getExchangeRate() +
-                      " " + currency.getTendency().getSign())
-                  );
+          player.sendMessage(ColorUtils.colorize(currency.getFullName() +
+                  " (" + currency.name() +
+                  " " + currency.getSign() +
+                  ") - " + currency.getExchangeRate() +
+                  " " + currency.getTendency().getSign())
+          );
         });
         break;
       case "balance":
         econPlayer.getPocketBalance().forEach((currency, balance) -> player.sendMessage(
-            ColorUtils.colorize("&8> &e" + currency.name() + " &8- &f" + balance)
+                ColorUtils.colorize("&8> &e" + currency.name() + " &8- &f" + balance)
         ));
         break;
       case "give":

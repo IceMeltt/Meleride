@@ -10,7 +10,7 @@ import pl.meleride.economy.currencysign.CurrencySign;
 public class SignChangeListener implements Listener {
 
   @EventHandler
-  public void onSignChange(SignChangeEvent event){
+  public void onSignChange(SignChangeEvent event) {
     Player player = event.getPlayer();
 
     if (!player.hasPermission("meleride.economy.signcurrency")) {
@@ -28,7 +28,7 @@ public class SignChangeListener implements Listener {
     event.setCancelled(true);
 
     new CurrencySign(event.getBlock().getLocation(),
-        Currency.getCurrency(event.getLine(1))).update();
+            Currency.getCurrency(event.getLine(1))).update();
   }
 
 }
