@@ -8,7 +8,7 @@ public class JobEvent extends CustomEvent {
   private final Player player;
   private final Job job;
 
-  JobEvent(Player player, Job job) {
+  public JobEvent(Player player, Job job) {
     this.player = player;
     this.job = job;
   }
