@@ -2,7 +2,7 @@ package pl.meleride.jobs;
 
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
-import pl.meleride.api.math.RandomUtil;
+import pl.meleride.api.util.RandomUtil;
 
 public class JobListener implements Listener {
 

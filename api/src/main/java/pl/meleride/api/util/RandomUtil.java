@@ -1,4 +1,4 @@
-package pl.meleride.api.math;
+package pl.meleride.api.util;
 
 import org.apache.commons.lang.Validate;
 import java.util.Random;
@@ -19,6 +19,7 @@ public final class RandomUtil {
     return random.nextDouble() * (max - min) + min;
   }
 
-  private RandomUtil() { }
+  private RandomUtil() {
+  }
 
 }
