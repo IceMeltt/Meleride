@@ -12,8 +12,8 @@ public class CurrencySign {
 
   private final static Map<Location, CurrencySign> currencySignMap = new HashMap<>();
 
-  private Location signLocation;
-  private Currency currency;
+  private final Location signLocation;
+  private final Currency currency;
 
   public CurrencySign(Location signLocation, Currency currency) {
     this.signLocation = signLocation;
@@ -23,16 +23,16 @@ public class CurrencySign {
   }
 
   public void update() {
-    if (!(signLocation.getBlock().getState() instanceof Sign)) {
+    if (!(this.signLocation.getBlock().getState() instanceof Sign)) {
       delete();
       return;
     }
 
-    Sign sign = (Sign) signLocation.getBlock().getState();
+    Sign sign = (Sign) this.signLocation.getBlock().getState();
 
     sign.setLine(0, ColorUtils.colorize("&9&lWALUTA"));
-    sign.setLine(1, currency.getFullName());
-    sign.setLine(2, ColorUtils.colorize(currency.getExchangeRate() + " " + currency.getTendency().getSign()));
+    sign.setLine(1, this.currency.getFullName());
+    sign.setLine(2, ColorUtils.colorize(this.currency.getExchangeRate() + " " + this.currency.getTendency().getSign()));
 
     sign.update();
   }
