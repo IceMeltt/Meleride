@@ -15,7 +15,7 @@ public class JobManager {
   private final Map<String, Job> jobMap = new HashMap<>();
   private final Multimap<UUID, Job> userJobMap = HashMultimap.create();
 
-  private final static int MAX_USER_JOBS = 3;
+  private static final int MAX_USER_JOBS = 3;
 
   public Optional<Job> getJobByName(String jobName) {
     return Optional.ofNullable(this.jobMap.get(jobName));

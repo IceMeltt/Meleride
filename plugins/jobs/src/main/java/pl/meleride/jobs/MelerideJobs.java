@@ -3,6 +3,8 @@ package pl.meleride.jobs;
 import org.apache.commons.lang.Validate;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
+import pl.meleride.jobs.basic.LumberjackJob;
+import pl.meleride.jobs.basic.MinerJob;
 
 public final class MelerideJobs extends JavaPlugin {
 
@@ -13,7 +15,7 @@ public final class MelerideJobs extends JavaPlugin {
     this.jobManager = new JobManager();
 
     this.jobManager.registerJobs(
-        new DrwalJob(this),
+        new LumberjackJob(this),
         new MinerJob(this)
     );
 

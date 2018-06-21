@@ -1,33 +1,36 @@
-package pl.meleride.jobs;
+package pl.meleride.jobs.basic;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.event.block.BlockBreakEvent;
+import pl.meleride.jobs.JobEvent;
+import pl.meleride.jobs.basic.extender.JobBasicExtender;
+import pl.meleride.jobs.MelerideJobs;
 
-public class MinerJob extends JobExtender<BlockBreakEvent> {
+public class LumberjackJob extends JobBasicExtender<BlockBreakEvent> {
 
-  public MinerJob(MelerideJobs plugin) {
+  public LumberjackJob(MelerideJobs plugin) {
     super(plugin);
   }
 
   @Override
   public String getName() {
-    return "Gornik";
+    return "Drwal";
   }
 
   @Override
   public double getMinReward() {
-    return 0.20;
+    return 0.70;
   }
 
   @Override
   public double getMaxReward() {
-    return 1.30;
+    return 1;
   }
 
   @Override
   public void onJob(BlockBreakEvent event) {
-    if (event.getBlock().getType() != Material.STONE) {
+    if (event.getBlock().getType() != Material.WOOD) {
       return;
     }
 
