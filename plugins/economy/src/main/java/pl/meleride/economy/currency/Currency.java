@@ -19,12 +19,12 @@ public enum Currency {
   private final String fullName;
   private final boolean isDefault;
 
+  private final double defaultValue;
+
   private double exchangeRate;
   private double realExchangeRate;
 
   private double previousExchangeRate;
-
-  private double defaultValue;
 
   private Tendency tendency;
 

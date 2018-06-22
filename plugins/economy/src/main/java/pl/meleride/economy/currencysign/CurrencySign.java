@@ -10,7 +10,7 @@ import java.util.Map;
 
 public class CurrencySign {
 
-  private final static Map<Location, CurrencySign> currencySignMap = new HashMap<>();
+  private static final Map<Location, CurrencySign> CURRENCY_SIGN_MAP = new HashMap<>();
 
   private final Location signLocation;
   private final Currency currency;
@@ -19,7 +19,7 @@ public class CurrencySign {
     this.signLocation = signLocation;
     this.currency = currency;
 
-    currencySignMap.put(signLocation, this);
+    CURRENCY_SIGN_MAP.put(signLocation, this);
   }
 
   public void update() {
@@ -38,15 +38,15 @@ public class CurrencySign {
   }
 
   public void delete() {
-    currencySignMap.remove(this.signLocation);
+    CURRENCY_SIGN_MAP.remove(this.signLocation);
   }
 
   public static Map<Location, CurrencySign> getCurrencySignMap() {
-    return currencySignMap;
+    return new HashMap<>(CURRENCY_SIGN_MAP);
   }
 
   public static CurrencySign getCurrencySign(Location location) {
-    return currencySignMap.getOrDefault(location, null);
+    return CURRENCY_SIGN_MAP.getOrDefault(location, null);
   }
 
 }

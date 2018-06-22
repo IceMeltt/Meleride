@@ -13,16 +13,13 @@ import pl.meleride.economy.runnable.CurrencyUpdaterRunnable;
 
 public class MelerideEconomy extends JavaPlugin {
 
-  private CurrencyUpdaterRunnable currencyUpdaterRunnable;
-  private BukkitCommands bukkitCommands;
-
   @Override
   public void onEnable() {
-    this.currencyUpdaterRunnable = new CurrencyUpdaterRunnable(this);
+    new CurrencyUpdaterRunnable(this);
 
-    this.bukkitCommands = new BukkitCommands(this);
+    BukkitCommands bukkitCommands = new BukkitCommands(this);
 
-    this.bukkitCommands.registerCommandObjects(new CurrencyCommand(this));
+    bukkitCommands.registerCommandObjects(new CurrencyCommand());
 
     registerListeners(
             new PlayerJoinListener(),
@@ -42,4 +39,5 @@ public class MelerideEconomy extends JavaPlugin {
       pluginManager.registerEvents(listener, this);
     }
   }
+
 }

@@ -9,13 +9,13 @@ import java.util.UUID;
 
 public class EconPlayer {
 
-  private final static Map<UUID, EconPlayer> econPlayerMap = new HashMap<>();
+  private static final Map<UUID, EconPlayer> ECON_PLAYER_MAP = new HashMap<>();
 
   private final UUID uuid;
 
-  private String name;
+  private final Map<Currency, Double> pocketBalance;
 
-  private Map<Currency, Double> pocketBalance;
+  private String name;
 
   public EconPlayer(UUID uuid, String name) {
     this.uuid = uuid;
@@ -81,13 +81,13 @@ public class EconPlayer {
   }
 
   private static void addPlayer(EconPlayer econPlayer) {
-    if (!econPlayerMap.containsKey(econPlayer.getUuid())) {
-      econPlayerMap.put(econPlayer.getUuid(), econPlayer);
+    if (!ECON_PLAYER_MAP.containsKey(econPlayer.getUuid())) {
+      ECON_PLAYER_MAP.put(econPlayer.getUuid(), econPlayer);
     }
   }
 
   public static EconPlayer getPlayer(UUID uuid) {
-    return econPlayerMap.getOrDefault(uuid, null);
+    return ECON_PLAYER_MAP.getOrDefault(uuid, null);
   }
 
 }

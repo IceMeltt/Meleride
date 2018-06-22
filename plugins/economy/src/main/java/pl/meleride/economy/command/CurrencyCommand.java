@@ -13,12 +13,6 @@ import java.util.Arrays;
 
 public class CurrencyCommand {
 
-  private final MelerideEconomy plugin;
-
-  public CurrencyCommand(MelerideEconomy plugin) {
-    this.plugin = plugin;
-  }
-
   @CommandInfo(
           name = {"wallet", "portfel"},
           description = "Komenda do zarzadzania walutami",
