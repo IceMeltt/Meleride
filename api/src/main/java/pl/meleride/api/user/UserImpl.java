@@ -1,16 +1,20 @@
 package pl.meleride.api.user;
 
 import com.google.common.base.Charsets;
+import java.util.HashSet;
+import java.util.Set;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
-import pl.meleride.api.user.User;
 
 import java.util.UUID;
+import pl.meleride.api.user.status.DiseaseStatus;
 
 public class UserImpl implements User {
 
   private String name;
   private final UUID uniqueId;
+
+  private final Set<DiseaseStatus> disease = new HashSet<>();
 
   public UserImpl(String name) {
     this.name = name;
@@ -45,6 +49,31 @@ public class UserImpl implements User {
   @Override
   public Player getBukkitPlayer() {
     return Bukkit.getPlayer(this.uniqueId);
+  }
+
+  @Override
+  public boolean hasAnyDisease() {
+    return this.disease.isEmpty();
+  }
+
+  @Override
+  public boolean hasDisease(DiseaseStatus disease) {
+    return this.disease.contains(disease);
+  }
+
+  @Override
+  public Set<DiseaseStatus> getDiseases() {
+    return this.disease;
+  }
+
+  @Override
+  public void addDisease(DiseaseStatus disease) {
+    this.disease.add(disease);
+  }
+
+  @Override
+  public void removeDisease(DiseaseStatus disease) {
+    this.disease.remove(disease);
   }
 
 }
