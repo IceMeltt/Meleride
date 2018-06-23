@@ -1,13 +1,15 @@
 package pl.meleride.api.i18n;
 
+import com.gmail.filoghost.holographicdisplays.api.Hologram;
+import com.gmail.filoghost.holographicdisplays.api.HologramsAPI;
+import java.util.Collection;
 import net.md_5.bungee.api.ChatMessageType;
 import net.md_5.bungee.api.chat.TextComponent;
 import org.apache.commons.lang.Validate;
 import org.bukkit.entity.Player;
-import pl.meleride.api.user.User;
+import pl.meleride.api.MelerideAPI;
 import pl.meleride.api.message.MessageType;
-
-import java.util.Collection;
+import pl.meleride.api.user.User;
 
 public final class MessageSender {
 
@@ -23,9 +25,6 @@ public final class MessageSender {
     Validate.notNull(player, "Player cannot be null!");
 
     switch (this.messageType) {
-      case CHAT:
-        player.sendMessage(this.messageContent);
-        break;
       case TITLE:
         player.sendTitle(this.messageContent, "", -1, -1, -1);
         break;
@@ -33,10 +32,29 @@ public final class MessageSender {
         player.sendTitle("", this.messageContent, -1, -1, -1);
         break;
       case ACTION_BAR:
-        player.spigot().sendMessage(ChatMessageType.ACTION_BAR, new TextComponent(this.messageContent));
+        player.spigot()
+            .sendMessage(ChatMessageType.ACTION_BAR, new TextComponent(this.messageContent));
         break;
+      case HOLOGRAM:
+        final MelerideAPI plugin = MelerideAPI.getPlugin(MelerideAPI.class);
+
+        if (!plugin.isUsingHolograms()) {
+          player.sendMessage(this.messageContent);
+          break;
+        }
+        final Hologram hologram = HologramsAPI.createHologram(plugin, player.getLocation());
+
+        hologram.getVisibilityManager().setVisibleByDefault(false);
+        hologram.getVisibilityManager().showTo(player);
+        hologram.appendTextLine(this.messageContent);
+
+        plugin.getServer().getScheduler()
+            .runTaskLater(plugin, hologram::delete, 20L * 4 + 10L); //4.5 second
+        break;
+      case CHAT:
       default:
         player.sendMessage(this.messageContent);
+        break;
     }
   }
 
