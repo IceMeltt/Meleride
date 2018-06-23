@@ -20,7 +20,7 @@ public class MinerJob extends JobBasicExtender<BlockBreakEvent> {
 
   @Override
   public double getMinReward() {
-    return 0.20;
+    return 0.40;
   }
 
   @Override

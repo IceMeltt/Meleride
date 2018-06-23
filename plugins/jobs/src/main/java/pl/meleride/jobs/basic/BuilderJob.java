@@ -19,12 +19,12 @@ public class BuilderJob extends JobBasicExtender<BlockPlaceEvent> {
 
   @Override
   public double getMinReward() {
-    return 0.20;
+    return 0.10;
   }
 
   @Override
   public double getMaxReward() {
-    return 2;
+    return 1;
   }
 
   @Override

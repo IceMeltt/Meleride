@@ -1,5 +1,7 @@
 package pl.meleride.jobs;
 
+import org.bukkit.Material;
+
 public interface Job {
 
   String getName();
@@ -7,5 +9,7 @@ public interface Job {
   double getMinReward();
 
   double getMaxReward();
+
+  Material getGUIItem();
 
 }

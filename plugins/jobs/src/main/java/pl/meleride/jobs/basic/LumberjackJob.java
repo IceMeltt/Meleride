@@ -42,5 +42,4 @@ public class LumberjackJob extends JobBasicExtender<BlockBreakEvent> {
     Bukkit.getPluginManager().callEvent(jobEvent);
   }
 
-
 }
