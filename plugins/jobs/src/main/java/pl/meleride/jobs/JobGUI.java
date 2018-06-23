@@ -46,5 +46,4 @@ public class JobGUI extends GUIExtender {
   public void onClose(InventoryCloseEvent event) {
 
   }
-
 }

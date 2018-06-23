@@ -24,5 +24,4 @@ public class ProgrammerJob implements Job {
   public Material getGUIItem() {
     return Material.DIAMOND;
   }
-
 }

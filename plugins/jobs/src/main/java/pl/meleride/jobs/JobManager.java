@@ -58,5 +58,4 @@ public class JobManager {
   public JobGUI getJobGUI() {
     return jobGUI;
   }
-
 }

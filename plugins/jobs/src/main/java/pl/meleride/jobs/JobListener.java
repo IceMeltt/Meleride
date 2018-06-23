@@ -15,5 +15,4 @@ public class JobListener implements Listener {
     double reward = RandomUtil.nextDouble(min, max);
     //przelac pieniadze na konto gracza
   }
-
 }

@@ -41,6 +41,4 @@ public class MinerJob extends JobBasicExtender<BlockBreakEvent> {
 
     Bukkit.getPluginManager().callEvent(jobEvent);
   }
-
-
 }

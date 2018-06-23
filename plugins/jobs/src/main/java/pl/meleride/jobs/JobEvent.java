@@ -20,5 +20,4 @@ public class JobEvent extends CustomEvent {
   public Job getJob() {
     return job;
   }
-
 }

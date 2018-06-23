@@ -19,6 +19,6 @@ public abstract class JobBasicExtender<T extends Event> implements Job, Listener
 
   @Override
   public Material getGUIItem() {
-    return Material.DIAMOND;
+    return Material.STONE;
   }
 }

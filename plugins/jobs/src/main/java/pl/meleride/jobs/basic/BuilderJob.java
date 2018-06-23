@@ -36,5 +36,4 @@ public class BuilderJob extends JobBasicExtender<BlockPlaceEvent> {
 
     Bukkit.getPluginManager().callEvent(jobEvent);
   }
-
 }
