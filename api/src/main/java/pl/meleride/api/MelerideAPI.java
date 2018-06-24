@@ -56,8 +56,8 @@ public final class MelerideAPI extends JavaPlugin {
     storage = new SQLHikariStorage(properties);
 
     StringBuilder sb = new StringBuilder("CREATE TABLE IF NOT EXISTS users(")
-        .append("uuid CHAR(100) NOT NULL,")
-        .append("name TEXT(36) NOT NULL,")
+        .append("uuid CHAR(36) NOT NULL,")
+        .append("name TEXT(16) NOT NULL,")
         .append("disease TEXT NOT NULL,")
         .append("primary key(uuid));");
 
