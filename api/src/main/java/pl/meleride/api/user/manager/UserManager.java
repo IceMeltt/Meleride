@@ -17,6 +17,10 @@ public interface UserManager {
 
   void addUser(User user);
 
+  void createUser(Player player);
+
+  void createUser(UUID uuid, String name);
+
   void removeUser(User user);
 
   Set<User> getOnlineUsers();

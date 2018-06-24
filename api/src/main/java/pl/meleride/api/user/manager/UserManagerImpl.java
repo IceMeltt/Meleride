@@ -9,6 +9,7 @@ import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
 import java.util.stream.Collectors;
+import pl.meleride.api.user.UserImpl;
 
 public class UserManagerImpl implements UserManager {
 
@@ -48,6 +49,24 @@ public class UserManagerImpl implements UserManager {
 
     this.userUniqueIdMap.put(user.getUniqueId(), user);
     this.userNameMap.put(user.getName(), user);
+  }
+
+  @Override
+  public void createUser(Player player) {
+    Validate.notNull(player, "Player cannot be null!");
+
+    User user = new UserImpl(player);
+    this.userUniqueIdMap.put(user.getUniqueId(), user);
+    this.userNameMap.put(player.getName(), user);
+  }
+
+  @Override
+  public void createUser(UUID uuid, String name) {
+    Validate.notNull(uuid, "UUID of player cannot be null!");
+
+    User user = new UserImpl(uuid);
+    this.userUniqueIdMap.put(uuid, user);
+    this.userNameMap.put(name, user);
   }
 
   @Override

@@ -1,22 +1,35 @@
 package pl.meleride.api.user.caller;
 
+import java.util.UUID;
 import org.bukkit.Bukkit;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.AsyncPlayerPreLoginEvent;
+import pl.meleride.api.MelerideAPI;
 import pl.meleride.api.user.User;
 import pl.meleride.api.user.event.UserAbortEvent;
 import pl.meleride.api.user.event.UserInitEvent;
 import pl.meleride.api.user.manager.UserManager;
+import pl.meleride.api.user.manager.UserManagerImpl;
 
 public class PlayerPreLoginListener implements Listener {
 
-  private UserManager userManager;
+  private MelerideAPI instance;
+  private UserManager userManager = new UserManagerImpl();
+
+  public PlayerPreLoginListener(MelerideAPI instance) {
+    this.instance = instance;
+  }
 
   @EventHandler(priority = EventPriority.LOWEST)
   public void onPlayerPreLogin(AsyncPlayerPreLoginEvent event) {
-    User user = this.userManager.getUser(event.getUniqueId()).get();
+    UUID uuid = event.getUniqueId();
+    String name = event.getName();
+    if(!this.userManager.getUser(uuid).isPresent()) {
+      this.userManager.createUser(uuid, name);
+    }
+    User user = this.userManager.getUser(uuid).get();
 
     UserInitEvent userInitEvent = new UserInitEvent(user);
     Bukkit.getPluginManager().callEvent(userInitEvent);
@@ -27,8 +40,6 @@ public class PlayerPreLoginListener implements Listener {
       event.disallow(AsyncPlayerPreLoginEvent.Result.KICK_OTHER, "Session abort.");
       return;
     }
-
-    this.userManager.addUser(user);
   }
 
 }
