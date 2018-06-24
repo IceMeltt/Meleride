@@ -18,7 +18,7 @@ public class PlayerPreLoginListener implements Listener {
   private MelerideAPI instance;
   private UserManager userManager = new UserManagerImpl();
 
-  public PlayerPreLoginListener(MelerideAPI instance) {
+  public PlayerPreLoginListener(final MelerideAPI instance) {
     this.instance = instance;
   }
 

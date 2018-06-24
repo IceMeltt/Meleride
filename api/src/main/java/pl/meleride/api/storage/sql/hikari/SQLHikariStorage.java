@@ -13,7 +13,7 @@ public class SQLHikariStorage extends AbstractSQLStorage {
 
   private final HikariDataSource source;
 
-  public SQLHikariStorage(HikariConfig config) {
+  public SQLHikariStorage(final HikariConfig config) {
     Validate.notNull(config);
 
     this.source = new HikariDataSource(config);

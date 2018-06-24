@@ -12,7 +12,7 @@ public class StorageDaoImpl<T> implements StorageDao<T> {
 
   private MelerideAPI instance;
 
-  public StorageDaoImpl(MelerideAPI instance) {
+  public StorageDaoImpl(final MelerideAPI instance) {
     this.instance = instance;
   }
 

@@ -14,7 +14,7 @@ public class DefaultSQLStorage extends AbstractSQLStorage {
   private final String url;
   private Connection connection;
 
-  public DefaultSQLStorage(String url) {
+  public DefaultSQLStorage(final String url) {
     Validate.notNull(url);
 
     this.url = url;
