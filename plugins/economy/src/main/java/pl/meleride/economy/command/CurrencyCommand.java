@@ -7,9 +7,11 @@ import pl.meleride.commands.context.CommandContext;
 import pl.meleride.economy.MelerideEconomy;
 import pl.meleride.economy.currency.Currency;
 import pl.meleride.economy.econplayer.EconPlayer;
+import pl.meleride.economy.econplayer.EconPlayerManager;
 import pl.meleride.economy.util.ColorUtils;
 
 import java.util.Arrays;
+import java.util.Optional;
 
 public class CurrencyCommand {
 
@@ -20,7 +22,13 @@ public class CurrencyCommand {
           permission = "meleride.economy.currency")
   public void walletCommand(CommandSender sender, CommandContext context) {
     Player player = (Player) sender;
-    EconPlayer econPlayer = EconPlayer.getPlayer(player.getUniqueId());
+    Optional<EconPlayer> optionalEconPlayer = EconPlayerManager.getPlayer(player.getUniqueId());
+
+    if (!optionalEconPlayer.isPresent()) {
+      return;
+    }
+
+    EconPlayer econPlayer = optionalEconPlayer.get();
 
     if (context.getArgs().length == 0) {
       player.sendMessage(ColorUtils.colorize("&8> &fW portfelu posiadasz&8:"));

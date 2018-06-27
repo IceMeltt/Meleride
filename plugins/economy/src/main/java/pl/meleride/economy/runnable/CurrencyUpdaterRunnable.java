@@ -4,6 +4,7 @@ import org.bukkit.scheduler.BukkitRunnable;
 import pl.meleride.economy.MelerideEconomy;
 import pl.meleride.economy.currency.Currency;
 import pl.meleride.economy.currencysign.CurrencySign;
+import pl.meleride.economy.currencysign.CurrencySignManager;
 
 import java.io.IOException;
 
@@ -32,7 +33,7 @@ public class CurrencyUpdaterRunnable extends BukkitRunnable {
       this.plugin.getLogger().info("Pomyslnie zaktualizowano kurs waluty " + currency.getFullName());
     }
 
-    CurrencySign.getCurrencySignMap().values().forEach(CurrencySign::update);
+    CurrencySignManager.getCurrencySigns().forEach(CurrencySign::update);
   }
 
 }

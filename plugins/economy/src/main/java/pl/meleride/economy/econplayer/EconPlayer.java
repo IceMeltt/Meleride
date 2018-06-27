@@ -9,8 +9,6 @@ import java.util.UUID;
 
 public class EconPlayer {
 
-  private static final Map<UUID, EconPlayer> ECON_PLAYER_MAP = new HashMap<>();
-
   private final UUID uuid;
 
   private final Map<Currency, Double> pocketBalance;
@@ -23,7 +21,7 @@ public class EconPlayer {
     this.pocketBalance = new HashMap<>();
 
     add(Currency.PLN, 0.0);
-    addPlayer(this);
+    EconPlayerManager.addPlayer(this);
   }
 
   public UUID getUuid() {
@@ -78,16 +76,6 @@ public class EconPlayer {
             currency,
             this.pocketBalance.getOrDefault(currency, 0.0) + amount
     );
-  }
-
-  private static void addPlayer(EconPlayer econPlayer) {
-    if (!ECON_PLAYER_MAP.containsKey(econPlayer.getUuid())) {
-      ECON_PLAYER_MAP.put(econPlayer.getUuid(), econPlayer);
-    }
-  }
-
-  public static EconPlayer getPlayer(UUID uuid) {
-    return ECON_PLAYER_MAP.getOrDefault(uuid, null);
   }
 
 }

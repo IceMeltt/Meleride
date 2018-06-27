@@ -30,6 +30,12 @@
       <groupId>pl.meleride</groupId>
       <artifactId>commands</artifactId>
     </dependency>
+
+    <dependency>
+      <groupId>com.mashape.unirest</groupId>
+      <artifactId>unirest-java</artifactId>
+      <version>1.4.9</version>
+    </dependency>
   </dependencies>
 
 </project>

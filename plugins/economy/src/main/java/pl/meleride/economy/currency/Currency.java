@@ -3,7 +3,7 @@ package pl.meleride.economy.currency;
 import com.mashape.unirest.http.exceptions.UnirestException;
 import org.json.JSONObject;
 import pl.meleride.economy.util.MathUtils;
-import pl.meleride.economy.util.URLUtils;
+import pl.meleride.api.util.URLUtils;
 
 import java.io.IOException;
 

@@ -1,4 +1,4 @@
-package pl.meleride.economy.util;
+package pl.meleride.api.util;
 
 import com.mashape.unirest.http.HttpResponse;
 import com.mashape.unirest.http.JsonNode;
@@ -8,7 +8,6 @@ import org.json.JSONObject;
 
 public final class URLUtils {
 
-  //Powinno zostac przeniesione w przyszlosci do melerideapi
   public static JSONObject getJsonUrlContent(String url) throws UnirestException {
     HttpResponse<JsonNode> response = Unirest.get(url).asJson();
 

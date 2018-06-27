@@ -5,6 +5,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
 import pl.meleride.economy.currencysign.CurrencySign;
+import pl.meleride.economy.currencysign.CurrencySignManager;
 
 public class BlockBreakListener implements Listener {
 
@@ -16,11 +17,11 @@ public class BlockBreakListener implements Listener {
 
     Sign sign = (Sign) event.getBlock().getState();
 
-    if (CurrencySign.getCurrencySign(sign.getLocation()) == null) {
+    if (!CurrencySignManager.getCurrencySign(sign.getLocation()).isPresent()) {
       return;
     }
 
-    CurrencySign.getCurrencySign(sign.getLocation()).delete();
+    CurrencySignManager.getCurrencySign(sign.getLocation()).get().delete();
   }
 
 }
