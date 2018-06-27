@@ -33,7 +33,6 @@ public class PlayerPreLoginListener implements Listener {
       UserAbortEvent userAbortEvent = new UserAbortEvent(user);
       Bukkit.getPluginManager().callEvent(userAbortEvent);
       event.disallow(AsyncPlayerPreLoginEvent.Result.KICK_OTHER, "Session abort.");
-      return;
     }
   }
 

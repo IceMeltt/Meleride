@@ -14,7 +14,7 @@ import pl.meleride.api.user.manager.UserManager;
 import pl.meleride.api.user.manager.UserManagerImpl;
 import pl.meleride.api.user.status.DiseaseStatus;
 
-public class UserDaoImpl implements UserDao {
+public class UserDaoImpl implements StorageDao<User> {
 
   private final MelerideAPI instance;
 
@@ -39,7 +39,6 @@ public class UserDaoImpl implements UserDao {
     return list;
   }
 
-  @Override
   public void make(Player player) throws StorageException {
 
     StringBuilder sb = new StringBuilder("INSERT INTO users (uuid, name, disease) VALUES (")

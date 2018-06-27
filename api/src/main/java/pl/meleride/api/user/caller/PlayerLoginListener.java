@@ -9,7 +9,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerLoginEvent;
 import pl.meleride.api.MelerideAPI;
 import pl.meleride.api.storage.StorageException;
-import pl.meleride.api.storage.dao.UserDao;
+import pl.meleride.api.storage.dao.StorageDao;
 import pl.meleride.api.storage.dao.UserDaoImpl;
 import pl.meleride.api.user.User;
 import pl.meleride.api.user.UserImpl;
@@ -45,7 +45,7 @@ public class PlayerLoginListener implements Listener {
       return;
     }
 
-    UserDao dao = new UserDaoImpl(instance);
+    StorageDao<User> dao = new UserDaoImpl(instance);
     try {
       if(!player.hasPlayedBefore()) {
         dao.update(user);
