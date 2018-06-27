@@ -9,6 +9,9 @@ addons:
 services:
   - mysql
 
+before_install:
+  - mysql -e 'CREATE DATABASE meleride;'
+
 install: script/install
 script: script/script
 

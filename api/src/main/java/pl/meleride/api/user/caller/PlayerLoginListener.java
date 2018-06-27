@@ -9,11 +9,12 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerLoginEvent;
 import pl.meleride.api.MelerideAPI;
 import pl.meleride.api.storage.StorageException;
-import pl.meleride.api.storage.sql.hikari.SQLHikariStorage;
+import pl.meleride.api.storage.dao.UserDao;
+import pl.meleride.api.storage.dao.UserDaoImpl;
 import pl.meleride.api.user.User;
+import pl.meleride.api.user.UserImpl;
 import pl.meleride.api.user.event.UserAbortEvent;
 import pl.meleride.api.user.event.UserLoadEvent;
-import pl.meleride.api.user.manager.UserDatabaseSteward;
 import pl.meleride.api.user.manager.UserManager;
 import pl.meleride.api.user.manager.UserManagerImpl;
 
@@ -29,10 +30,11 @@ public class PlayerLoginListener implements Listener {
   @EventHandler(priority = EventPriority.LOWEST)
   public void onPlayerLogin(PlayerLoginEvent event) {
     Player player = event.getPlayer();
-    if(!this.userManager.getUser(player.getUniqueId()).isPresent()) {
-      this.userManager.createUser(player);
-    }
-    User user = this.userManager.getUser(player.getUniqueId()).get();
+    User user = this.userManager.getUser(player).orElseGet(() -> {
+      User newUser = new UserImpl(player);
+      this.userManager.addUser(newUser);
+      return newUser;
+    });
 
     UserLoadEvent userLoadEvent = new UserLoadEvent(user);
 
@@ -43,16 +45,14 @@ public class PlayerLoginListener implements Listener {
       return;
     }
 
-    SQLHikariStorage storage = instance.getStorage();
-    UserDatabaseSteward setter = new UserDatabaseSteward(player.getUniqueId(), user, storage);
+    UserDao dao = new UserDaoImpl(instance);
     try {
       if(!player.hasPlayedBefore()) {
-        setter.makePlayer(player);
+        dao.update(user);
       } else {
-        setter.setName(player.getName());
-        setter.setDiseases();
+        dao.download(user);
       }
-    } catch(StorageException | SQLException e) {
+    } catch(SQLException | StorageException e) {
       Bukkit.getLogger().severe("Wystąpił BARDZO POTEŻNY błąd w ładowaniu gracza!!1");
       e.printStackTrace();
     }

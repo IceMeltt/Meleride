@@ -17,7 +17,7 @@ import pl.meleride.api.user.manager.UserManager;
 import pl.meleride.commands.Commands;
 import pl.meleride.commands.bukkit.BukkitCommands;
 
-public final class MelerideAPI extends JavaPlugin {
+public class MelerideAPI extends JavaPlugin {
 
   private Commands commands;
   private UserManager userManager;
@@ -29,7 +29,7 @@ public final class MelerideAPI extends JavaPlugin {
     this.initializeListeners();
 
     this.registerListeners(
-        new PlayerPreLoginListener(this),
+        new PlayerPreLoginListener(),
         new PlayerLoginListener(this),
         new PlayerQuitListener(this)
     );
@@ -80,5 +80,4 @@ public final class MelerideAPI extends JavaPlugin {
   public SQLHikariStorage getStorage() {
     return storage;
   }
-  
 }
