@@ -20,6 +20,7 @@
   <modules>
     <module>base</module>
     <module>world</module>
+    <module>user</module>
   </modules>
 
   <dependencies>
