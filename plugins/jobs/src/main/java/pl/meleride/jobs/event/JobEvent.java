@@ -1,7 +1,8 @@
-package pl.meleride.jobs;
+package pl.meleride.jobs.event;
 
 import org.bukkit.entity.Player;
 import pl.meleride.api.event.CustomEvent;
+import pl.meleride.jobs.Job;
 
 public class JobEvent extends CustomEvent {
 
@@ -20,4 +21,5 @@ public class JobEvent extends CustomEvent {
   public Job getJob() {
     return job;
   }
+
 }

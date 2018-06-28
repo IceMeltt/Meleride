@@ -1,9 +1,12 @@
 package pl.meleride.jobs;
 
+import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.inventory.InventoryCloseEvent;
 import org.bukkit.event.inventory.InventoryOpenEvent;
+import pl.meleride.jobs.event.QuitJobEvent;
+import pl.meleride.jobs.event.SelectedJobEvent;
 import pl.socketbyte.opengui.GUI;
 import pl.socketbyte.opengui.GUIExtender;
 import pl.socketbyte.opengui.GUIExtenderItem;
@@ -17,19 +20,34 @@ public class JobGUI extends GUIExtender {
 
     int i = 0;
     for (Job job : jobManager.getJobs()) {
-      setItem(i, new GUIExtenderItem(new ItemBuilder(job.getGUIItem()).setName(job.getName())) {
+      setItem(i, new GUIExtenderItem(new ItemBuilder(job.getGUIItem())
+          .setName(job.getName())
+          .setLore("Prawy przycisk zeby wybrac prace", "Lewy by opuscic")) {
         @Override
         public void onClick(InventoryClickEvent event) {
           if (event.getCurrentItem() != null) {
             Player player = (Player) event.getWhoClicked();
             player.closeInventory();
 
-            if (jobManager.addUserJob(player.getUniqueId(), job)) {
-              player.sendMessage("Wybrales prace " + job.getName());
-              return;
+            if (event.getClick().isLeftClick()) {
+              if (jobManager.addUserJob(player.getUniqueId(), job)) {
+                player.sendMessage("Wybrales prace " + job.getName());
+                Bukkit.getPluginManager().callEvent(new SelectedJobEvent(player, job));
+                return;
+              }
+
+              player.sendMessage("Mozesz miec tylko 1 stala prace!");
             }
 
-            player.sendMessage("Nie mozesz miec tylu prac :/");
+            if (event.getClick().isRightClick()) {
+              if (jobManager.removeUserJob(player.getUniqueId(), job)) {
+                player.sendMessage("Rzuciles prace " + job.getName());
+                Bukkit.getPluginManager().callEvent(new QuitJobEvent(player, job));
+                return;
+              }
+
+              player.sendMessage("Nie pracujesz jako " + job.getName());
+            }
           }
         }
       });
@@ -46,4 +64,5 @@ public class JobGUI extends GUIExtender {
   public void onClose(InventoryCloseEvent event) {
 
   }
+
 }

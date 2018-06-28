@@ -3,8 +3,9 @@ package pl.meleride.jobs;
 import org.apache.commons.lang.Validate;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
-import pl.meleride.jobs.basic.LumberjackJob;
-import pl.meleride.jobs.basic.MinerJob;
+import pl.meleride.jobs.steady.basic.BuilderJob;
+import pl.meleride.jobs.steady.basic.LumberjackJob;
+import pl.meleride.jobs.steady.basic.MinerJob;
 
 public final class MelerideJobs extends JavaPlugin {
 
@@ -16,10 +17,11 @@ public final class MelerideJobs extends JavaPlugin {
 
     this.jobManager.registerJobs(
         new LumberjackJob(this),
-        new MinerJob(this)
+        new MinerJob(this),
+        new BuilderJob(this)
     );
 
-    Bukkit.getPluginManager().registerEvents(new JobListener(), this);
+    Bukkit.getPluginManager().registerEvents(new JobListener(this), this);
   }
 
   public JobManager getJobManager() {
@@ -27,4 +29,5 @@ public final class MelerideJobs extends JavaPlugin {
 
     return jobManager;
   }
+
 }
