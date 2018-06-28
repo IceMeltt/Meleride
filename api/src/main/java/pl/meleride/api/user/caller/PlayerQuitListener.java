@@ -9,7 +9,6 @@ import org.bukkit.event.player.PlayerQuitEvent;
 import pl.meleride.api.MelerideAPI;
 import pl.meleride.api.storage.StorageException;
 import pl.meleride.api.storage.dao.StorageDao;
-import pl.meleride.api.storage.dao.UserDaoImpl;
 import pl.meleride.api.user.User;
 import pl.meleride.api.user.UserImpl;
 import pl.meleride.api.user.event.UserQuitEvent;
@@ -33,14 +32,14 @@ public class PlayerQuitListener implements Listener {
       this.userManager.addUser(newUser);
       return newUser;
     });
-    StorageDao<User> dao = new UserDaoImpl(instance);
+
+    StorageDao<User> dao = this.instance.getUserDao();
     try {
       dao.update(user);
     } catch(StorageException e) {
       Bukkit.getLogger().severe("Wystąpił BARDZO POTEŻNY błąd w aktualizacji gracza!!1");
       e.printStackTrace();
     }
-
     UserQuitEvent userQuitEvent = new UserQuitEvent(user);
     Bukkit.getPluginManager().callEvent(userQuitEvent);
   }

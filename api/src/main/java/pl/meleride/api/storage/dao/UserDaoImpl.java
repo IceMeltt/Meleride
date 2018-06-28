@@ -24,7 +24,6 @@ public class UserDaoImpl implements StorageDao<User> {
 
   @Override
   public List<User> getAll() throws SQLException, StorageException {
-
     ResultSet result = this.instance.getStorage().query("SELECT * FROM users ORDER BY uuid");
     List<User> list = new ArrayList<>();
 
@@ -40,7 +39,6 @@ public class UserDaoImpl implements StorageDao<User> {
   }
 
   public void make(Player player) throws StorageException {
-
     StringBuilder sb = new StringBuilder("INSERT INTO users (uuid, name, disease) VALUES (")
         .append("'" + player.getUniqueId() + "',")
         .append("'" + player.getName() + "',")
@@ -54,12 +52,16 @@ public class UserDaoImpl implements StorageDao<User> {
 
   @Override
   public void download(User userToInject) throws SQLException, StorageException {
-
     String query = "SELECT * FROM users WHERE uuid='" + userToInject.getUniqueId() + "';";
     ResultSet result = this.instance.getStorage().query(query);
     if(result.next()) {
       userToInject.setName(result.getString("name"));
-      for(DiseaseStatus disease : DiseaseStatus.getDiseaseFromString(result.getString("disease").split(","))) {
+
+      for(DiseaseStatus disease : DiseaseStatus.getDiseaseFromString(result.getString("disease")
+          .replace("[", "")
+          .replace("]", "")
+          .replace(" ", "")
+          .split(","))) {
         userToInject.addDisease(disease);
       }
     }
@@ -67,7 +69,6 @@ public class UserDaoImpl implements StorageDao<User> {
 
   @Override
   public void update(User userToGet) throws StorageException  {
-
     StringBuilder sb = new StringBuilder("INSERT INTO users (uuid, name, disease) VALUES (")
         .append("'" + userToGet.getUniqueId().toString() + "',")
         .append("'" + userToGet.getName() + "',")
@@ -81,14 +82,12 @@ public class UserDaoImpl implements StorageDao<User> {
 
   @Override
   public void delete(User userToRemove) throws StorageException {
-
     String query = "DELETE FROM users WHERE uuid='" + userToRemove.getUniqueId() + "';";
     this.instance.getStorage().update(query);
   }
 
   @Override
   public User getFrom(String from, String value) throws SQLException, StorageException {
-
     String query = "SELECT * FROM users WHERE " + from + "=" + value + ";";
     ResultSet result = this.instance.getStorage().query(query);
 

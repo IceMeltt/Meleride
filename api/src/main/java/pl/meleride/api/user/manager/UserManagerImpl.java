@@ -21,7 +21,7 @@ public class UserManagerImpl implements UserManager {
 
     return this.userNameMap.values()
         .stream()
-        .filter(user -> user.getName().equalsIgnoreCase(name))
+        .filter(user -> user.getName().equals(name))
         .findFirst();
   }
 

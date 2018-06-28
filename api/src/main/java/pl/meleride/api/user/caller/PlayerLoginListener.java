@@ -10,7 +10,6 @@ import org.bukkit.event.player.PlayerLoginEvent;
 import pl.meleride.api.MelerideAPI;
 import pl.meleride.api.storage.StorageException;
 import pl.meleride.api.storage.dao.StorageDao;
-import pl.meleride.api.storage.dao.UserDaoImpl;
 import pl.meleride.api.user.User;
 import pl.meleride.api.user.UserImpl;
 import pl.meleride.api.user.event.UserAbortEvent;
@@ -45,13 +44,9 @@ public class PlayerLoginListener implements Listener {
       return;
     }
 
-    StorageDao<User> dao = new UserDaoImpl(instance);
+    StorageDao<User> dao = this.instance.getUserDao();
     try {
-      if(!player.hasPlayedBefore()) {
-        dao.update(user);
-      } else {
-        dao.download(user);
-      }
+      dao.download(user);
     } catch(SQLException | StorageException e) {
       Bukkit.getLogger().severe("Wystąpił BARDZO POTEŻNY błąd w ładowaniu gracza!!1");
       e.printStackTrace();

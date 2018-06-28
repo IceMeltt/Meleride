@@ -1,4 +1,4 @@
 name: MeleAPI
-version: 1.0.0
+version: 0.3.0
 main: pl.meleride.api.MelerideAPI
 author: Meleride

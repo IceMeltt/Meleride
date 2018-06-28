@@ -7,9 +7,11 @@ import org.bukkit.plugin.java.JavaPlugin;
 import pl.meleride.api.i18n.MessageBundler;
 import pl.meleride.api.object.command.GiveCommand;
 import pl.meleride.api.storage.StorageException;
+import pl.meleride.api.storage.dao.StorageDao;
+import pl.meleride.api.storage.dao.UserDaoImpl;
 import pl.meleride.api.storage.sql.hikari.SQLHikariStorage;
+import pl.meleride.api.user.User;
 import pl.meleride.api.user.caller.PlayerLoginListener;
-import pl.meleride.api.user.caller.PlayerPreLoginListener;
 import pl.meleride.api.user.caller.PlayerQuitListener;
 import pl.meleride.api.user.manager.UserManagerImpl;
 import pl.meleride.api.user.manager.UserManager;
@@ -21,6 +23,7 @@ public class MelerideAPI extends JavaPlugin {
 
   private Commands commands;
   private UserManager userManager;
+  private StorageDao<User> userDao;
   private SQLHikariStorage storage;
 
   @Override
@@ -28,8 +31,9 @@ public class MelerideAPI extends JavaPlugin {
     this.initializeDatabase();
     this.initializeListeners();
 
+    userDao = new UserDaoImpl(this);
+
     this.registerListeners(
-        new PlayerPreLoginListener(),
         new PlayerLoginListener(this),
         new PlayerQuitListener(this)
     );
@@ -80,4 +84,9 @@ public class MelerideAPI extends JavaPlugin {
   public SQLHikariStorage getStorage() {
     return storage;
   }
+
+  public StorageDao<User> getUserDao() {
+    return userDao;
+  }
+
 }
