@@ -2,6 +2,7 @@ package pl.meleride.economy.currencysign;
 
 import org.bukkit.Location;
 import org.bukkit.block.Sign;
+import pl.meleride.economy.MelerideEconomy;
 import pl.meleride.economy.currency.Currency;
 import pl.meleride.economy.util.ColorUtils;
 
@@ -13,11 +14,11 @@ public class CurrencySign {
   private final Location signLocation;
   private final Currency currency;
 
-  public CurrencySign(Location signLocation, Currency currency) {
+  public CurrencySign(Location signLocation, Currency currency, MelerideEconomy melerideEconomy) {
     this.signLocation = signLocation;
     this.currency = currency;
 
-    CurrencySignManager.addCurrencySign(this);
+    melerideEconomy.getCurrencySignManager().addCurrencySign(this);
   }
 
   public Currency getCurrency() {
@@ -28,9 +29,9 @@ public class CurrencySign {
     return signLocation;
   }
 
-  public void update() {
+  public void update(MelerideEconomy melerideEconomy) {
     if (!(this.signLocation.getBlock().getState() instanceof Sign)) {
-      delete();
+      delete(melerideEconomy);
       return;
     }
 
@@ -43,8 +44,8 @@ public class CurrencySign {
     sign.update();
   }
 
-  public void delete() {
-    CurrencySignManager.removeCurrencySign(this);
+  public void delete(MelerideEconomy melerideEconomy) {
+    melerideEconomy.getCurrencySignManager().removeCurrencySign(this);
   }
 
 }

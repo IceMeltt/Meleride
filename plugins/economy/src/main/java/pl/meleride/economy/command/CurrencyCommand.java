@@ -15,6 +15,12 @@ import java.util.Optional;
 
 public class CurrencyCommand {
 
+  private final MelerideEconomy plugin;
+
+  public CurrencyCommand(MelerideEconomy plugin) {
+    this.plugin = plugin;
+  }
+
   @CommandInfo(
           name = {"wallet", "portfel"},
           description = "Komenda do zarzadzania walutami",
@@ -22,7 +28,7 @@ public class CurrencyCommand {
           permission = "meleride.economy.currency")
   public void walletCommand(CommandSender sender, CommandContext context) {
     Player player = (Player) sender;
-    Optional<EconPlayer> optionalEconPlayer = EconPlayerManager.getPlayer(player.getUniqueId());
+    Optional<EconPlayer> optionalEconPlayer = this.plugin.getEconPlayerManager().getPlayer(player.getUniqueId());
 
     if (!optionalEconPlayer.isPresent()) {
       return;

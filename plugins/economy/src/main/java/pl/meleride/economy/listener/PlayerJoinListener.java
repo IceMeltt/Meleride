@@ -4,6 +4,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
+import pl.meleride.economy.MelerideEconomy;
 import pl.meleride.economy.econplayer.EconPlayer;
 import pl.meleride.economy.econplayer.EconPlayerManager;
 
@@ -11,14 +12,20 @@ import java.util.Optional;
 
 public class PlayerJoinListener implements Listener {
 
+  private final MelerideEconomy plugin;
+
+  public PlayerJoinListener(MelerideEconomy plugin) {
+    this.plugin = plugin;
+  }
+
   @EventHandler
   public void onJoin(PlayerJoinEvent event) {
     Player player = event.getPlayer();
 
-    Optional<EconPlayer> optionalEconPlayer = EconPlayerManager.getPlayer(player.getUniqueId());
+    Optional<EconPlayer> optionalEconPlayer = this.plugin.getEconPlayerManager().getPlayer(player.getUniqueId());
 
     if (!optionalEconPlayer.isPresent()) {
-      new EconPlayer(player.getUniqueId(), player.getName());
+      new EconPlayer(player.getUniqueId(), player.getName(), this.plugin);
     } else {
       //Updatowanie nicku podczas zmiany na stronie Mojangu
       optionalEconPlayer.get().setName(player.getName());

@@ -33,7 +33,7 @@ public class CurrencyUpdaterRunnable extends BukkitRunnable {
       this.plugin.getLogger().info("Pomyslnie zaktualizowano kurs waluty " + currency.getFullName());
     }
 
-    CurrencySignManager.getCurrencySigns().forEach(CurrencySign::update);
+    this.plugin.getCurrencySignManager().getCurrencySigns().forEach(currencySign -> currencySign.update(this.plugin));
   }
 
 }

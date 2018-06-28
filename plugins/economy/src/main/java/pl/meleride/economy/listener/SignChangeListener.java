@@ -4,10 +4,17 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.SignChangeEvent;
+import pl.meleride.economy.MelerideEconomy;
 import pl.meleride.economy.currency.Currency;
 import pl.meleride.economy.currencysign.CurrencySign;
 
 public class SignChangeListener implements Listener {
+
+  private final MelerideEconomy plugin;
+
+  public SignChangeListener(MelerideEconomy plugin) {
+    this.plugin = plugin;
+  }
 
   @EventHandler
   public void onSignChange(SignChangeEvent event) {
@@ -28,7 +35,8 @@ public class SignChangeListener implements Listener {
     event.setCancelled(true);
 
     new CurrencySign(event.getBlock().getLocation(),
-            Currency.getCurrency(event.getLine(1))).update();
+            Currency.getCurrency(event.getLine(1)),
+            this.plugin).update(this.plugin);
   }
 
 }

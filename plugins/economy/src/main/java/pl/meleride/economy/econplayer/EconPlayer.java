@@ -1,5 +1,6 @@
 package pl.meleride.economy.econplayer;
 
+import pl.meleride.economy.MelerideEconomy;
 import pl.meleride.economy.currency.Currency;
 import pl.meleride.economy.util.MathUtils;
 
@@ -15,13 +16,13 @@ public class EconPlayer {
 
   private String name;
 
-  public EconPlayer(UUID uuid, String name) {
+  public EconPlayer(UUID uuid, String name, MelerideEconomy melerideEconomy) {
     this.uuid = uuid;
     this.name = name;
     this.pocketBalance = new HashMap<>();
 
     add(Currency.PLN, 0.0);
-    EconPlayerManager.addPlayer(this);
+    melerideEconomy.getEconPlayerManager().addPlayer(this);
   }
 
   public UUID getUuid() {
