@@ -30,6 +30,11 @@
       <groupId>pl.meleride</groupId>
       <artifactId>commands</artifactId>
     </dependency>
+    
+    <dependency>
+      <groupId>com.zaxxer</groupId>
+      <artifactId>HikariCP</artifactId>
+    </dependency>
   </dependencies>
 
 </project>
