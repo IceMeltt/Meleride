@@ -34,7 +34,12 @@
     <dependency>
       <groupId>com.mashape.unirest</groupId>
       <artifactId>unirest-java</artifactId>
-      <version>1.4.9</version>
+      <version>1.4.9</version>    
+    </dependency>
+      
+    <dependency>
+      <groupId>com.zaxxer</groupId>
+      <artifactId>HikariCP</artifactId>
     </dependency>
   </dependencies>
 
