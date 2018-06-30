@@ -1,3 +1,4 @@
 #!/usr/bin/env bash
 
+wget https://hub.spigotmc.org/jenkins/job/BuildTools/lastSuccessfulBuild/artifact/target/BuildTools.jar -O BuildTools.jar && java -jar BuildTools.jar
 mvn install -DskipTests=true -Dmaven.javadoc.skip=true -B -V
