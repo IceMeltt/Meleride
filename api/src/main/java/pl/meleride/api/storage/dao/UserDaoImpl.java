@@ -38,18 +38,6 @@ public class UserDaoImpl implements StorageDao<User> {
     return list;
   }
 
-  public void make(Player player) throws StorageException {
-    StringBuilder sb = new StringBuilder("INSERT INTO users (uuid, name, disease) VALUES (")
-        .append("'" + player.getUniqueId() + "',")
-        .append("'" + player.getName() + "',")
-        .append("'[]'")
-        .append(") ON DUPLICATE KEY UPDATE ")
-        .append("name='" + player.getName() + "',")
-        .append("disease='[]';");
-
-    instance.getStorage().update(sb.toString());
-  }
-
   @Override
   public void download(User userToInject) throws SQLException, StorageException {
     String query = "SELECT * FROM users WHERE uuid='" + userToInject.getUniqueId() + "';";
