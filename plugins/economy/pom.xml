@@ -27,6 +27,13 @@
       <groupId>be.maximvdw</groupId>
       <artifactId>MVdWPlaceholderAPI</artifactId>
       <version>2.1.1-SNAPSHOT</version>
+      <scope>provided</scope>
+      <exclusions>
+        <exclusion>
+          <groupId>org.spigotmc</groupId>
+          <artifactId>spigot</artifactId>
+        </exclusion>
+      </exclusions>
     </dependency>
   </dependencies>
 
