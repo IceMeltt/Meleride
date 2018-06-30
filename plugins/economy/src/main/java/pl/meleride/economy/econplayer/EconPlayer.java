@@ -22,6 +22,7 @@ public class EconPlayer {
     this.pocketBalance = new HashMap<>();
 
     add(Currency.PLN, 0.0);
+
     melerideEconomy.getEconPlayerManager().addPlayer(this);
   }
 
@@ -38,7 +39,11 @@ public class EconPlayer {
   }
 
   public Map<Currency, Double> getPocketBalance() {
-    return pocketBalance;
+    return new HashMap<>(this.pocketBalance);
+  }
+
+  public double getCurrencyBalance(Currency currency) {
+    return this.pocketBalance.getOrDefault(currency, 0.0);
   }
 
   public boolean has(Currency currency, double amount) {
