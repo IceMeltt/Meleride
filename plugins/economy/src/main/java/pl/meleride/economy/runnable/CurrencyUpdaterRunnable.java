@@ -3,8 +3,6 @@ package pl.meleride.economy.runnable;
 import org.bukkit.scheduler.BukkitRunnable;
 import pl.meleride.economy.MelerideEconomy;
 import pl.meleride.economy.currency.Currency;
-import pl.meleride.economy.currencysign.CurrencySign;
-import pl.meleride.economy.currencysign.CurrencySignManager;
 
 import java.io.IOException;
 

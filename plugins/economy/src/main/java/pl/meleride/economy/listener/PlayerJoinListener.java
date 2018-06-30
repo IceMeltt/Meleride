@@ -6,7 +6,6 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
 import pl.meleride.economy.MelerideEconomy;
 import pl.meleride.economy.econplayer.EconPlayer;
-import pl.meleride.economy.econplayer.EconPlayerManager;
 
 import java.util.Optional;
 

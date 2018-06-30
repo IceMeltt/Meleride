@@ -5,8 +5,6 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
 import pl.meleride.economy.MelerideEconomy;
-import pl.meleride.economy.currencysign.CurrencySign;
-import pl.meleride.economy.currencysign.CurrencySignManager;
 
 public class BlockBreakListener implements Listener {
 

@@ -6,9 +6,6 @@ import pl.meleride.economy.MelerideEconomy;
 import pl.meleride.economy.currency.Currency;
 import pl.meleride.economy.util.ColorUtils;
 
-import java.util.HashMap;
-import java.util.Map;
-
 public class CurrencySign {
 
   private final Location signLocation;
