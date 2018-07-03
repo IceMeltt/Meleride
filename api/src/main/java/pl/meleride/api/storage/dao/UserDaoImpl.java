@@ -27,10 +27,10 @@ public class UserDaoImpl implements StorageDao<User> {
     ResultSet result = this.instance.getStorage().query("SELECT * FROM users ORDER BY uuid");
     List<User> list = new ArrayList<>();
 
-    while(result.next()) {
+    while (result.next()) {
       User user = new UserImpl(result.getString("uuid"));
       user.setName(result.getString("name"));
-      for(DiseaseStatus disease : DiseaseStatus.getDiseaseFromString(result.getString("disease").split(","))) {
+      for (DiseaseStatus disease : DiseaseStatus.getDiseaseFromString(result.getString("disease").split(","))) {
         user.addDisease(disease);
       }
       list.add(user);
@@ -42,12 +42,12 @@ public class UserDaoImpl implements StorageDao<User> {
   public void download(User userToInject) throws SQLException, StorageException {
     String query = "SELECT * FROM users WHERE uuid='" + userToInject.getUniqueId() + "';";
     ResultSet result = this.instance.getStorage().query(query);
-    if(result.next()) {
+    if (result.next()) {
       userToInject.setName(result.getString("name"));
 
-      if(!(result.getString("disease").equals("[]")
+      if (!(result.getString("disease").equals("[]")
           || result.getString("disease") == null)) {
-        for(DiseaseStatus disease : DiseaseStatus.getDiseaseFromString(result.getString("disease")
+        for (DiseaseStatus disease : DiseaseStatus.getDiseaseFromString(result.getString("disease")
             .replace("[", "")
             .replace("]", "")
             .replace(" ", "")
@@ -82,10 +82,10 @@ public class UserDaoImpl implements StorageDao<User> {
     String query = "SELECT * FROM users WHERE " + from + "=" + value + ";";
     ResultSet result = this.instance.getStorage().query(query);
 
-    if(result.next()) {
+    if (result.next()) {
       UserManager manager = new UserManagerImpl();
       User user;
-      if(manager.getUser(value).isPresent()) {
+      if (manager.getUser(value).isPresent()) {
         user = manager.getUser(value).get();
         return user;
       }
