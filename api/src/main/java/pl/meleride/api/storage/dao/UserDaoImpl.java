@@ -45,12 +45,15 @@ public class UserDaoImpl implements StorageDao<User> {
     if(result.next()) {
       userToInject.setName(result.getString("name"));
 
-      for(DiseaseStatus disease : DiseaseStatus.getDiseaseFromString(result.getString("disease")
-          .replace("[", "")
-          .replace("]", "")
-          .replace(" ", "")
-          .split(","))) {
-        userToInject.addDisease(disease);
+      if(!(result.getString("disease").equals("[]")
+          || result.getString("disease") == null)) {
+        for(DiseaseStatus disease : DiseaseStatus.getDiseaseFromString(result.getString("disease")
+            .replace("[", "")
+            .replace("]", "")
+            .replace(" ", "")
+            .split(","))) {
+          userToInject.addDisease(disease);
+        }
       }
     }
   }
