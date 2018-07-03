@@ -14,7 +14,7 @@ public enum DiseaseStatus {
 
   public static List<DiseaseStatus> getDiseaseFromString(String[] string) {
     List<DiseaseStatus> gettedDiseases = new ArrayList<>();
-    for(String value : string) {
+    for (String value : string) {
         DiseaseStatus disease = Enum.valueOf(DiseaseStatus.class, value);
         gettedDiseases.add(disease);
     }
