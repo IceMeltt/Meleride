@@ -10,14 +10,11 @@ import pl.meleride.api.MelerideAPI;
 import pl.meleride.api.storage.userflow.FlowInspector;
 import pl.meleride.api.user.User;
 import pl.meleride.api.user.event.UserQuitEvent;
-import pl.meleride.api.user.manager.UserManager;
-import pl.meleride.api.user.manager.UserManagerImpl;
 import pl.meleride.api.storage.userflow.UserInspector;
 
 public class PlayerQuitListener implements Listener {
 
   private final MelerideAPI instance;
-  private UserManager userManager = new UserManagerImpl();
 
   public PlayerQuitListener(final MelerideAPI instance) {
     this.instance = instance;

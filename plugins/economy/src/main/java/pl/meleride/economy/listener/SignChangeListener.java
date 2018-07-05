@@ -5,7 +5,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.SignChangeEvent;
 import pl.meleride.economy.MelerideEconomy;
-import pl.meleride.api.economy.currency.Currency;
+import pl.meleride.economy.currency.Currency;
 import pl.meleride.economy.currencysign.CurrencySign;
 
 public class SignChangeListener implements Listener {

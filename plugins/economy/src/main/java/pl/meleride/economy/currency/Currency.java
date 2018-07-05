@@ -1,4 +1,4 @@
-package pl.meleride.api.economy.currency;
+package pl.meleride.economy.currency;
 
 import com.mashape.unirest.http.exceptions.UnirestException;
 import org.json.JSONObject;

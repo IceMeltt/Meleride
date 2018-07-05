@@ -4,6 +4,7 @@ import java.util.Properties;
 import org.bukkit.event.Listener;
 import org.bukkit.plugin.java.JavaPlugin;
 
+import pl.meleride.api.flexible.BaseManager;
 import pl.meleride.api.i18n.MessageBundler;
 import pl.meleride.api.object.command.GiveCommand;
 import pl.meleride.api.storage.StorageException;
@@ -11,10 +12,11 @@ import pl.meleride.api.storage.dao.StorageDao;
 import pl.meleride.api.storage.dao.UserDaoImpl;
 import pl.meleride.api.storage.sql.hikari.SQLHikariStorage;
 import pl.meleride.api.user.User;
+import pl.meleride.api.user.accident.BaseAccidentor;
+import pl.meleride.api.user.accident.UserAccidentor;
 import pl.meleride.api.user.caller.PlayerLoginListener;
 import pl.meleride.api.user.caller.PlayerQuitListener;
 import pl.meleride.api.user.manager.UserManagerImpl;
-import pl.meleride.api.user.manager.UserManager;
 
 import pl.meleride.commands.Commands;
 import pl.meleride.commands.bukkit.BukkitCommands;
@@ -22,7 +24,8 @@ import pl.meleride.commands.bukkit.BukkitCommands;
 public class MelerideAPI extends JavaPlugin {
 
   private Commands commands;
-  private UserManager userManager;
+  private BaseAccidentor accidentor;
+  private BaseManager<User> userManager;
   private StorageDao<User> userDao;
   private SQLHikariStorage storage;
 
@@ -31,6 +34,7 @@ public class MelerideAPI extends JavaPlugin {
     this.initializeDatabase();
     this.initializeListeners();
 
+    accidentor = new UserAccidentor(this);
     userDao = new UserDaoImpl(this);
 
     this.registerListeners(
@@ -63,7 +67,6 @@ public class MelerideAPI extends JavaPlugin {
         .append("uuid CHAR(36) NOT NULL,")
         .append("name TEXT(16) NOT NULL,")
         .append("disease TEXT NOT NULL,")
-        .append("money DOUBLE NOT NULL,")
         .append("dataError TINYINT(1) NOT NULL,")
         .append("primary key(uuid));");
 
@@ -74,12 +77,16 @@ public class MelerideAPI extends JavaPlugin {
       e.printStackTrace();
     }
   }
-  
+
+  public BaseAccidentor getAccidentor() {
+    return this.accidentor;
+  }
+
   public Commands getCommands() {
     return commands;
   }
 
-  public UserManager getUserManager() {
+  public BaseManager<User> getUserManager() {
     return userManager;
   }
 

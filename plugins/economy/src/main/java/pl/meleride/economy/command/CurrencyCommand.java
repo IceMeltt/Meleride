@@ -2,21 +2,18 @@ package pl.meleride.economy.command;
 
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
-import org.bukkit.plugin.java.JavaPlugin;
-import pl.meleride.api.MelerideAPI;
-import pl.meleride.api.user.User;
-import pl.meleride.api.user.accident.UserAccidentor;
+import pl.meleride.api.user.accident.BaseAccidentor;
 import pl.meleride.commands.CommandInfo;
 import pl.meleride.commands.context.CommandContext;
 import pl.meleride.economy.MelerideEconomy;
-import pl.meleride.api.economy.currency.Currency;
+import pl.meleride.economy.currency.Currency;
 import static pl.meleride.api.message.MessageUtil.colored;
 
 import java.util.Arrays;
+import pl.meleride.economy.user.EconomyUser;
 
 public class CurrencyCommand {
 
-  private final MelerideAPI api = JavaPlugin.getPlugin(MelerideAPI.class);
   private final MelerideEconomy plugin;
 
   public CurrencyCommand(MelerideEconomy plugin) {
@@ -31,11 +28,12 @@ public class CurrencyCommand {
   public void walletCommand(CommandSender sender, CommandContext context) {
     Player player = (Player) sender;
 
-    if(!this.api.getUserManager().getUser(player).isPresent()) {
-      UserAccidentor.notFoundOnManager(player);
+    if(!this.plugin.getManager().getUser(player).isPresent()) {
+      BaseAccidentor accidentor = this.plugin.getAccidentor();
+      accidentor.notFoundOnManager(player);
     }
 
-    User user = this.api.getUserManager().getUser(player).get();
+    EconomyUser user = this.plugin.getManager().getUser(player).get();
 
     if (context.getArgs().length == 0) {
       user.add(Currency.PLN, 11);

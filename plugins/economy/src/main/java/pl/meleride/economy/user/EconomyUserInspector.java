@@ -1,41 +1,40 @@
-package pl.meleride.api.storage.userflow;
+package pl.meleride.economy.user;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
-import pl.meleride.api.MelerideAPI;
 import pl.meleride.api.storage.StorageException;
 import pl.meleride.api.storage.dao.StorageDao;
-import pl.meleride.api.user.User;
-import pl.meleride.api.user.UserImpl;
+import pl.meleride.api.storage.userflow.FlowInspector;
+import pl.meleride.economy.MelerideEconomy;
 
 @SuppressWarnings("Duplicates")
-public class UserInspector implements FlowInspector<User> {
+public class EconomyUserInspector implements FlowInspector<EconomyUser> {
 
-  private final MelerideAPI instance;
-  private final StorageDao<User> dao;
-  private User user;
+  private final MelerideEconomy instance;
+  private final StorageDao<EconomyUser> dao;
+  private EconomyUser user;
 
-  public UserInspector(MelerideAPI instance) {
+  public EconomyUserInspector(MelerideEconomy instance) {
     this.instance = instance;
-    this.dao = instance.getUserDao();
+    this.dao = instance.getEconomyDao();
   }
 
   @Override
   public void join(Player player) {
-    user = new UserImpl(player);
+    user = new EconomyUserImpl(player);
 
-    if (!this.instance.getUserManager().getUser(player.getUniqueId()).isPresent()) {
+    if (!this.instance.getManager().getUser(player.getUniqueId()).isPresent()) {
       try {
-        String query = "SELECT * FROM users WHERE uuid='" + player.getUniqueId() + "';";
+        String query = "SELECT * FROM economy WHERE uuid='" + player.getUniqueId() + "';";
         ResultSet result = this.instance.getStorage().query(query);
         if (!result.next()) {
           this.dao.update(user);
-          this.instance.getUserManager().addUser(user);
+          this.instance.getManager().addUser(user);
         } else {
           this.dao.download(user);
-          this.instance.getUserManager().addUser(user);
+          this.instance.getManager().addUser(user);
         }
       } catch(SQLException | StorageException e) {
         Bukkit.getLogger().severe("Wystapil blad podczas przetwarzania gracza!!!1");
@@ -46,9 +45,9 @@ public class UserInspector implements FlowInspector<User> {
 
   @Override
   public void quit(Player player) {
-    if (!this.instance.getUserManager().getUser(player.getUniqueId()).isPresent()) {
+    if (!this.instance.getManager().getUser(player.getUniqueId()).isPresent()) {
       Bukkit.getLogger().warning("Uwaga! Nie znaleziono gracza " + player.getName() + " w bazie!");
-      user = new UserImpl(player.getUniqueId());
+      user = new EconomyUserImpl(player.getUniqueId());
       try {
         this.dao.download(user);
         this.user.setDataErrorStatus((byte) 1);
@@ -58,7 +57,7 @@ public class UserInspector implements FlowInspector<User> {
         e.printStackTrace();
       }
     } else {
-      user = this.instance.getUserManager().getUser(player.getUniqueId()).get();
+      user = this.instance.getManager().getUser(player.getUniqueId()).get();
       try {
         this.dao.update(user);
       } catch (StorageException e) {
@@ -66,11 +65,11 @@ public class UserInspector implements FlowInspector<User> {
         e.printStackTrace();
       }
     }
-      this.instance.getUserManager().removeUser(user);
+    this.instance.getManager().removeUser(user);
   }
 
   @Override
-  public User getUser() {
+  public EconomyUser getUser() {
     return user;
   }
 

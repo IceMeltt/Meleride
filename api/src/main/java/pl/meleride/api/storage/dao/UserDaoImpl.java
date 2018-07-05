@@ -7,11 +7,10 @@ import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
 import pl.meleride.api.MelerideAPI;
-import pl.meleride.api.economy.currency.Currency;
+import pl.meleride.api.flexible.BaseManager;
 import pl.meleride.api.storage.StorageException;
 import pl.meleride.api.user.User;
 import pl.meleride.api.user.UserImpl;
-import pl.meleride.api.user.manager.UserManager;
 import pl.meleride.api.user.manager.UserManagerImpl;
 import pl.meleride.api.user.status.DiseaseStatus;
 
@@ -33,7 +32,6 @@ public class UserDaoImpl implements StorageDao<User> {
     while (result.next()) {
       User user = new UserImpl(result.getString("uuid"));
       user.setName(result.getString("name"));
-      user.add(Currency.PLN, result.getDouble("money"));
       user.setDataErrorStatus(result.getByte("dataError"));
 
       for (DiseaseStatus disease : DiseaseStatus.getDiseaseFromString(result.getString("disease").split(","))) {
@@ -51,7 +49,6 @@ public class UserDaoImpl implements StorageDao<User> {
 
     if (result.next()) {
       userToInject.setName(result.getString("name"));
-      userToInject.add(Currency.PLN, result.getDouble("money"));
       userToInject.setDataErrorStatus(result.getByte("dataError"));
 
       if (!(result.getString("disease").equals("[]")
@@ -89,16 +86,14 @@ public class UserDaoImpl implements StorageDao<User> {
 
   @Override
   public void update(User userToGet) throws StorageException  {
-    StringBuilder sb = new StringBuilder("INSERT INTO users (uuid, name, disease, money,dataError) VALUES (")
+    StringBuilder sb = new StringBuilder("INSERT INTO users (uuid, name, disease,dataError) VALUES (")
         .append("'" + userToGet.getUniqueId().toString() + "',")
         .append("'" + userToGet.getName() + "',")
         .append("'" + Arrays.toString(userToGet.getDiseases().toArray()) + "',")
-        .append("'" + userToGet.getCurrencyBalance(Currency.PLN) + "',")
         .append("'" + userToGet.getDataErrorStatus() + "'")
         .append(") ON DUPLICATE KEY UPDATE ")
         .append("name='" + userToGet.getName() + "',")
         .append("disease='" + userToGet.getDiseases() + "',")
-        .append("money='" + userToGet.getCurrencyBalance(Currency.PLN) + "',")
         .append("dataError='" + userToGet.getDataErrorStatus() + "';");
 
     this.instance.getStorage().update(sb.toString());
@@ -116,7 +111,7 @@ public class UserDaoImpl implements StorageDao<User> {
     ResultSet result = this.instance.getStorage().query(query);
 
     if (result.next()) {
-      UserManager manager = new UserManagerImpl();
+      BaseManager<User> manager = new UserManagerImpl();
       User user;
       if (manager.getUser(value).isPresent()) {
         user = manager.getUser(value).get();
@@ -132,7 +127,7 @@ public class UserDaoImpl implements StorageDao<User> {
     ResultSet result = this.instance.getStorage().query(query);
 
     if (result.next()) {
-      UserManager manager = new UserManagerImpl();
+      BaseManager<User> manager = new UserManagerImpl();
       User user;
       if (manager.getUser(uuid).isPresent()) {
         user = manager.getUser(uuid).get();

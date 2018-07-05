@@ -3,7 +3,7 @@ package pl.meleride.economy.currencysign;
 import org.bukkit.Location;
 import org.bukkit.block.Sign;
 import pl.meleride.economy.MelerideEconomy;
-import pl.meleride.api.economy.currency.Currency;
+import pl.meleride.economy.currency.Currency;
 import static pl.meleride.api.message.MessageUtil.colored;
 
 public class CurrencySign {

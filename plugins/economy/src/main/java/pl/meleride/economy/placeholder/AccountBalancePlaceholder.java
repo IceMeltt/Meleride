@@ -2,16 +2,13 @@ package pl.meleride.economy.placeholder;
 
 import be.maximvdw.placeholderapi.PlaceholderReplaceEvent;
 import be.maximvdw.placeholderapi.PlaceholderReplacer;
-import org.bukkit.plugin.java.JavaPlugin;
-import pl.meleride.api.MelerideAPI;
-import pl.meleride.api.user.User;
-import pl.meleride.api.user.accident.UserAccidentor;
+import pl.meleride.api.user.accident.BaseAccidentor;
 import pl.meleride.economy.MelerideEconomy;
-import pl.meleride.api.economy.currency.Currency;
+import pl.meleride.economy.currency.Currency;
+import pl.meleride.economy.user.EconomyUser;
 
 public class AccountBalancePlaceholder implements PlaceholderReplacer {
 
-  private final MelerideAPI api = JavaPlugin.getPlugin(MelerideAPI.class);
   private final MelerideEconomy plugin;
   private final Currency currency;
 
@@ -27,11 +24,12 @@ public class AccountBalancePlaceholder implements PlaceholderReplacer {
       return "0.0 " + currency.getSign();
     }
 
-    if (!this.api.getUserManager().getUser(event.getPlayer()).isPresent()) {
-      UserAccidentor.notFoundOnManager(event.getPlayer());
+    if (!this.plugin.getManager().getUser(event.getPlayer()).isPresent()) {
+      BaseAccidentor accidentor = this.plugin.getAccidentor();
+      accidentor.notFoundOnManager(event.getPlayer());
     }
 
-     User user = this.api.getUserManager().getUser(event.getPlayer()).get();
+     EconomyUser user = this.plugin.getManager().getUser(event.getPlayer()).get();
 
     return String.valueOf(user.getCurrencyBalance(currency)) + " " + currency.getSign();
   }

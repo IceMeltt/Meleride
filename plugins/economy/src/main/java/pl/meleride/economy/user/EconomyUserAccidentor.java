@@ -1,32 +1,31 @@
-package pl.meleride.api.user.accident;
+package pl.meleride.economy.user;
 
 import java.sql.SQLException;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
-import pl.meleride.api.MelerideAPI;
 import pl.meleride.api.exception.UserManagerException;
 import pl.meleride.api.storage.StorageException;
 import pl.meleride.api.storage.dao.StorageDao;
-import pl.meleride.api.user.User;
-import pl.meleride.api.user.UserImpl;
+import pl.meleride.api.user.accident.BaseAccidentor;
+import pl.meleride.economy.MelerideEconomy;
 
-public class UserAccidentor implements BaseAccidentor {
+public class EconomyUserAccidentor implements BaseAccidentor {
 
-  private final MelerideAPI instance;
+  private MelerideEconomy instance;
 
-  public UserAccidentor(final MelerideAPI instance) {
+  public EconomyUserAccidentor(MelerideEconomy instance) {
     this.instance = instance;
   }
 
   public void notFoundOnManager(Player player) {
-    if(instance.getUserManager().getUser(player).isPresent()) {
+    if(instance.getManager().getUser(player).isPresent()) {
       Bukkit.getLogger().warning("UWAGA: " );
       Bukkit.getLogger().warning("Gracz " + player.getName() + "istnieje juz w mapie graczy!");
       throw new UserManagerException();
     }
-    User newUser = new UserImpl(player);
+    EconomyUser newUser = new EconomyUserImpl(player);
 
-    StorageDao<User> dao = instance.getUserDao();
+    StorageDao<EconomyUser> dao = instance.getEconomyDao();
 
     try {
       dao.download(newUser);
@@ -35,6 +34,5 @@ public class UserAccidentor implements BaseAccidentor {
       e.printStackTrace();
     }
   }
-
 
 }
