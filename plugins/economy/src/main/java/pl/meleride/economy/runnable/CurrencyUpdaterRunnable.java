@@ -2,7 +2,7 @@ package pl.meleride.economy.runnable;
 
 import org.bukkit.scheduler.BukkitRunnable;
 import pl.meleride.economy.MelerideEconomy;
-import pl.meleride.economy.currency.Currency;
+import pl.meleride.api.economy.currency.Currency;
 
 import java.io.IOException;
 

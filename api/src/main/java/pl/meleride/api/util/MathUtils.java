@@ -1,4 +1,4 @@
-package pl.meleride.economy.util;
+package pl.meleride.api.util;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;

@@ -2,19 +2,21 @@ package pl.meleride.economy.command;
 
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
+import org.bukkit.plugin.java.JavaPlugin;
+import pl.meleride.api.MelerideAPI;
+import pl.meleride.api.user.User;
+import pl.meleride.api.user.accident.UserAccidentor;
 import pl.meleride.commands.CommandInfo;
 import pl.meleride.commands.context.CommandContext;
 import pl.meleride.economy.MelerideEconomy;
-import pl.meleride.economy.currency.Currency;
-import pl.meleride.economy.econplayer.EconPlayer;
-import pl.meleride.economy.econplayer.EconPlayerManager;
-import pl.meleride.economy.util.ColorUtils;
+import pl.meleride.api.economy.currency.Currency;
+import static pl.meleride.api.message.MessageUtil.colored;
 
 import java.util.Arrays;
-import java.util.Optional;
 
 public class CurrencyCommand {
 
+  private final MelerideAPI api = JavaPlugin.getPlugin(MelerideAPI.class);
   private final MelerideEconomy plugin;
 
   public CurrencyCommand(MelerideEconomy plugin) {
@@ -28,18 +30,18 @@ public class CurrencyCommand {
           permission = "meleride.economy.currency")
   public void walletCommand(CommandSender sender, CommandContext context) {
     Player player = (Player) sender;
-    Optional<EconPlayer> optionalEconPlayer = this.plugin.getEconPlayerManager().getPlayer(player.getUniqueId());
 
-    if (!optionalEconPlayer.isPresent()) {
-      return;
+    if(!this.api.getUserManager().getUser(player).isPresent()) {
+      UserAccidentor.notFoundOnManager(player);
     }
 
-    EconPlayer econPlayer = optionalEconPlayer.get();
+    User user = this.api.getUserManager().getUser(player).get();
 
     if (context.getArgs().length == 0) {
-      player.sendMessage(ColorUtils.colorize("&8> &fW portfelu posiadasz&8:"));
-      econPlayer.getPocketBalance().forEach((currency, balance) -> player.sendMessage(
-              ColorUtils.colorize("&8> &e" + currency.name() + " &8- &f" + balance)
+      user.add(Currency.PLN, 11);
+      player.sendMessage(colored("&8> &fW portfelu posiadasz&8:"));
+      user.getPocketBalance().forEach((currency, balance) -> player.sendMessage(
+              colored("&8> &e" + currency.name() + " &8- &f" + balance)
       ));
       return;
     }
@@ -47,7 +49,7 @@ public class CurrencyCommand {
     switch (context.getParam(0)) {
       case "status":
         Arrays.stream(Currency.values()).forEach(currency -> {
-          player.sendMessage(ColorUtils.colorize(currency.getFullName() +
+          player.sendMessage(colored(currency.getFullName() +
                   " (" + currency.name() +
                   " " + currency.getSign() +
                   ") - " + currency.getExchangeRate() +
@@ -56,8 +58,8 @@ public class CurrencyCommand {
         });
         break;
       case "balance":
-        econPlayer.getPocketBalance().forEach((currency, balance) -> player.sendMessage(
-                ColorUtils.colorize("&8> &e" + currency.name() + " &8- &f" + balance)
+        user.getPocketBalance().forEach((currency, balance) -> player.sendMessage(
+                colored("&8> &e" + currency.name() + " &8- &f" + balance)
         ));
         break;
       case "give":
@@ -75,7 +77,7 @@ public class CurrencyCommand {
         }
 
         double amount = context.getParamDouble(1);
-        econPlayer.add(Currency.getCurrency(currencyName), amount);
+        user.add(Currency.getCurrency(currencyName), amount);
         break;
     }
   }

@@ -1,4 +1,4 @@
-package pl.meleride.economy.currency;
+package pl.meleride.api.economy.currency;
 
 public enum Tendency {
 

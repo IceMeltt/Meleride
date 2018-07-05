@@ -4,6 +4,7 @@ import net.md_5.bungee.api.ChatMessageType;
 import net.md_5.bungee.api.chat.TextComponent;
 import org.apache.commons.lang.Validate;
 import org.bukkit.entity.Player;
+import pl.meleride.api.flexible.PlayableUser;
 import pl.meleride.api.user.User;
 import pl.meleride.api.message.MessageType;
 
@@ -40,7 +41,7 @@ public final class MessageSender {
     }
   }
 
-  public void sendTo(User user) {
+  public void sendTo(PlayableUser user) {
     Validate.notNull(user, "User cannot be null!");
 
     this.sendTo(user.getBukkitPlayer());

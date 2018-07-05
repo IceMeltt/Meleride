@@ -3,8 +3,8 @@ package pl.meleride.economy.currencysign;
 import org.bukkit.Location;
 import org.bukkit.block.Sign;
 import pl.meleride.economy.MelerideEconomy;
-import pl.meleride.economy.currency.Currency;
-import pl.meleride.economy.util.ColorUtils;
+import pl.meleride.api.economy.currency.Currency;
+import static pl.meleride.api.message.MessageUtil.colored;
 
 public class CurrencySign {
 
@@ -34,9 +34,9 @@ public class CurrencySign {
 
     Sign sign = (Sign) this.signLocation.getBlock().getState();
 
-    sign.setLine(0, ColorUtils.colorize("&9&lWALUTA"));
+    sign.setLine(0, colored("&9&lWALUTA"));
     sign.setLine(1, this.currency.getFullName());
-    sign.setLine(2, ColorUtils.colorize(this.currency.getExchangeRate() + " " + this.currency.getTendency().getSign()));
+    sign.setLine(2, colored(this.currency.getExchangeRate() + " " + this.currency.getTendency().getSign()));
 
     sign.update();
   }
