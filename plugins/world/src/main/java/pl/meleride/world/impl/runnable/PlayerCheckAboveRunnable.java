@@ -8,10 +8,10 @@ import org.bukkit.scheduler.BukkitRunnable;
 
 import java.util.concurrent.ThreadLocalRandom;
 
+import pl.meleride.api.flexible.BaseManager;
 import pl.meleride.api.i18n.MessageBundler;
 import pl.meleride.api.message.MessageType;
 import pl.meleride.api.user.User;
-import pl.meleride.api.user.manager.UserManager;
 import pl.meleride.api.user.status.DiseaseStatus;
 import pl.meleride.world.MelerideWorld;
 import pl.meleride.world.impl.weather.Weather;
@@ -19,7 +19,7 @@ import pl.meleride.world.impl.weather.Weather;
 public class PlayerCheckAboveRunnable extends BukkitRunnable {
 
   private final MelerideWorld instance;
-  private UserManager manager;
+  private BaseManager<User> manager;
   private User user;
   private Weather weather;
 
