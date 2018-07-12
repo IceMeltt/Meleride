@@ -1,21 +1,16 @@
 package pl.meleride.api.user;
 
 import java.util.Set;
-import org.bukkit.entity.Player;
 
-import java.util.UUID;
+import pl.meleride.api.flexible.PlayableUser;
 import pl.meleride.api.user.status.DiseaseStatus;
 
-public interface User {
+public interface User extends PlayableUser {
 
-  String getName();
-
-  UUID getUniqueId();
-
+  // [ BASE ]
   void setName(String name);
 
-  Player getBukkitPlayer();
-
+  // [ DISEASES ]
   boolean hasAnyDisease();
 
   boolean hasDisease(DiseaseStatus diseaseStatus);

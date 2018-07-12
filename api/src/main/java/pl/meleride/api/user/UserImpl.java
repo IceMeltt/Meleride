@@ -11,10 +11,13 @@ import pl.meleride.api.user.status.DiseaseStatus;
 
 public class UserImpl implements User {
 
-  private String name;
   private final UUID uniqueId;
+  private String name;
+  private byte dataError = 0;
 
   private final Set<DiseaseStatus> disease = new HashSet<>();
+
+  // [||] -------------------------------- [||]
 
   public UserImpl(String name) {
     this.name = name;
@@ -30,6 +33,8 @@ public class UserImpl implements User {
     this.uniqueId = player.getUniqueId();
     this.name = player.getName();
   }
+
+  // [||] -------------------------------- [||]
 
   @Override
   public String getName() {
@@ -50,6 +55,18 @@ public class UserImpl implements User {
   public Player getBukkitPlayer() {
     return Bukkit.getPlayer(this.uniqueId);
   }
+
+  @Override
+  public byte getDataErrorStatus() {
+    return this.dataError;
+  }
+
+  @Override
+  public void setDataErrorStatus(byte dataError) {
+    this.dataError = dataError;
+  }
+
+  // [||] -------------------------------- [||]
 
   @Override
   public boolean hasAnyDisease() {
