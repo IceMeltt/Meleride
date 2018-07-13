@@ -5,8 +5,7 @@ import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import pl.meleride.api.exception.UserManagerException;
 import pl.meleride.api.storage.StorageException;
-import pl.meleride.api.storage.dao.StorageDao;
-import pl.meleride.api.user.accident.BaseAccidentor;
+import pl.meleride.api.storage.dao.IdentifiableEntityDao;
 import pl.meleride.economy.MelerideEconomy;
 
 public class EconomyUserAccidentor implements BaseAccidentor {
@@ -25,7 +24,7 @@ public class EconomyUserAccidentor implements BaseAccidentor {
     }
     EconomyUser newUser = new EconomyUserImpl(player);
 
-    StorageDao<EconomyUser> dao = instance.getEconomyDao();
+    IdentifiableEntityDao<EconomyUser> dao = instance.getEconomyDao();
 
     try {
       dao.download(newUser);

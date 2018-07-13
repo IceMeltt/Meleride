@@ -1,9 +1,9 @@
-package pl.meleride.api.util;
+package pl.meleride.api.helper;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 
-public final class MathUtils {
+public final class MathHelper {
 
   public static double round(double value, int places) {
     if (places < 0) {
@@ -13,7 +13,7 @@ public final class MathUtils {
     return new BigDecimal(value).setScale(places, RoundingMode.HALF_DOWN).doubleValue();
   }
 
-  private MathUtils() {
+  private MathHelper() {
   }
 
 }

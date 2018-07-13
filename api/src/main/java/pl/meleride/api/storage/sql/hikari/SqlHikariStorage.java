@@ -6,20 +6,20 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.Properties;
 import org.apache.commons.lang3.Validate;
-import pl.meleride.api.storage.sql.AbstractSQLStorage;
+import pl.meleride.api.storage.sql.AbstractSqlStorage;
 import pl.meleride.api.storage.StorageException;
 
-public class SQLHikariStorage extends AbstractSQLStorage {
+public class SqlHikariStorage extends AbstractSqlStorage {
 
   private final HikariDataSource source;
 
-  public SQLHikariStorage(final HikariConfig config) {
+  public SqlHikariStorage(final HikariConfig config) {
     Validate.notNull(config);
 
     this.source = new HikariDataSource(config);
   }
 
-  public SQLHikariStorage(Properties properties) {
+  public SqlHikariStorage(Properties properties) {
     this(new HikariConfig(properties));
   }
 

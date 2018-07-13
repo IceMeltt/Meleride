@@ -11,8 +11,7 @@ import java.util.concurrent.ThreadLocalRandom;
 import pl.meleride.api.flexible.BaseManager;
 import pl.meleride.api.i18n.MessageBundler;
 import pl.meleride.api.message.MessageType;
-import pl.meleride.api.user.User;
-import pl.meleride.api.user.status.DiseaseStatus;
+import pl.meleride.api.entity.status.DiseaseStatus;
 import pl.meleride.world.MelerideWorld;
 import pl.meleride.world.impl.weather.Weather;
 

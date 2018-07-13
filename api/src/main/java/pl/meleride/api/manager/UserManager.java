@@ -1,12 +1,12 @@
-package pl.meleride.api.flexible;
+package pl.meleride.api.manager;
 
+import com.google.common.collect.ImmutableSet;
 import java.util.Optional;
-import java.util.Set;
 import java.util.UUID;
 import org.bukkit.entity.Player;
-import pl.meleride.api.user.User;
+import pl.meleride.api.entity.User;
 
-public interface BaseManager<T> {
+public interface UserManager<T extends User> {
 
   Optional<T> getUser(String name);
 
@@ -18,6 +18,6 @@ public interface BaseManager<T> {
 
   void removeUser(T user);
 
-  Set<T> getOnlineUsers();
+  ImmutableSet<T> getOnlineUsers();
 
 }

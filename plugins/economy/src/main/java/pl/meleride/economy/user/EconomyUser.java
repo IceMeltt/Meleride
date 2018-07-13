@@ -1,7 +1,6 @@
 package pl.meleride.economy.user;
 
 import java.util.Map;
-import pl.meleride.api.flexible.PlayableUser;
 import pl.meleride.economy.currency.Currency;
 
 public interface EconomyUser extends PlayableUser {

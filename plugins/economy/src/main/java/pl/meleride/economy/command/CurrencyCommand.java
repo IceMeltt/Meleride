@@ -2,7 +2,6 @@ package pl.meleride.economy.command;
 
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
-import pl.meleride.api.user.accident.BaseAccidentor;
 import pl.meleride.commands.CommandInfo;
 import pl.meleride.commands.context.CommandContext;
 import pl.meleride.economy.MelerideEconomy;

@@ -9,10 +9,9 @@ import org.bukkit.plugin.java.JavaPlugin;
 import pl.meleride.api.flexible.BaseManager;
 import pl.meleride.api.i18n.MessageBundler;
 import pl.meleride.api.storage.StorageException;
-import pl.meleride.api.storage.dao.StorageDao;
-import pl.meleride.api.storage.sql.hikari.SQLHikariStorage;
+import pl.meleride.api.storage.dao.IdentifiableEntityDao;
+import pl.meleride.api.storage.sql.hikari.SqlHikariStorage;
 import pl.meleride.api.storage.userflow.FlowInspector;
-import pl.meleride.api.user.accident.BaseAccidentor;
 import pl.meleride.commands.bukkit.BukkitCommands;
 import pl.meleride.economy.command.CurrencyCommand;
 import pl.meleride.economy.currency.Currency;
@@ -31,8 +30,8 @@ import pl.meleride.economy.user.EconomyUserManager;
 
 public class MelerideEconomy extends JavaPlugin {
 
-  private SQLHikariStorage storage;
-  private StorageDao<EconomyUser> dao;
+  private SqlHikariStorage storage;
+  private IdentifiableEntityDao<EconomyUser> dao;
   private BaseAccidentor accidentor;
   private BaseManager<EconomyUser> manager;
   private FlowInspector<EconomyUser> inspector;
@@ -71,7 +70,7 @@ public class MelerideEconomy extends JavaPlugin {
   private void initializeDatabase() {
     Properties properties = new Properties();
     properties.put("jdbcUrl", MessageBundler.create("database.jdbc").toString());
-    storage = new SQLHikariStorage(properties);
+    storage = new SqlHikariStorage(properties);
 
     StringBuilder sb = new StringBuilder("CREATE TABLE IF NOT EXISTS economy(")
         .append("uuid CHAR(36) NOT NULL,")
@@ -109,11 +108,11 @@ public class MelerideEconomy extends JavaPlugin {
     }
   }
 
-  public SQLHikariStorage getStorage() {
+  public SqlHikariStorage getStorage() {
     return storage;
   }
 
-  public StorageDao<EconomyUser> getEconomyDao() {
+  public IdentifiableEntityDao<EconomyUser> getEconomyDao() {
     return dao;
   }
 

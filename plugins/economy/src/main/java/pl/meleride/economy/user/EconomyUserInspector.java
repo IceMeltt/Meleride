@@ -5,7 +5,7 @@ import java.sql.SQLException;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import pl.meleride.api.storage.StorageException;
-import pl.meleride.api.storage.dao.StorageDao;
+import pl.meleride.api.storage.dao.IdentifiableEntityDao;
 import pl.meleride.api.storage.userflow.FlowInspector;
 import pl.meleride.economy.MelerideEconomy;
 
@@ -13,7 +13,7 @@ import pl.meleride.economy.MelerideEconomy;
 public class EconomyUserInspector implements FlowInspector<EconomyUser> {
 
   private final MelerideEconomy instance;
-  private final StorageDao<EconomyUser> dao;
+  private final IdentifiableEntityDao<EconomyUser> dao;
   private EconomyUser user;
 
   public EconomyUserInspector(MelerideEconomy instance) {

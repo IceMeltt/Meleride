@@ -7,12 +7,12 @@ import java.util.HashSet;
 import java.util.Set;
 import pl.meleride.api.flexible.BaseManager;
 import pl.meleride.api.storage.StorageException;
-import pl.meleride.api.storage.dao.StorageDao;
+import pl.meleride.api.storage.dao.IdentifiableEntityDao;
 import pl.meleride.economy.MelerideEconomy;
 import pl.meleride.economy.currency.Currency;
 
 @SuppressWarnings("Duplicates")
-public class EconomyUserDao implements StorageDao<EconomyUser> {
+public class EconomyUserDao implements IdentifiableEntityDao<EconomyUser> {
 
   private final MelerideEconomy instance;
 

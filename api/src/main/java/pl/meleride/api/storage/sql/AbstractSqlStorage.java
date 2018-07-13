@@ -5,10 +5,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import pl.meleride.api.storage.StorageException;
-import pl.meleride.api.storage.sql.SQLStorage;
-import pl.meleride.api.storage.sql.SQLStorageConsumer;
 
-public abstract class AbstractSQLStorage implements SQLStorage {
+public abstract class AbstractSqlStorage implements SqlStorage {
 
   protected abstract Connection getConnection() throws StorageException;
 

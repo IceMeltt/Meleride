@@ -7,7 +7,7 @@ import java.util.Map;
 import java.util.UUID;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
-import pl.meleride.api.util.MathUtils;
+import pl.meleride.api.helper.MathHelper;
 import pl.meleride.economy.currency.Currency;
 
 public class EconomyUserImpl implements EconomyUser {
@@ -105,7 +105,7 @@ public class EconomyUserImpl implements EconomyUser {
     }
 
     double result = (amount * from.getExchangeRate()) / to.getExchangeRate();
-    double newToBalance = MathUtils.round(this.pocketBalance.getOrDefault(to, 0.0) + result, 2);
+    double newToBalance = MathHelper.round(this.pocketBalance.getOrDefault(to, 0.0) + result, 2);
 
     this.pocketBalance.put(from, this.pocketBalance.get(from) - amount);
     this.pocketBalance.put(to, newToBalance);

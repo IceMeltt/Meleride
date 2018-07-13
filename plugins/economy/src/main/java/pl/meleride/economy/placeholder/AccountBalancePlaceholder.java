@@ -2,7 +2,6 @@ package pl.meleride.economy.placeholder;
 
 import be.maximvdw.placeholderapi.PlaceholderReplaceEvent;
 import be.maximvdw.placeholderapi.PlaceholderReplacer;
-import pl.meleride.api.user.accident.BaseAccidentor;
 import pl.meleride.economy.MelerideEconomy;
 import pl.meleride.economy.currency.Currency;
 import pl.meleride.economy.user.EconomyUser;

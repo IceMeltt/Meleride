@@ -4,7 +4,7 @@ import java.sql.ResultSet;
 import pl.meleride.api.storage.Storage;
 import pl.meleride.api.storage.StorageException;
 
-public interface SQLStorage extends Storage {
+public interface SqlStorage extends Storage {
 
   String TEST_QUERY = "DO 1";
 

@@ -4,17 +4,17 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import org.apache.commons.lang3.Validate;
-import pl.meleride.api.storage.sql.AbstractSQLStorage;
+import pl.meleride.api.storage.sql.AbstractSqlStorage;
 import pl.meleride.api.storage.StorageException;
 
-public class DefaultSQLStorage extends AbstractSQLStorage {
+public class DefaultSqlStorage extends AbstractSqlStorage {
 
   public final static String JDBC = "com.mysql.jdbc.Driver";
 
   private final String url;
   private Connection connection;
 
-  public DefaultSQLStorage(final String url) {
+  public DefaultSqlStorage(final String url) {
     Validate.notNull(url);
 
     this.url = url;
