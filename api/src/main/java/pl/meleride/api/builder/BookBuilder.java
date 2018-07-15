@@ -1,13 +1,13 @@
-package pl.meleride.api.builder.book;
+package pl.meleride.api.builder;
 
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.BookMeta;
-import pl.meleride.api.builder.Builder;
+import pl.meleride.api.helper.Buildable;
 
 import java.util.List;
 
-public class BookBuilder implements Builder<ItemStack> {
+public class BookBuilder implements Buildable<ItemStack> {
 
   private ItemStack book;
   private BookMeta bookMeta;

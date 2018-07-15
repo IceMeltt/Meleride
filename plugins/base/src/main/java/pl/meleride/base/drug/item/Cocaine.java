@@ -10,16 +10,20 @@ import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
-import pl.meleride.api.builder.item.ItemBuilder;
+import pl.meleride.api.builder.ItemBuilder;
 import pl.meleride.api.i18n.MessageBundler;
-import pl.meleride.base.drug.DrugShop;
 import pl.meleride.api.object.system.AbstractItem;
+import pl.meleride.base.MelerideBase;
 import pl.meleride.base.drug.DrugListener;
+import pl.meleride.base.drug.DrugShop;
 
 public class Cocaine extends AbstractItem {
 
-  public Cocaine() {
+  private final MelerideBase plugin;
+
+  public Cocaine(MelerideBase plugin) {
     super("drug_cocaine");
+    this.plugin = plugin;
     initialize();
   }
 
@@ -64,7 +68,7 @@ public class Cocaine extends AbstractItem {
   @EventHandler
   public void onPlayerInteract(PlayerInteractEvent e) {
     Player player = e.getPlayer();
-    DrugListener listener = new DrugListener();
+    DrugListener listener = new DrugListener(this.plugin);
 
     listener.invoke(player, this, this.getEffects(), this.getUsage(), e);
   }
@@ -72,9 +76,9 @@ public class Cocaine extends AbstractItem {
   @EventHandler
   public void onInventoryClick(InventoryClickEvent e) {
     Player player = (Player) e.getWhoClicked();
-    DrugListener listener = new DrugListener();
+    DrugListener listener = new DrugListener(this.plugin);
 
-//    listener.invoke(player, this, new DrugShop(), e);
+    listener.invoke(player, this, new DrugShop(), e);
   }
 
 }

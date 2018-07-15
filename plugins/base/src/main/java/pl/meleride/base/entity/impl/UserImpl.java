@@ -11,20 +11,24 @@ public class UserImpl implements User {
 
   private UUID identifier;
   private String name;
+  private long drugCooldown;
 
   public UserImpl(Player player) {
     this.identifier = player.getUniqueId();
     this.name = player.getName();
+    this.drugCooldown = 0L;
   }
 
   public UserImpl(UUID identifier) {
     this.identifier = identifier;
     this.name = Bukkit.getOfflinePlayer(this.identifier).getName();
+    this.drugCooldown = 0L;
   }
 
   public UserImpl(String name) {
     this.name = name;
     this.identifier = UUID.nameUUIDFromBytes(("OfflinePlayer:" + this.name).getBytes(StandardCharsets.UTF_8));
+    this.drugCooldown = 0L;
   }
 
   @Override
@@ -45,6 +49,16 @@ public class UserImpl implements User {
   @Override
   public void setName(String name) {
     this.name = name;
+  }
+
+  @Override
+  public long getDrugCooldown() {
+    return drugCooldown;
+  }
+
+  @Override
+  public void setDrugCooldown(long drugCooldown) {
+    this.drugCooldown = drugCooldown;
   }
 
 }

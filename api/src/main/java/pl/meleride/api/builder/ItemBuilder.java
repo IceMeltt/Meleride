@@ -1,4 +1,4 @@
-package pl.meleride.api.builder.item;
+package pl.meleride.api.builder;
 
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
@@ -7,14 +7,14 @@ import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.material.MaterialData;
-import pl.meleride.api.builder.Builder;
+import pl.meleride.api.helper.Buildable;
 
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-public class ItemBuilder implements Builder<ItemStack> {
+public class ItemBuilder implements Buildable<ItemStack> {
 
   private ItemStack itemStack;
   private ItemMeta itemMeta;

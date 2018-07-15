@@ -10,16 +10,20 @@ import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
-import pl.meleride.api.builder.item.ItemBuilder;
+import pl.meleride.api.builder.ItemBuilder;
 import pl.meleride.api.i18n.MessageBundler;
-import pl.meleride.base.drug.DrugShop;
 import pl.meleride.api.object.system.AbstractItem;
+import pl.meleride.base.MelerideBase;
 import pl.meleride.base.drug.DrugListener;
+import pl.meleride.base.drug.DrugShop;
 
 public class Cannabis extends AbstractItem {
 
-  public Cannabis() {
+  private final MelerideBase plugin;
+
+  public Cannabis(MelerideBase plugin) {
     super("drug_cannabis");
+    this.plugin = plugin;
     initialize();
   }
 
@@ -27,14 +31,10 @@ public class Cannabis extends AbstractItem {
   private final int prize = Integer.parseInt(MessageBundler.create("drugprize.cannabis").toString());
   private final Set<PotionEffect> effects = new HashSet<>();
 
-  //---
-
   private void initialize() {
     effects.add(new PotionEffect(PotionEffectType.JUMP, 480 * 20, 3));
     effects.add(new PotionEffect(PotionEffectType.HUNGER, 480 * 20, 1));
   }
-
-  //---
 
   private ItemStack itemStack = new ItemBuilder(Material.INK_SACK)
         .setDamage((byte) 2)
@@ -58,13 +58,11 @@ public class Cannabis extends AbstractItem {
     return this.itemStack;
   }
 
-  //---
-
   @Override
   @EventHandler
   public void onPlayerInteract(PlayerInteractEvent e) {
     Player player = e.getPlayer();
-    DrugListener listener = new DrugListener();
+    DrugListener listener = new DrugListener(this.plugin);
 
     listener.invoke(player, this, this.getEffects(), this.getUsage(), e);
   }
@@ -72,9 +70,9 @@ public class Cannabis extends AbstractItem {
   @EventHandler
   public void onInventoryClick(InventoryClickEvent e) {
     Player player = (Player) e.getWhoClicked();
-    DrugListener listener = new DrugListener();
-//
-//    listener.invoke(player, this, new DrugShop(), e);
+    DrugListener listener = new DrugListener(this.plugin);
+
+    listener.invoke(player, this, new DrugShop(), e);
   }
 
 }

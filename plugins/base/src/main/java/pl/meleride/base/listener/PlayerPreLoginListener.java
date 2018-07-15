@@ -28,12 +28,7 @@ public class PlayerPreLoginListener implements Listener<AsyncPlayerPreLoginEvent
       return;
     }
 
-    System.out.println("pre 1: " + this.plugin.getUserManager().getOnlineUsers());
-
     this.plugin.getUserManager().addUser(optionalUser.get());
-
-    System.out.println("pre 2: " + this.plugin.getUserManager().getOnlineUsers());
-
   }
 
 }
