@@ -1,4 +1,4 @@
-package pl.meleride.base.impl.drug;
+package pl.meleride.base.drug;
 
 import org.bukkit.Bukkit;
 import org.bukkit.inventory.Inventory;

@@ -1,4 +1,4 @@
-package pl.meleride.base.impl.drug.item;
+package pl.meleride.base.drug.item;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -12,9 +12,9 @@ import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 import pl.meleride.api.builder.item.ItemBuilder;
 import pl.meleride.api.i18n.MessageBundler;
-import pl.meleride.base.impl.drug.DrugShop;
+import pl.meleride.base.drug.DrugShop;
 import pl.meleride.api.object.system.AbstractItem;
-import pl.meleride.base.impl.drug.DrugListener;
+import pl.meleride.base.drug.DrugListener;
 
 public class MDMA extends AbstractItem {
 
@@ -73,8 +73,8 @@ public class MDMA extends AbstractItem {
   public void onInventoryClick(InventoryClickEvent e) {
     Player player = (Player) e.getWhoClicked();
     DrugListener listener = new DrugListener();
-
-    listener.invoke(player, this, new DrugShop(), e);
+//
+//    listener.invoke(player, this, new DrugShop(), e);
   }
 
 }

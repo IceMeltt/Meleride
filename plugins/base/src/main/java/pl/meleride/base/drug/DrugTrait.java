@@ -1,4 +1,4 @@
-package pl.meleride.base.impl.drug;
+package pl.meleride.base.drug;
 
 import net.citizensnpcs.api.event.NPCRightClickEvent;
 import net.citizensnpcs.api.trait.Trait;
@@ -27,7 +27,7 @@ public class DrugTrait extends Trait {
         return;
       }
 
-      player.openInventory(main.getDrugShop().getInventory());
+//      player.openInventory(main.getDrugShop().getInventory());
     }
   }
 

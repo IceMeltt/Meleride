@@ -1,4 +1,4 @@
-package pl.meleride.base.impl.drug.item;
+package pl.meleride.base.drug.item;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -12,33 +12,33 @@ import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 import pl.meleride.api.builder.item.ItemBuilder;
 import pl.meleride.api.i18n.MessageBundler;
-import pl.meleride.base.impl.drug.DrugShop;
+import pl.meleride.base.drug.DrugShop;
 import pl.meleride.api.object.system.AbstractItem;
-import pl.meleride.base.impl.drug.DrugListener;
+import pl.meleride.base.drug.DrugListener;
 
-public class Cocaine extends AbstractItem {
+public class Heroine extends AbstractItem {
 
-  public Cocaine() {
-    super("drug_cocaine");
+  public Heroine() {
+    super("drug_heroine");
     initialize();
   }
 
-  private final String usage = MessageBundler.create("drugtype.cocaine").toString();
-  private final int prize = Integer.parseInt(MessageBundler.create("drugprize.cocaine").toString());
+  private final String usage = MessageBundler.create("drugtype.heroine").toString();
+  private final int prize = Integer.parseInt(MessageBundler.create("drugprize.heroine").toString());
   private final Set<PotionEffect> effects = new HashSet<>();
 
   //---
 
   private void initialize() {
-    effects.add(new PotionEffect(PotionEffectType.SPEED, 480 * 20, 2));
-    effects.add(new PotionEffect(PotionEffectType.FAST_DIGGING, 480 * 20, 3));
+    effects.add(new PotionEffect(PotionEffectType.NIGHT_VISION, 180 * 20, 1));
+    effects.add(new PotionEffect(PotionEffectType.HUNGER, 360 * 20, 2));
   }
 
   //---
 
-  private ItemStack itemStack = new ItemBuilder(Material.SUGAR)
-      .setDamage(0)
-      .setName("Kokaina")
+  private ItemStack itemStack = new ItemBuilder(Material.INK_SACK)
+      .setDamage((byte) 3)
+      .setName("Heroina")
       .build();
 
   private Set<PotionEffect> getEffects() {
@@ -74,7 +74,7 @@ public class Cocaine extends AbstractItem {
     Player player = (Player) e.getWhoClicked();
     DrugListener listener = new DrugListener();
 
-    listener.invoke(player, this, new DrugShop(), e);
+//    listener.invoke(player, this, new DrugShop(), e);
   }
 
 }

@@ -48,7 +48,9 @@ public abstract class AbstractUserManager<T extends User> implements UserManager
     Validate.notNull(user, "User object cannot be null!");
 
     this.userUniqueIdMap.put(user.getIdentifier(), user);
-    this.userNameMap.put(user.getName(), user);
+    if (user.getName().isPresent()) {
+      this.userNameMap.put(user.getName().get(), user);
+    }
   }
 
   @Override
@@ -56,7 +58,7 @@ public abstract class AbstractUserManager<T extends User> implements UserManager
     Validate.notNull(user, "User object cannot be null!");
 
     this.userUniqueIdMap.remove(user.getIdentifier());
-    this.userNameMap.remove(user.getName());
+    this.userNameMap.remove(user.getName().get());
   }
 
   @Override

@@ -1,57 +1,73 @@
 package pl.meleride.base;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.UUID;
-import net.citizensnpcs.api.CitizensAPI;
-import net.citizensnpcs.api.trait.TraitInfo;
-
-import org.bukkit.Bukkit;
+import com.zaxxer.hikari.HikariConfig;
 import org.bukkit.plugin.java.JavaPlugin;
+import pl.meleride.api.PluginModule;
+import pl.meleride.api.helper.Listener;
+import pl.meleride.api.manager.UserManager;
+import pl.meleride.api.storage.Resource;
+import pl.meleride.api.storage.sql.SqlStorage;
+import pl.meleride.api.storage.sql.hikari.SqlHikariStorage;
+import pl.meleride.base.entity.User;
+import pl.meleride.base.listener.PlayerJoinListener;
+import pl.meleride.base.listener.PlayerPreLoginListener;
+import pl.meleride.base.listener.PlayerQuitListener;
+import pl.meleride.base.manager.UserManagerImpl;
+import pl.meleride.base.resource.UserResourceImpl;
 
-import pl.meleride.api.object.system.ItemRegistrator;
-import pl.meleride.base.impl.drug.DrugShop;
-import pl.meleride.base.impl.drug.DrugTrait;
-import pl.meleride.base.impl.drug.item.Cannabis;
-import pl.meleride.base.impl.drug.item.Cocaine;
-import pl.meleride.base.impl.drug.item.Heroine;
-import pl.meleride.base.impl.drug.item.MDMA;
+public class MelerideBase extends JavaPlugin implements PluginModule {
 
-public class MelerideBase extends JavaPlugin {
-
-  private Map<UUID, Long> userUsing; //TODO wynocha so schnell wie möglich (ง ͠° ͟ل͜ ͡°)ง!
-  private DrugShop drugShop;
+  private UserManager<User> userManager;
+  private Resource<User> userResource;
+  private SqlStorage storage;
 
   @Override
   public void onEnable() {
-    userUsing = new HashMap<>();
+    this.userManager = new UserManagerImpl();
+    this.userResource = new UserResourceImpl(this);
+    this.storage = new SqlHikariStorage(this.dataSourceConfiguration());
 
-    getLogger().info("Rejestrowanie przedmiotow...");
-    ItemRegistrator.register(new MDMA(),
-        new Cannabis(),
-        new Heroine(),
-        new Cocaine());
+    this.userResource.checkTable();
+    this.userResource.load();
 
-    getLogger().info("Przygotowywanie GUI...");
-    drugShop = new DrugShop();
-    this.drugShop.initialize();
+    this.registerListeners(
+        new PlayerPreLoginListener(this),
+        new PlayerJoinListener(this),
+        new PlayerQuitListener(this)
+    );
+  }
 
-    getLogger().info("Rejestrowanie NPC Traitow...");
-    CitizensAPI.getTraitFactory()
-        .registerTrait(TraitInfo.create(DrugTrait.class).withName("dealerTrait"));
+  private void registerListeners(Listener<?>... listeners) {
+    for (Listener<?> listener : listeners) {
+      this.getServer().getPluginManager().registerEvents(listener, this);
+    }
+  }
+
+  private HikariConfig dataSourceConfiguration() {
+    HikariConfig config = new HikariConfig();
+
+    config.setDataSourceClassName("com.mysql.jdbc.jdbc2.optional.MysqlDataSource");
+    config.addDataSourceProperty("serverName", "localhost");
+    config.addDataSourceProperty("port", "3306");
+    config.addDataSourceProperty("databaseName", "meleride");
+    config.addDataSourceProperty("user", "admin");
+    config.addDataSourceProperty("password", "root");
+
+    return config;
   }
 
   @Override
-  public void onDisable() {
-    Bukkit.getScheduler().cancelAllTasks();
+  public UserManager<User> getUserManager() {
+    return this.userManager;
   }
 
-  public DrugShop getDrugShop() {
-    return drugShop;
+  @Override
+  public SqlStorage getStorage() {
+    return this.storage;
   }
 
-  public Map<UUID, Long> getUserUsing() {
-    return userUsing;
+  public Resource<User> getUserResource() {
+    return userResource;
   }
 
 }
