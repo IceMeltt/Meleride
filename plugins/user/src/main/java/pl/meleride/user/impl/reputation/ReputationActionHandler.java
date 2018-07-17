@@ -23,6 +23,8 @@ public final class ReputationActionHandler {
           .withField("USERNAME", targetPlayerName)
           .target(MessageType.CHAT)
           .sendTo(executorPlayer);
+
+      return;
     }
 
     MessageBundler.create("user.displayReputation")
@@ -38,6 +40,8 @@ public final class ReputationActionHandler {
           .withField("USERNAME", targetPlayerName)
           .target(MessageType.CHAT)
           .sendTo(executorPlayer);
+
+      return;
     }
 
     int beforeTargetUserReputation = targetUser.get().getReputation();

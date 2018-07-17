@@ -10,8 +10,6 @@ import pl.meleride.commands.util.CommandUtils;
 import pl.meleride.user.MelerideUser;
 import pl.meleride.user.impl.reputation.ReputationActionHandler;
 
-import java.lang.reflect.Array;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
