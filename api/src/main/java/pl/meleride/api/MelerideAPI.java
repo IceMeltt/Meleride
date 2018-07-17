@@ -63,6 +63,7 @@ public class MelerideAPI extends JavaPlugin {
         .append("uuid CHAR(36) NOT NULL,")
         .append("name TEXT(16) NOT NULL,")
         .append("disease TEXT NOT NULL,")
+        .append("reputation SMALLINT NOT NULL,")
         .append("primary key(uuid));");
 
     try {

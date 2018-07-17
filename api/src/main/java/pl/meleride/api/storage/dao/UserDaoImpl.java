@@ -30,6 +30,7 @@ public class UserDaoImpl implements StorageDao<User> {
     while (result.next()) {
       User user = new UserImpl(result.getString("uuid"));
       user.setName(result.getString("name"));
+      user.setReputation(result.getInt("reputation"));
       for (DiseaseStatus disease : DiseaseStatus.getDiseaseFromString(result.getString("disease").split(","))) {
         user.addDisease(disease);
       }
@@ -44,6 +45,7 @@ public class UserDaoImpl implements StorageDao<User> {
     ResultSet result = this.instance.getStorage().query(query);
     if (result.next()) {
       userToInject.setName(result.getString("name"));
+      userToInject.setReputation(result.getInt("reputation"));
 
       if (!(result.getString("disease").equals("[]")
           || result.getString("disease") == null)) {
@@ -63,7 +65,8 @@ public class UserDaoImpl implements StorageDao<User> {
     StringBuilder sb = new StringBuilder("INSERT INTO users (uuid, name, disease) VALUES (")
         .append("'" + userToGet.getUniqueId().toString() + "',")
         .append("'" + userToGet.getName() + "',")
-        .append("'" + Arrays.toString(userToGet.getDiseases().toArray()) + "'")
+        .append("'" + Arrays.toString(userToGet.getDiseases().toArray()) + "',")
+        .append("'" + userToGet.getReputation() + "'")
         .append(") ON DUPLICATE KEY UPDATE ")
         .append("name='" + userToGet.getName() + "',")
         .append("disease='" + userToGet.getDiseases() + "';");

@@ -26,4 +26,12 @@ public interface User {
 
   void removeDisease(DiseaseStatus disease);
 
+  void setReputation(int value);
+
+  void addReputation(int amount);
+
+  void resetReputation();
+
+  int getReputation();
+
 }

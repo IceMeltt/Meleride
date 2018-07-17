@@ -13,6 +13,7 @@ public class UserImpl implements User {
 
   private String name;
   private final UUID uniqueId;
+  private int reputationValue;
 
   private final Set<DiseaseStatus> disease = new HashSet<>();
 
@@ -75,5 +76,17 @@ public class UserImpl implements User {
   public void removeDisease(DiseaseStatus disease) {
     this.disease.remove(disease);
   }
+
+  @Override
+  public void setReputation(int value) { this.reputationValue = value; }
+
+  @Override
+  public void addReputation(int amount) { this.reputationValue += amount; }
+
+  @Override
+  public void resetReputation() { this.reputationValue = 0; }
+
+  @Override
+  public int getReputation() { return this.reputationValue; }
 
 }
