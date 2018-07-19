@@ -19,16 +19,16 @@ public class CurrencySign {
   }
 
   public Currency getCurrency() {
-    return currency;
+    return this.currency;
   }
 
   public Location getSignLocation() {
-    return signLocation;
+    return this.signLocation;
   }
 
   public void update(MelerideEconomy melerideEconomy) {
     if (!(this.signLocation.getBlock().getState() instanceof Sign)) {
-      delete(melerideEconomy);
+      this.delete(melerideEconomy);
       return;
     }
 

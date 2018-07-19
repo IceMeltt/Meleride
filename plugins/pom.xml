@@ -21,6 +21,7 @@
     <module>base</module>
     <module>world</module>
     <module>economy</module>
+    <module>user</module>
   </modules>
 
   <dependencies>

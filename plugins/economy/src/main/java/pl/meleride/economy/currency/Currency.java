@@ -2,8 +2,8 @@ package pl.meleride.economy.currency;
 
 import com.mashape.unirest.http.exceptions.UnirestException;
 import org.json.JSONObject;
-import pl.meleride.api.util.MathUtils;
-import pl.meleride.api.util.URLUtils;
+import pl.meleride.api.helper.MathHelper;
+import pl.meleride.api.helper.URLHelper;
 
 import java.io.IOException;
 
@@ -71,14 +71,15 @@ public enum Currency {
     }
 
     try {
-      JSONObject apiResponse = URLUtils.getJsonUrlContent("http://api.nbp.pl/api/exchangerates/rates/A/" + this.name() + "/?format=json");
+      JSONObject apiResponse = URLHelper
+          .getJsonUrlContent("http://api.nbp.pl/api/exchangerates/rates/A/" + this.name() + "/?format=json");
 
       this.previousExchangeRate = this.realExchangeRate;
 
       this.realExchangeRate = apiResponse.getJSONArray("rates")
               .getJSONObject(0)
               .getDouble("mid");
-      this.exchangeRate = MathUtils.round(this.realExchangeRate, 2);
+      this.exchangeRate = MathHelper.round(this.realExchangeRate, 2);
     } catch (UnirestException ex) {
       this.previousExchangeRate = this.realExchangeRate;
       this.exchangeRate = this.defaultValue;

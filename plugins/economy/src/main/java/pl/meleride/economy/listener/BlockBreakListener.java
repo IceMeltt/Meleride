@@ -10,7 +10,7 @@ public class BlockBreakListener implements Listener {
 
   private final MelerideEconomy plugin;
 
-  public BlockBreakListener(MelerideEconomy plugin) {
+  public BlockBreakListener(final MelerideEconomy plugin) {
     this.plugin = plugin;
   }
 

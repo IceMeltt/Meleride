@@ -11,25 +11,22 @@ public class CurrencySignManager {
 
   private final Map<Location, CurrencySign> currencySignMap = new HashMap<>();
 
-  public CurrencySignManager() {
-  }
-
   public Collection<CurrencySign> getCurrencySigns() {
-    return currencySignMap.values();
+    return this.currencySignMap.values();
   }
 
   public void addCurrencySign(CurrencySign currencySign) {
-    if (!currencySignMap.containsKey(currencySign.getSignLocation())) {
-      currencySignMap.put(currencySign.getSignLocation(), currencySign);
+    if (!this.currencySignMap.containsKey(currencySign.getSignLocation())) {
+      this.currencySignMap.put(currencySign.getSignLocation(), currencySign);
     }
   }
 
   public void removeCurrencySign(CurrencySign currencySign) {
-    currencySignMap.remove(currencySign.getSignLocation());
+    this.currencySignMap.remove(currencySign.getSignLocation());
   }
 
   public Optional<CurrencySign> getCurrencySign(Location location) {
-    return Optional.of(currencySignMap.getOrDefault(location, null));
+    return Optional.of(this.currencySignMap.getOrDefault(location, null));
   }
 
 }
