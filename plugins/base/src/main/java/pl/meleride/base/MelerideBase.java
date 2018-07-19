@@ -85,11 +85,11 @@ public class MelerideBase extends JavaPlugin implements PluginModule {
   }
 
   public Resource<User> getUserResource() {
-    return userResource;
+    return this.userResource;
   }
 
   public DrugShop getDrugShop() {
-    return drugShop;
+    return this.drugShop;
   }
 
 }

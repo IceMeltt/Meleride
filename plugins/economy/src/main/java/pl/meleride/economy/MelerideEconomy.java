@@ -8,7 +8,7 @@ import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 import pl.meleride.api.PluginModule;
 import pl.meleride.api.i18n.MessageBundler;
-import pl.meleride.api.manager.UserManager;
+import pl.meleride.economy.manager.UserManager;
 import pl.meleride.api.storage.Resource;
 import pl.meleride.api.storage.sql.SqlStorage;
 import pl.meleride.api.storage.sql.hikari.SqlHikariStorage;
@@ -29,7 +29,7 @@ import pl.meleride.economy.entity.User;
 
 public class MelerideEconomy extends JavaPlugin implements PluginModule {
 
-  private UserManager<User> userManager;
+  private UserManager userManager;
   private Resource<User> userResource;
   private CurrencySignManager currencySignManager;
   private SqlStorage storage;
@@ -61,10 +61,6 @@ public class MelerideEconomy extends JavaPlugin implements PluginModule {
     this.registerPlaceholders();
   }
 
-  public CurrencySignManager getCurrencySignManager() {
-    return this.currencySignManager;
-  }
-
   private void registerListeners(Listener... listeners) {
     PluginManager pluginManager = Bukkit.getPluginManager();
     for (Listener listener : listeners) {
@@ -90,7 +86,7 @@ public class MelerideEconomy extends JavaPlugin implements PluginModule {
   }
 
   @Override
-  public UserManager<User> getUserManager() {
+  public UserManager getUserManager() {
     return this.userManager;
   }
 
@@ -99,8 +95,12 @@ public class MelerideEconomy extends JavaPlugin implements PluginModule {
     return this.storage;
   }
 
+  public CurrencySignManager getCurrencySignManager() {
+    return this.currencySignManager;
+  }
+
   public Resource<User> getUserResource() {
-    return userResource;
+    return this.userResource;
   }
 
 }

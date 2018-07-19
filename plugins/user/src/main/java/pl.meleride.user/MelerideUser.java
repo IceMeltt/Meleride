@@ -7,7 +7,6 @@ import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 import pl.meleride.api.PluginModule;
 import pl.meleride.api.i18n.MessageBundler;
-import pl.meleride.api.manager.UserManager;
 import pl.meleride.api.storage.Resource;
 import pl.meleride.api.storage.sql.SqlStorage;
 import pl.meleride.api.storage.sql.hikari.SqlHikariStorage;
@@ -15,12 +14,13 @@ import pl.meleride.user.entity.User;
 import pl.meleride.user.listener.PlayerJoinListener;
 import pl.meleride.user.listener.PlayerPreLoginListener;
 import pl.meleride.user.listener.PlayerQuitListener;
+import pl.meleride.user.manager.UserManager;
 import pl.meleride.user.manager.UserManagerImpl;
 import pl.meleride.user.resource.UserResourceImpl;
 
 public class MelerideUser extends JavaPlugin implements PluginModule {
 
-  private UserManager<User> userManager;
+  private UserManager userManager;
   private Resource<User> userResource;
   private SqlStorage storage;
 
@@ -55,7 +55,7 @@ public class MelerideUser extends JavaPlugin implements PluginModule {
   }
 
   @Override
-  public UserManager<User> getUserManager() {
+  public UserManager getUserManager() {
     return this.userManager;
   }
 

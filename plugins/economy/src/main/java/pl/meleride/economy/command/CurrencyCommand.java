@@ -30,7 +30,6 @@ public class CurrencyCommand {
     User user = this.plugin.getUserManager().getUser(player).get();
 
     if (context.getArgs().length == 0) {
-      user.add(Currency.PLN, 11);
       player.sendMessage(colored("&8> &fW portfelu posiadasz&8:"));
       user.getPocketBalance().forEach((currency, balance) -> player.sendMessage(
               colored("&8> &e" + currency.name() + " &8- &f" + balance)
@@ -69,7 +68,7 @@ public class CurrencyCommand {
         }
 
         double amount = context.getParamDouble(1);
-        user.add(Currency.getCurrency(currencyName), amount);
+        plugin.getUserManager().add(user, Currency.getCurrency(currencyName), amount);
         break;
     }
   }

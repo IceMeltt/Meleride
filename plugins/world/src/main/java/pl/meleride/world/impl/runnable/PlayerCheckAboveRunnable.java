@@ -20,8 +20,8 @@ import pl.meleride.world.impl.weather.Weather;
 public class PlayerCheckAboveRunnable extends BukkitRunnable {
 
   private final MelerideWorld instance;
-  private final MelerideUser user = JavaPlugin.getPlugin(MelerideUser.class);
-  private User playableUser;
+  private final MelerideUser meleUser = JavaPlugin.getPlugin(MelerideUser.class);
+  private User user;
   private Weather weather;
 
   public PlayerCheckAboveRunnable(MelerideWorld instance) {
@@ -32,13 +32,13 @@ public class PlayerCheckAboveRunnable extends BukkitRunnable {
   public void run() {
     Location location;
     World world;
-    weather = instance.getWeatherInstance();
+    this.weather = instance.getWeatherInstance();
 
-    if (weather.getNewerForecast().equalsIgnoreCase("hurricane")
-        || weather.getNewerForecast().contains("storm")
-        || weather.getNewerForecast().contains("thunder")
-        || weather.getNewerForecast().contains("rain")
-        || weather.getNewerForecast().contains("snow")) {
+    if (this.weather.getNewerForecast().equalsIgnoreCase("hurricane")
+        || this.weather.getNewerForecast().contains("storm")
+        || this.weather.getNewerForecast().contains("thunder")
+        || this.weather.getNewerForecast().contains("rain")
+        || this.weather.getNewerForecast().contains("snow")) {
 
       for (Player player : Bukkit.getOnlinePlayers()) {
         location = player.getLocation();
@@ -55,12 +55,12 @@ public class PlayerCheckAboveRunnable extends BukkitRunnable {
 
   private void freezingConditions(Player player) {
     ThreadLocalRandom random = ThreadLocalRandom.current();
-    this.playableUser = this.user.getUserManager().getUser(player).get();
+    this.user = this.meleUser.getUserManager().getUser(player).get();
 
-    if (!(playableUser.hasDisease(Disease.FEVER))) {
+    if (!(this.meleUser.getUserManager().hasDisease(user, Disease.FEVER))) {
       int rnd = random.nextInt(100);
       if (rnd <= 10) {
-        playableUser.addDisease(Disease.FEVER);
+        this.meleUser.getUserManager().addDisease(user, Disease.FEVER);
 
         MessageBundler.create("disease.fever.title")
             .target(MessageType.TITLE)

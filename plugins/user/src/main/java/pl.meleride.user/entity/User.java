@@ -7,10 +7,4 @@ public interface User extends pl.meleride.api.entity.User {
 
   Set<Disease> getDiseases();
 
-  boolean hasDisease(Disease disease);
-
-  void addDisease(Disease disease);
-
-  void clearDiseases();
-
 }

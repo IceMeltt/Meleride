@@ -5,6 +5,7 @@ import org.bukkit.event.EventPriority;
 import org.bukkit.event.player.PlayerJoinEvent;
 import pl.meleride.api.helper.Listener;
 import pl.meleride.economy.MelerideEconomy;
+import pl.meleride.economy.currency.Currency;
 import pl.meleride.economy.entity.User;
 
 public class PlayerJoinListener implements Listener<PlayerJoinEvent> {
@@ -22,6 +23,10 @@ public class PlayerJoinListener implements Listener<PlayerJoinEvent> {
 
     if (!user.getName().isPresent()) {
       user.setName(event.getPlayer().getName());
+    }
+
+    if(!event.getPlayer().hasPlayedBefore()) {
+      plugin.getUserManager().add(user, Currency.PLN, 0.0);
     }
   }
 

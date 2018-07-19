@@ -45,7 +45,7 @@ public class UserResourceImpl implements Resource<User> {
               .replace("]", "")
               .replace(" ", "")
               .split(","))) {
-            user.addDisease(disease);
+            this.plugin.getUserManager().addDisease(user, disease);
           }
         }
       }
