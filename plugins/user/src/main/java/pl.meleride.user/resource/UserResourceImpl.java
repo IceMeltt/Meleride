@@ -37,12 +37,16 @@ public class UserResourceImpl implements Resource<User> {
         });
 
         user.setName(resultSet.getString("name"));
-        for (Disease disease : Disease.getDiseaseFromString(resultSet.getString("diseases")
-            .replace("[", "")
-            .replace("]", "")
-            .replace(" ", "")
-            .split(","))) {
-          user.addDisease(disease);
+
+        if (!(resultSet.getString("diseases").equals("[]")
+            || resultSet.getString("diseases") == null)) {
+          for (Disease disease : Disease.getDiseaseFromString(resultSet.getString("diseases")
+              .replace("[", "")
+              .replace("]", "")
+              .replace(" ", "")
+              .split(","))) {
+            user.addDisease(disease);
+          }
         }
       }
     } catch (SQLException | StorageException ex) {
