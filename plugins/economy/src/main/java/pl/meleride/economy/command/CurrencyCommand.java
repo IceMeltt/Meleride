@@ -9,7 +9,7 @@ import pl.meleride.economy.currency.Currency;
 import static pl.meleride.api.message.MessageUtil.colored;
 
 import java.util.Arrays;
-import pl.meleride.economy.user.EconomyUser;
+import pl.meleride.economy.entity.User;
 
 public class CurrencyCommand {
 
@@ -27,12 +27,7 @@ public class CurrencyCommand {
   public void walletCommand(CommandSender sender, CommandContext context) {
     Player player = (Player) sender;
 
-    if(!this.plugin.getManager().getUser(player).isPresent()) {
-      BaseAccidentor accidentor = this.plugin.getAccidentor();
-      accidentor.notFoundOnManager(player);
-    }
-
-    EconomyUser user = this.plugin.getManager().getUser(player).get();
+    User user = this.plugin.getUserManager().getUser(player).get();
 
     if (context.getArgs().length == 0) {
       user.add(Currency.PLN, 11);

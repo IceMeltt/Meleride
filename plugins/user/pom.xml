@@ -10,18 +10,10 @@
     <version>0.3.0</version>
   </parent>
 
-  <artifactId>world</artifactId>
+  <artifactId>user</artifactId>
 
-  <name>Meleride :: Plugins :: World</name>
-  <description>Modul odpowiadajacy za obsluge swiata</description>
+  <name>Meleride :: Plugins :: User</name>
+  <description>Modul odpowiadajacy za obsluge funkcyjnego gracza</description>
 
-  <dependencies>
-    <dependency>
-      <groupId>pl.meleride</groupId>
-      <artifactId>user</artifactId>
-      <version>0.3.0</version>
-      <scope>provided</scope>
-    </dependency>
-  </dependencies>
 
 </project>

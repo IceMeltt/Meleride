@@ -1,83 +1,68 @@
-package pl.meleride.economy.user;
+package pl.meleride.economy.entity.impl;
 
-import com.google.common.base.Charsets;
+import java.nio.charset.StandardCharsets;
 import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Optional;
 import java.util.UUID;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import pl.meleride.api.helper.MathHelper;
 import pl.meleride.economy.currency.Currency;
+import pl.meleride.economy.entity.User;
 
-public class EconomyUserImpl implements EconomyUser {
+public class UserImpl implements User {
 
-  private final UUID uniqueId;
+  private UUID identifier;
   private String name;
-  private byte dataError;
 
   private final Map<Currency, Double> pocketBalance;
   public static final DateTimeFormatter TIME_PATTERN = DateTimeFormatter.ofPattern("HH:mm dd/MM/yyyy");
 
-  // [||] -------------------------------- [||]
-
-  public EconomyUserImpl(String name) {
+  public UserImpl(String name) {
     this.name = name;
-    this.uniqueId = UUID.nameUUIDFromBytes(("OfflinePlayer:" + this.name).getBytes(Charsets.UTF_8));
+    this.identifier = UUID.nameUUIDFromBytes(("OfflinePlayer:" + this.name).getBytes(StandardCharsets.UTF_8));
     this.pocketBalance = new HashMap<>();
 
     add(Currency.PLN, 0.0);
   }
 
-  public EconomyUserImpl(UUID uniqueId) {
-    this.uniqueId = uniqueId;
-    this.name = Bukkit.getOfflinePlayer(this.uniqueId).getName();
+  public UserImpl(UUID identifier) {
+    this.identifier = identifier;
+    this.name = Bukkit.getOfflinePlayer(this.identifier).getName();
     this.pocketBalance = new HashMap<>();
 
     add(Currency.PLN, 0.0);
   }
 
-  public EconomyUserImpl(Player player) {
-    this.uniqueId = player.getUniqueId();
+  public UserImpl(Player player) {
+    this.identifier = player.getUniqueId();
     this.name = player.getName();
     this.pocketBalance = new HashMap<>();
 
     add(Currency.PLN, 0.0);
   }
 
-  // [||] -------------------------------- [||]
-
   @Override
-  public String getName() {
-    return this.name;
+  public UUID getIdentifier() {
+    return this.identifier;
   }
 
   @Override
-  public UUID getUniqueId() {
-    return this.uniqueId;
+  public Optional<String> getName() {
+    return Optional.ofNullable(this.name);
+  }
+
+  @Override
+  public void setIdentifier(UUID identifier) {
+    this.identifier = identifier;
   }
 
   @Override
   public void setName(String name) {
     this.name = name;
   }
-
-  @Override
-  public Player getBukkitPlayer() {
-    return Bukkit.getPlayer(this.uniqueId);
-  }
-
-  @Override
-  public byte getDataErrorStatus() {
-    return this.dataError;
-  }
-
-  @Override
-  public void setDataErrorStatus(byte dataError) {
-    this.dataError = dataError;
-  }
-
-  // [||] -------------------------------- [||]
 
   @Override
   public Map<Currency, Double> getPocketBalance() {

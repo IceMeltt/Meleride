@@ -12,7 +12,7 @@ public class SignChangeListener implements Listener {
 
   private final MelerideEconomy plugin;
 
-  public SignChangeListener(MelerideEconomy plugin) {
+  public SignChangeListener(final MelerideEconomy plugin) {
     this.plugin = plugin;
   }
 

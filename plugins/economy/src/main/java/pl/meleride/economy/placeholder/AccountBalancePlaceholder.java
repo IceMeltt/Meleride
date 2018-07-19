@@ -4,7 +4,7 @@ import be.maximvdw.placeholderapi.PlaceholderReplaceEvent;
 import be.maximvdw.placeholderapi.PlaceholderReplacer;
 import pl.meleride.economy.MelerideEconomy;
 import pl.meleride.economy.currency.Currency;
-import pl.meleride.economy.user.EconomyUser;
+import pl.meleride.economy.entity.User;
 
 public class AccountBalancePlaceholder implements PlaceholderReplacer {
 
@@ -23,12 +23,7 @@ public class AccountBalancePlaceholder implements PlaceholderReplacer {
       return "0.0 " + currency.getSign();
     }
 
-    if (!this.plugin.getManager().getUser(event.getPlayer()).isPresent()) {
-      BaseAccidentor accidentor = this.plugin.getAccidentor();
-      accidentor.notFoundOnManager(event.getPlayer());
-    }
-
-     EconomyUser user = this.plugin.getManager().getUser(event.getPlayer()).get();
+     User user = this.plugin.getUserManager().getUser(event.getPlayer()).get();
 
     return String.valueOf(user.getCurrencyBalance(currency)) + " " + currency.getSign();
   }

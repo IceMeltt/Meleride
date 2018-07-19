@@ -4,22 +4,24 @@ import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.World;
 import org.bukkit.entity.Player;
+import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scheduler.BukkitRunnable;
 
 import java.util.concurrent.ThreadLocalRandom;
 
-import pl.meleride.api.flexible.BaseManager;
 import pl.meleride.api.i18n.MessageBundler;
 import pl.meleride.api.message.MessageType;
-import pl.meleride.api.entity.status.DiseaseStatus;
+import pl.meleride.user.MelerideUser;
+import pl.meleride.user.disease.Disease;
+import pl.meleride.user.entity.User;
 import pl.meleride.world.MelerideWorld;
 import pl.meleride.world.impl.weather.Weather;
 
 public class PlayerCheckAboveRunnable extends BukkitRunnable {
 
   private final MelerideWorld instance;
-  private BaseManager<User> manager;
-  private User user;
+  private final MelerideUser user = JavaPlugin.getPlugin(MelerideUser.class);
+  private User playableUser;
   private Weather weather;
 
   public PlayerCheckAboveRunnable(MelerideWorld instance) {
@@ -53,12 +55,12 @@ public class PlayerCheckAboveRunnable extends BukkitRunnable {
 
   private void freezingConditions(Player player) {
     ThreadLocalRandom random = ThreadLocalRandom.current();
-    this.user = this.manager.getUser(player).get();
+    this.playableUser = this.user.getUserManager().getUser(player).get();
 
-    if (!(user.hasDisease(DiseaseStatus.FEVER))) {
+    if (!(playableUser.hasDisease(Disease.FEVER))) {
       int rnd = random.nextInt(100);
       if (rnd <= 10) {
-        user.addDisease(DiseaseStatus.FEVER);
+        playableUser.addDisease(Disease.FEVER);
 
         MessageBundler.create("disease.fever.title")
             .target(MessageType.TITLE)

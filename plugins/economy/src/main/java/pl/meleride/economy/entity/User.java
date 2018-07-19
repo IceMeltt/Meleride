@@ -1,9 +1,9 @@
-package pl.meleride.economy.user;
+package pl.meleride.economy.entity;
 
 import java.util.Map;
 import pl.meleride.economy.currency.Currency;
 
-public interface EconomyUser extends PlayableUser {
+public interface User extends pl.meleride.api.entity.User {
 
   Map<Currency, Double> getPocketBalance();
 

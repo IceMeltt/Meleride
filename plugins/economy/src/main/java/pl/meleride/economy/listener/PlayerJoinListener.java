@@ -1,17 +1,17 @@
-package pl.meleride.base.listener;
+package pl.meleride.economy.listener;
 
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.player.PlayerJoinEvent;
 import pl.meleride.api.helper.Listener;
-import pl.meleride.base.MelerideBase;
-import pl.meleride.base.entity.User;
+import pl.meleride.economy.MelerideEconomy;
+import pl.meleride.economy.entity.User;
 
 public class PlayerJoinListener implements Listener<PlayerJoinEvent> {
 
-  private final MelerideBase plugin;
+  private final MelerideEconomy plugin;
 
-  public PlayerJoinListener(MelerideBase plugin) {
+  public PlayerJoinListener(final MelerideEconomy plugin) {
     this.plugin = plugin;
   }
 

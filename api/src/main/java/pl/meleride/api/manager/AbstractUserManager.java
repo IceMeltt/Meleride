@@ -22,7 +22,7 @@ public abstract class AbstractUserManager<T extends User> implements UserManager
 
     return this.userNameMap.values()
         .stream()
-        .filter(user -> user.getName().equals(name))
+        .filter(user -> user.getName().get().equals(name))
         .findFirst();
   }
 

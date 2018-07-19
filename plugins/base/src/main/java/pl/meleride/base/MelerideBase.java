@@ -6,6 +6,7 @@ import net.citizensnpcs.api.trait.TraitInfo;
 import org.bukkit.plugin.java.JavaPlugin;
 import pl.meleride.api.PluginModule;
 import pl.meleride.api.helper.Listener;
+import pl.meleride.api.i18n.MessageBundler;
 import pl.meleride.api.manager.UserManager;
 import pl.meleride.api.object.system.ItemRegistrator;
 import pl.meleride.api.storage.Resource;
@@ -68,13 +69,7 @@ public class MelerideBase extends JavaPlugin implements PluginModule {
 
   private HikariConfig dataSourceConfiguration() {
     HikariConfig config = new HikariConfig();
-
-    config.setDataSourceClassName("com.mysql.jdbc.jdbc2.optional.MysqlDataSource");
-    config.addDataSourceProperty("serverName", "localhost");
-    config.addDataSourceProperty("port", "3306");
-    config.addDataSourceProperty("databaseName", "meleride");
-    config.addDataSourceProperty("user", "admin");
-    config.addDataSourceProperty("password", "root");
+    config.setJdbcUrl(MessageBundler.create("database.jdbc").toString());
 
     return config;
   }

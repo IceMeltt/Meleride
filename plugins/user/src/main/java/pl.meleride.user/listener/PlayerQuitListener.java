@@ -1,17 +1,17 @@
-package pl.meleride.base.listener;
+package pl.meleride.user.listener;
 
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.player.PlayerQuitEvent;
 import pl.meleride.api.helper.Listener;
-import pl.meleride.base.MelerideBase;
-import pl.meleride.base.entity.User;
+import pl.meleride.user.MelerideUser;
+import pl.meleride.user.entity.User;
 
 public class PlayerQuitListener implements Listener<PlayerQuitEvent> {
 
-  private final MelerideBase plugin;
+  private final MelerideUser plugin;
 
-  public PlayerQuitListener(MelerideBase plugin) {
+  public PlayerQuitListener(final MelerideUser plugin) {
     this.plugin = plugin;
   }
 

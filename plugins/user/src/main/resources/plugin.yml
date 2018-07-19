@@ -1,0 +1,5 @@
+name: MeleUser
+version: 0.3.0
+main: pl.meleride.user.MelerideUser
+author: Meleride
+website: https://meleride.pl
