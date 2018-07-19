@@ -20,12 +20,12 @@ public class AccountBalancePlaceholder implements PlaceholderReplacer {
   public String onPlaceholderReplace(PlaceholderReplaceEvent event) {
 
     if (event.getOfflinePlayer() == null || event.getPlayer() == null) {
-      return "0.0 " + currency.getSign();
+      return "0.0 " + this.currency.getSign();
     }
 
      User user = this.plugin.getUserManager().getUser(event.getPlayer()).get();
 
-    return String.valueOf(user.getCurrencyBalance(currency)) + " " + currency.getSign();
+    return String.valueOf(user.getCurrencyBalance(this.currency)) + " " + this.currency.getSign();
   }
 
 }

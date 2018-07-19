@@ -32,8 +32,8 @@ public class Heroine extends AbstractItem {
   private final Set<PotionEffect> effects = new HashSet<>();
 
   private void initialize() {
-    effects.add(new PotionEffect(PotionEffectType.NIGHT_VISION, 180 * 20, 1));
-    effects.add(new PotionEffect(PotionEffectType.HUNGER, 360 * 20, 2));
+    this.effects.add(new PotionEffect(PotionEffectType.NIGHT_VISION, 180 * 20, 1));
+    this.effects.add(new PotionEffect(PotionEffectType.HUNGER, 360 * 20, 2));
   }
 
   private ItemStack itemStack = new ItemBuilder(Material.INK_SACK)
@@ -42,7 +42,7 @@ public class Heroine extends AbstractItem {
       .build();
 
   private Set<PotionEffect> getEffects() {
-    return effects;
+    return this.effects;
   }
 
   private String getUsage() {

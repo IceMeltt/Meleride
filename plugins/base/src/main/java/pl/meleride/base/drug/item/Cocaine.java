@@ -34,8 +34,8 @@ public class Cocaine extends AbstractItem {
   //---
 
   private void initialize() {
-    effects.add(new PotionEffect(PotionEffectType.SPEED, 480 * 20, 2));
-    effects.add(new PotionEffect(PotionEffectType.FAST_DIGGING, 480 * 20, 3));
+    this.effects.add(new PotionEffect(PotionEffectType.SPEED, 480 * 20, 2));
+    this.effects.add(new PotionEffect(PotionEffectType.FAST_DIGGING, 480 * 20, 3));
   }
 
   //---
@@ -46,7 +46,7 @@ public class Cocaine extends AbstractItem {
       .build();
 
   private Set<PotionEffect> getEffects() {
-    return effects;
+    return this.effects;
   }
 
   private String getUsage() {

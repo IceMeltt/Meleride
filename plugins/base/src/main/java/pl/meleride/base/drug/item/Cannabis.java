@@ -32,8 +32,8 @@ public class Cannabis extends AbstractItem {
   private final Set<PotionEffect> effects = new HashSet<>();
 
   private void initialize() {
-    effects.add(new PotionEffect(PotionEffectType.JUMP, 480 * 20, 3));
-    effects.add(new PotionEffect(PotionEffectType.HUNGER, 480 * 20, 1));
+    this.effects.add(new PotionEffect(PotionEffectType.JUMP, 480 * 20, 3));
+    this.effects.add(new PotionEffect(PotionEffectType.HUNGER, 480 * 20, 1));
   }
 
   private ItemStack itemStack = new ItemBuilder(Material.INK_SACK)
@@ -42,7 +42,7 @@ public class Cannabis extends AbstractItem {
       .build();
 
   private Set<PotionEffect> getEffects() {
-    return effects;
+    return this.effects;
   }
 
   private String getUsage() {

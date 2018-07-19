@@ -53,7 +53,7 @@ public class UserImpl implements User {
 
   @Override
   public long getDrugCooldown() {
-    return drugCooldown;
+    return this.drugCooldown;
   }
 
   @Override
