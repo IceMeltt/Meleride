@@ -1,6 +1,7 @@
 package pl.meleride.user.commands;
 
 import org.bukkit.Bukkit;
+import org.bukkit.Sound;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import pl.meleride.api.i18n.MessageBundler;
@@ -36,6 +37,7 @@ public final class ReputationCommand {
     Player senderPlayer = CommandUtils.toPlayer(sender);
 
     if(context.getParamsLength() == 0 || context.getParamsLength() >= 3) {
+      senderPlayer.playSound(senderPlayer.getLocation(), Sound.ENTITY_PLAYER_LEVELUP, 50, 1);
       this.reputationActionHandler.viewPlayerReputation(senderPlayer, senderPlayer.getName());
     }
 
@@ -48,6 +50,8 @@ public final class ReputationCommand {
                 .sendTo(senderPlayer);
             return;
           }
+
+          senderPlayer.playSound(senderPlayer.getLocation(), Sound.ENTITY_EXPERIENCE_ORB_PICKUP, 50, 5);
           this.reputationActionHandler.viewPlayerReputation(senderPlayer, context.getParam(1)); break;
         case "add":
           if(!senderPlayer.hasPermission("meleride.reputation.admin")) {
