@@ -16,7 +16,7 @@ public class UserImpl implements User {
   private String name;
 
   private final Set<Disease> diseases = new HashSet<>();
-  private int reputation = 0;
+  private int reputation;
 
   public UserImpl(String name) {
     this.name = name;
