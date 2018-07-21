@@ -20,7 +20,7 @@ import java.util.stream.Collectors;
 public final class ReputationCommand {
 
   private final MelerideUser plugin;
-  private ReputationActionHandler reputationActionHandler;
+  private final ReputationActionHandler reputationActionHandler;
 
   public ReputationCommand(final MelerideUser plugin) {
     this.plugin = plugin;
