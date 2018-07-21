@@ -20,8 +20,6 @@ public class PlayerJoinListener implements Listener<PlayerJoinEvent> {
   public void performEvent(PlayerJoinEvent event) {
     User user = this.plugin.getUserManager().getUser(event.getPlayer().getUniqueId()).get();
 
-    this.plugin.getLogger().info(user.getIdentifier().toString());
-
     if (!user.getName().isPresent()) {
       user.setName(event.getPlayer().getName());
     }

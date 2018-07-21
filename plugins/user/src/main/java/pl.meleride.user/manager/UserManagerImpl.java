@@ -21,4 +21,14 @@ public class UserManagerImpl extends AbstractUserManager<User> implements UserMa
     user.getDiseases().clear();
   }
 
+  @Override
+  public void addReputation(User user, int value) {
+    user.setReputation(user.getReputation() + value);
+  }
+
+  @Override
+  public void resetReputation(User user) {
+    user.setReputation(0);
+  }
+
 }

@@ -16,6 +16,7 @@ public class UserImpl implements User {
   private String name;
 
   private final Set<Disease> diseases = new HashSet<>();
+  private int reputation;
 
   public UserImpl(String name) {
     this.name = name;
@@ -56,6 +57,16 @@ public class UserImpl implements User {
   @Override
   public Set<Disease> getDiseases() {
     return new HashSet<>(diseases);
+  }
+
+  @Override
+  public int getReputation() {
+    return reputation;
+  }
+
+  @Override
+  public void setReputation(int value) {
+    this.reputation = value;
   }
 
 }

@@ -11,4 +11,8 @@ public interface UserManager extends pl.meleride.api.manager.UserManager<User> {
 
   void clearDiseases(User user);
 
+  void addReputation(User user, int value);
+
+  void resetReputation(User user);
+
 }

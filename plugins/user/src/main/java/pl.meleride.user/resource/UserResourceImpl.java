@@ -37,6 +37,7 @@ public class UserResourceImpl implements Resource<User> {
         });
 
         user.setName(resultSet.getString("name"));
+        user.setReputation(resultSet.getInt("reputation"));
 
         if (!(resultSet.getString("diseases").equals("[]")
             || resultSet.getString("diseases") == null)) {
@@ -55,16 +56,18 @@ public class UserResourceImpl implements Resource<User> {
   }
 
   public void save(User user) {
-    String query = "INSERT INTO `funcuser_users` (uuid, name, diseases) VALUES (?, ?, ?) ON DUPLICATE KEY UPDATE `name` = ?, "
-        + "`diseases` = ?";
+    String query = "INSERT INTO `funcuser_users` (uuid, name, reputation, diseases) VALUES (?, ?, ?, ?) ON DUPLICATE KEY UPDATE `name` = ?,"
+        + "`reputation` = ?, `diseases` = ?";
 
     SQLStorageConsumer sqlStorageConsumer = preparedStatement -> {
       try {
         preparedStatement.setBytes(1, UniqueIdHelper.getBytesFromUUID(user.getIdentifier()));
         preparedStatement.setString(2, user.getName().get());
-        preparedStatement.setString(3, Arrays.toString(user.getDiseases().toArray()));
-        preparedStatement.setString(4, user.getName().get());
-        preparedStatement.setString(5, Arrays.toString(user.getDiseases().toArray()));
+        preparedStatement.setInt(3, user.getReputation());
+        preparedStatement.setString(4, Arrays.toString(user.getDiseases().toArray()));
+        preparedStatement.setString(5, user.getName().get());
+        preparedStatement.setInt(6, user.getReputation());
+        preparedStatement.setString(7, Arrays.toString(user.getDiseases().toArray()));
       } catch (SQLException e) {
         e.printStackTrace();
       }
@@ -78,7 +81,7 @@ public class UserResourceImpl implements Resource<User> {
   }
 
   public void checkTable() {
-    String query = "CREATE TABLE IF NOT EXISTS `funcuser_users` (`uuid` BINARY(16) PRIMARY KEY, `name` VARCHAR(16) NOT NULL UNIQUE, `diseases` TEXT NOT NULL)";
+    String query = "CREATE TABLE IF NOT EXISTS `funcuser_users` (`uuid` BINARY(16) PRIMARY KEY, `name` VARCHAR(16) NOT NULL UNIQUE, `reputation` SMALLINT NOT NULL, `diseases` TEXT NOT NULL)";
 
     try {
       this.plugin.getStorage().update(query);

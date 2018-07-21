@@ -10,6 +10,9 @@ import pl.meleride.api.i18n.MessageBundler;
 import pl.meleride.api.storage.Resource;
 import pl.meleride.api.storage.sql.SqlStorage;
 import pl.meleride.api.storage.sql.hikari.SqlHikariStorage;
+import pl.meleride.commands.Commands;
+import pl.meleride.commands.bukkit.BukkitCommands;
+import pl.meleride.user.commands.ReputationCommand;
 import pl.meleride.user.entity.User;
 import pl.meleride.user.listener.PlayerJoinListener;
 import pl.meleride.user.listener.PlayerPreLoginListener;
@@ -23,6 +26,7 @@ public class MelerideUser extends JavaPlugin implements PluginModule {
   private UserManager userManager;
   private Resource<User> userResource;
   private SqlStorage storage;
+  private Commands commands;
 
   @Override
   public void onEnable() {
@@ -37,6 +41,9 @@ public class MelerideUser extends JavaPlugin implements PluginModule {
         new PlayerPreLoginListener(this),
         new PlayerQuitListener(this)
     );
+
+    this.commands = new BukkitCommands(this);
+    this.commands.registerCommandObjects(new ReputationCommand(this));
   }
 
   @Override
@@ -72,6 +79,10 @@ public class MelerideUser extends JavaPlugin implements PluginModule {
 
   public Resource<User> getUserResource() {
     return this.userResource;
+  }
+
+  public Commands getCommands() {
+    return this.commands;
   }
 
 }

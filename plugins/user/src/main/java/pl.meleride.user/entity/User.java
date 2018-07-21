@@ -7,4 +7,8 @@ public interface User extends pl.meleride.api.entity.User {
 
   Set<Disease> getDiseases();
 
+  int getReputation();
+
+  void setReputation(int value);
+
 }

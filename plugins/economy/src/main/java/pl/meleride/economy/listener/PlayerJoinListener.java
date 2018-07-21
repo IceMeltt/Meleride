@@ -25,7 +25,7 @@ public class PlayerJoinListener implements Listener<PlayerJoinEvent> {
       user.setName(event.getPlayer().getName());
     }
 
-    if(!event.getPlayer().hasPlayedBefore()) {
+    if (!event.getPlayer().hasPlayedBefore()) {
       plugin.getUserManager().add(user, Currency.PLN, 0.0);
 
         this.plugin.getUserResource().save(user);
