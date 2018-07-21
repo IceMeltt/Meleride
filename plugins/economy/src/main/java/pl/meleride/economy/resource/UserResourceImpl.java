@@ -2,6 +2,7 @@ package pl.meleride.economy.resource;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Arrays;
 import java.util.UUID;
 import pl.meleride.api.helper.UniqueIdHelper;
 import pl.meleride.api.storage.Resource;
@@ -20,8 +21,8 @@ public class UserResourceImpl implements Resource<User> {
     this.plugin = plugin;
   }
 
-  public void load() {
-    String query = "SELECT * FROM `economy_users`";
+  public void load(User user) {
+    String query = "SELECT * FROM `economy_users` WHERE `uuid` = \"" + user.getIdentifier() + "\";";
 
     try {
       ResultSet resultSet = this.plugin.getStorage().query(query);
@@ -29,7 +30,7 @@ public class UserResourceImpl implements Resource<User> {
       while (resultSet.next()) {
         UUID uniqueId = UniqueIdHelper.getUUIDFromBytes(resultSet.getBytes("uuid"));
 
-        User user = this.plugin.getUserManager().getUser(uniqueId).orElseGet(() -> {
+        user = this.plugin.getUserManager().getUser(uniqueId).orElseGet(() -> {
           User newUser = new UserImpl(uniqueId);
           this.plugin.getUserManager().addUser(newUser);
           return newUser;
@@ -48,7 +49,8 @@ public class UserResourceImpl implements Resource<User> {
   }
 
   public void save(User user) {
-    String query = "INSERT INTO `economy_users` (uuid, name, handledpln, handledeur, handledczk, handledusd, handledjpy) VALUES (?, ?, ?, ?, ?, ?, ?) ON DUPLICATE KEY UPDATE `name` = ?"; //8?
+    String query = "INSERT INTO `economy_users` (uuid, name, handledpln, handledeur, handledczk, handledusd, handledjpy) VALUES (?, ?, ?, ?, ?, ?, ?) ON DUPLICATE KEY UPDATE `name` = ?, "
+        + "handledpln = ?, handledeur = ?, handledczk = ?, handledusd = ?, handledjpy = ?"; //13?
 
     SQLStorageConsumer sqlStorageConsumer = preparedStatement -> {
       try {
@@ -60,6 +62,11 @@ public class UserResourceImpl implements Resource<User> {
         preparedStatement.setDouble(6, user.getCurrencyBalance(Currency.USD));
         preparedStatement.setDouble(7, user.getCurrencyBalance(Currency.JPY));
         preparedStatement.setString(8, user.getName().get());
+        preparedStatement.setDouble(9, user.getCurrencyBalance(Currency.PLN));
+        preparedStatement.setDouble(10, user.getCurrencyBalance(Currency.EUR));
+        preparedStatement.setDouble(11, user.getCurrencyBalance(Currency.CZK));
+        preparedStatement.setDouble(12, user.getCurrencyBalance(Currency.USD));
+        preparedStatement.setDouble(13, user.getCurrencyBalance(Currency.JPY));
       } catch (SQLException e) {
         e.printStackTrace();
       }

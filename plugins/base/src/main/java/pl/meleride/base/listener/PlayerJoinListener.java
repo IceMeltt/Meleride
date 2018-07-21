@@ -23,6 +23,12 @@ public class PlayerJoinListener implements Listener<PlayerJoinEvent> {
     if (!user.getName().isPresent()) {
       user.setName(event.getPlayer().getName());
     }
+
+    if(!event.getPlayer().hasPlayedBefore()) {
+      this.plugin.getUserResource().save(user);
+    } else {
+      this.plugin.getUserResource().load(user);
+    }
   }
 
 }
