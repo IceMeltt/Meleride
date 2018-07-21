@@ -39,7 +39,6 @@ public class MelerideBase extends JavaPlugin implements PluginModule {
     this.storage = new SqlHikariStorage(this.dataSourceConfiguration());
 
     this.userResource.checkTable();
-    this.userResource.load();
     this.drugShop = new DrugShop();
 
     ItemRegistrator.register(
@@ -59,6 +58,13 @@ public class MelerideBase extends JavaPlugin implements PluginModule {
         new PlayerJoinListener(this),
         new PlayerQuitListener(this)
     );
+  }
+
+  @Override
+  public void onDisable() {
+    this.getServer().getOnlinePlayers().stream()
+        .map(user -> this.getUserManager().getUser(user).get())
+        .forEach(user -> this.getUserResource().save(user));
   }
 
   private void registerListeners(Listener<?>... listeners) {

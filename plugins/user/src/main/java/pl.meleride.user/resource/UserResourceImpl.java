@@ -21,8 +21,8 @@ public class UserResourceImpl implements Resource<User> {
     this.plugin = plugin;
   }
 
-  public void load() {
-    String query = "SELECT * FROM `funcuser_users`";
+  public void load(User user) {
+    String query = "SELECT * FROM `funcuser_users` WHERE `uuid` = '" + user.getIdentifier() + "';";
 
     try {
       ResultSet resultSet = this.plugin.getStorage().query(query);
@@ -30,7 +30,7 @@ public class UserResourceImpl implements Resource<User> {
       while (resultSet.next()) {
         UUID uniqueId = UniqueIdHelper.getUUIDFromBytes(resultSet.getBytes("uuid"));
 
-        User user = this.plugin.getUserManager().getUser(uniqueId).orElseGet(() -> {
+        user = this.plugin.getUserManager().getUser(uniqueId).orElseGet(() -> {
           User newUser = new UserImpl(uniqueId);
           this.plugin.getUserManager().addUser(newUser);
           return newUser;
@@ -55,7 +55,8 @@ public class UserResourceImpl implements Resource<User> {
   }
 
   public void save(User user) {
-    String query = "INSERT INTO `funcuser_users` (uuid, name, diseases) VALUES (?, ?, ?) ON DUPLICATE KEY UPDATE `name` = ?";
+    String query = "INSERT INTO `funcuser_users` (uuid, name, diseases) VALUES (?, ?, ?) ON DUPLICATE KEY UPDATE `name` = ?, "
+        + "`diseases` = ?";
 
     SQLStorageConsumer sqlStorageConsumer = preparedStatement -> {
       try {
@@ -63,6 +64,7 @@ public class UserResourceImpl implements Resource<User> {
         preparedStatement.setString(2, user.getName().get());
         preparedStatement.setString(3, Arrays.toString(user.getDiseases().toArray()));
         preparedStatement.setString(4, user.getName().get());
+        preparedStatement.setString(5, Arrays.toString(user.getDiseases().toArray()));
       } catch (SQLException e) {
         e.printStackTrace();
       }

@@ -2,6 +2,7 @@ package pl.meleride.base.resource;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Arrays;
 import java.util.UUID;
 import pl.meleride.api.helper.UniqueIdHelper;
 import pl.meleride.api.storage.Resource;
@@ -19,8 +20,8 @@ public class UserResourceImpl implements Resource<User> {
     this.plugin = plugin;
   }
 
-  public void load() {
-    String query = "SELECT * FROM `base_users`";
+  public void load(User user) {
+    String query = "SELECT * FROM `base_users` WHERE `uuid` = '" + user.getIdentifier() + "';";
 
     try {
       ResultSet resultSet = this.plugin.getStorage().query(query);
@@ -28,7 +29,7 @@ public class UserResourceImpl implements Resource<User> {
       while (resultSet.next()) {
         UUID uniqueId = UniqueIdHelper.getUUIDFromBytes(resultSet.getBytes("uuid"));
 
-        User user = this.plugin.getUserManager().getUser(uniqueId).orElseGet(() -> {
+        user = this.plugin.getUserManager().getUser(uniqueId).orElseGet(() -> {
           User newUser = new UserImpl(uniqueId);
           this.plugin.getUserManager().addUser(newUser);
           return newUser;
@@ -43,7 +44,8 @@ public class UserResourceImpl implements Resource<User> {
   }
 
   public void save(User user) {
-    String query = "INSERT INTO `base_users` (uuid, name, drugcooldown) VALUES (?, ?, ?) ON DUPLICATE KEY UPDATE `name` = ?";
+    String query = "INSERT INTO `base_users` (uuid, name, drugcooldown) VALUES (?, ?, ?) ON DUPLICATE KEY UPDATE `name` = ?, "
+        + "`drugcooldown` = ?";
 
     SQLStorageConsumer sqlStorageConsumer = preparedStatement -> {
       try {
@@ -51,6 +53,7 @@ public class UserResourceImpl implements Resource<User> {
         preparedStatement.setString(2, user.getName().get());
         preparedStatement.setLong(3, user.getDrugCooldown());
         preparedStatement.setString(4, user.getName().get());
+        preparedStatement.setLong(5, user.getDrugCooldown());
       } catch (SQLException e) {
         e.printStackTrace();
       }
