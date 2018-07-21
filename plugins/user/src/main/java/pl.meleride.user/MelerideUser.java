@@ -1,6 +1,8 @@
 package pl.meleride.user;
 
 import com.zaxxer.hikari.HikariConfig;
+import java.util.Objects;
+import java.util.Optional;
 import org.bukkit.Bukkit;
 import org.bukkit.event.Listener;
 import org.bukkit.plugin.PluginManager;
@@ -49,7 +51,10 @@ public class MelerideUser extends JavaPlugin implements PluginModule {
   @Override
   public void onDisable() {
     this.getServer().getOnlinePlayers().stream()
-        .map(user -> this.getUserManager().getUser(user).get())
+        .map(user -> this.getUserManager().getUser(user))
+        .filter(Optional::isPresent)
+        .map(Optional::get)
+        .filter(Objects::nonNull)
         .forEach(user -> this.getUserResource().save(user));
   }
 
