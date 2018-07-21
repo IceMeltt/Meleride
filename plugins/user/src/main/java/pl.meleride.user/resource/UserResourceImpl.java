@@ -21,8 +21,8 @@ public class UserResourceImpl implements Resource<User> {
     this.plugin = plugin;
   }
 
-  public void load() {
-    String query = "SELECT * FROM `funcuser_users`";
+  public void load(User user) {
+    String query = "SELECT * FROM `funcuser_users` WHERE `uuid` = '" + user.getIdentifier() + "';";
 
     try {
       ResultSet resultSet = this.plugin.getStorage().query(query);
@@ -30,7 +30,7 @@ public class UserResourceImpl implements Resource<User> {
       while (resultSet.next()) {
         UUID uniqueId = UniqueIdHelper.getUUIDFromBytes(resultSet.getBytes("uuid"));
 
-        User user = this.plugin.getUserManager().getUser(uniqueId).orElseGet(() -> {
+        user = this.plugin.getUserManager().getUser(uniqueId).orElseGet(() -> {
           User newUser = new UserImpl(uniqueId);
           this.plugin.getUserManager().addUser(newUser);
           return newUser;

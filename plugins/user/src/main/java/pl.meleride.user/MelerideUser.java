@@ -35,7 +35,6 @@ public class MelerideUser extends JavaPlugin implements PluginModule {
     this.storage = new SqlHikariStorage(this.dataSourceConfiguration());
 
     this.userResource.checkTable();
-    this.userResource.load();
 
     this.registerListeners(
         new PlayerJoinListener(this),
@@ -45,6 +44,13 @@ public class MelerideUser extends JavaPlugin implements PluginModule {
 
     this.commands = new BukkitCommands(this);
     this.commands.registerCommandObjects(new ReputationCommand(this));
+  }
+
+  @Override
+  public void onDisable() {
+    this.getServer().getOnlinePlayers().stream()
+        .map(user -> this.getUserManager().getUser(user).get())
+        .forEach(user -> this.getUserResource().save(user));
   }
 
   private HikariConfig dataSourceConfiguration() {
