@@ -21,7 +21,7 @@ public class UserResourceImpl implements Resource<User> {
   }
 
   public void load(User user) {
-    String query = "SELECT * FROM `base_users` WHERE `uuid` = \"" + user.getIdentifier() + "\";";
+    String query = "SELECT * FROM `base_users` WHERE `uuid` = '" + user.getIdentifier() + "';";
 
     try {
       ResultSet resultSet = this.plugin.getStorage().query(query);
