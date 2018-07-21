@@ -1,6 +1,8 @@
 package pl.meleride.base;
 
 import com.zaxxer.hikari.HikariConfig;
+import java.util.Objects;
+import java.util.Optional;
 import net.citizensnpcs.api.CitizensAPI;
 import net.citizensnpcs.api.trait.TraitInfo;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -63,7 +65,10 @@ public class MelerideBase extends JavaPlugin implements PluginModule {
   @Override
   public void onDisable() {
     this.getServer().getOnlinePlayers().stream()
-        .map(user -> this.getUserManager().getUser(user).get())
+        .map(user -> this.getUserManager().getUser(user))
+        .filter(Optional::isPresent)
+        .map(Optional::get)
+        .filter(Objects::nonNull)
         .forEach(user -> this.getUserResource().save(user));
   }
 

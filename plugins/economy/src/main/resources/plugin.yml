@@ -2,5 +2,4 @@ name: MeleEconomy
 version: 1.0.0
 main: pl.meleride.economy.MelerideEconomy
 author: Meleride
-
-depends: [MVdWPlaceholderAPI]
+depend: [MVdWPlaceholderAPI]
