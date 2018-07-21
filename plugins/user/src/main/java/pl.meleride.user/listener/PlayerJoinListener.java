@@ -26,7 +26,6 @@ public class PlayerJoinListener implements Listener<PlayerJoinEvent> {
 
     if(!event.getPlayer().hasPlayedBefore()) {
       this.plugin.getUserResource().save(user);
-      user.setReputation(0);
     } else {
       this.plugin.getUserResource().load(user);
     }
