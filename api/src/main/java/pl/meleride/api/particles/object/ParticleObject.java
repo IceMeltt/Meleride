@@ -60,5 +60,4 @@ public abstract class ParticleObject {
     players.forEach(player -> this.spawnPattern(player, location, pattern));
   }
 
-
 }
