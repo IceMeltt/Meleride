@@ -47,4 +47,5 @@ public final class ParticleVomitAnimation extends ParticleAnimation {
   private ItemStack getMaterialWithDataAsItemStack(Material material, byte data) {
     return new MaterialData(material, data).toItemStack(1);
   }
+
 }

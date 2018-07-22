@@ -21,4 +21,5 @@ public class WorldLocationProvider implements Provider<Location> {
   public Location get() {
     return this.location;
   }
+
 }
