@@ -7,12 +7,12 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 
-public class ParticleAnimationManager<T extends Serializable> {
+public final class ParticleAnimationManager<T extends Serializable> {
 
   private final Map<T, ParticleAnimation> animationMap = new HashMap<>();
 
   public ParticleAnimationManager(JavaPlugin plugin) {
-    plugin.getServer().getScheduler().scheduleSyncRepeatingTask(plugin, this::updateAnimations, 1,1);
+    plugin.getServer().getScheduler().scheduleSyncRepeatingTask(plugin, this::updateAnimations, 1, 1);
   }
 
   public synchronized void playAnimation(T key, ParticleAnimation animation) {

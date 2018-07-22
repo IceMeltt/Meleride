@@ -12,7 +12,6 @@ import pl.meleride.api.particles.object.ParticleBundler;
 
 import java.util.Random;
 
-//TODO przenieść do pluginu odpowiadającego za tą akcję
 public final class ParticleVomitAnimation extends ParticleAnimation {
 
   private final Vector currentPosition;

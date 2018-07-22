@@ -13,7 +13,6 @@ public final class ParticleExtendedObject extends ParticleObject {
   protected ParticleExtendedObject(Particle particle) {
     super(particle);
     Validate.isTrue(particle.getDataType() != Void.class, "This particle requires simple object!");
-    this.particleData = null;
   }
 
   @Override

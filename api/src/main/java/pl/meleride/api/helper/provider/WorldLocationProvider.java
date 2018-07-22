@@ -1,5 +1,6 @@
 package pl.meleride.api.helper.provider;
 
+import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import pl.meleride.api.helper.Provider;
 
@@ -13,7 +14,7 @@ public class WorldLocationProvider implements Provider<Location> {
 
   @Override
   public boolean isAvailable() {
-    return true;
+    return Bukkit.getWorlds().contains(location.getWorld());
   }
 
   @Override

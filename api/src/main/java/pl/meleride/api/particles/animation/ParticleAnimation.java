@@ -22,15 +22,15 @@ public abstract class ParticleAnimation {
   }
 
   public void update() {
-    if (!locationProvider.isAvailable()) {
+    if (!this.locationProvider.isAvailable()) {
       this.stop();
       return;
     }
 
-    if (++frameCounter % frameDelay == 0)
+    if (++this.frameCounter % this.frameDelay == 0)
       this.renderFrame();
 
-    if (frameCounter / frameDelay == frameLimit)
+    if (this.frameCounter / this.frameDelay == this.frameLimit)
       this.stop();
   }
 
