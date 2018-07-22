@@ -8,7 +8,8 @@ import java.util.List;
 
 public class ParticleCirclePattern implements ParticlePattern {
 
-  private final float radius, particlesCount;
+  private final float radius;
+  private final float particlesCount;
 
   public ParticleCirclePattern(float radius, float particlesCount) {
     Validate.isTrue(radius > 0, "Radius must be greater than 0!");

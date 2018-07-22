@@ -8,7 +8,9 @@ public abstract class ParticleAnimation {
 
   private final Provider<Location> locationProvider;
   private boolean running;
-  private long frameDelay, frameLimit, frameCounter;
+  private long frameDelay;
+  private long frameLimit;
+  private long frameCounter;
 
   protected ParticleAnimation(Provider<Location> locationProvider, long frameDelay, long frameLimit) {
     Validate.isTrue(frameDelay > 0, "Frame delay must be greater than 0!");

@@ -2,11 +2,12 @@ package pl.meleride.api.particles.animation;
 
 import org.bukkit.plugin.java.JavaPlugin;
 
+import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 
-public class ParticleAnimationManager<T> {
+public class ParticleAnimationManager<T extends Serializable> {
 
   private final Map<T, ParticleAnimation> animationMap = new HashMap<>();
 
