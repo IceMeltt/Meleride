@@ -4,6 +4,7 @@ import org.bukkit.Location;
 import org.bukkit.Particle;
 import org.bukkit.entity.Player;
 import org.bukkit.util.Vector;
+import pl.meleride.api.particles.patterns.ParticlePattern;
 
 import java.util.Collection;
 
@@ -47,6 +48,17 @@ public abstract class ParticleObject {
     players.forEach(player -> this.spawn(player, location));
   }
 
+  public void spawnPattern(Location location, ParticlePattern pattern) {
+    pattern.create().forEach(offset -> this.spawn(location.clone().add(offset)));
+  }
+
+  public void spawnPattern(Player player, Location location, ParticlePattern pattern) {
+    pattern.create().forEach(offset -> this.spawn(player, location.clone().add(offset)));
+  }
+
+  public void spawnPattern(Collection<? extends Player> players, Location location, ParticlePattern pattern) {
+    players.forEach(player -> this.spawnPattern(player, location, pattern));
+  }
 
 
 }
