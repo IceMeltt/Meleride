@@ -26,7 +26,7 @@ public class MelerideWorld extends JavaPlugin {
   }
 
   public Weather getWeatherInstance() {
-    return weather;
+    return this.weather;
   }
 
 }

@@ -3,8 +3,9 @@ package pl.meleride.api.i18n;
 import net.md_5.bungee.api.ChatMessageType;
 import net.md_5.bungee.api.chat.TextComponent;
 import org.apache.commons.lang.Validate;
+import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
-import pl.meleride.api.user.User;
+import pl.meleride.api.entity.User;
 import pl.meleride.api.message.MessageType;
 
 import java.util.Collection;
@@ -12,11 +13,11 @@ import java.util.Collection;
 public final class MessageSender {
 
   private final MessageType messageType;
-  private final String messageContent;
+  private final String messageValue;
 
-  MessageSender(MessageType messageType, String messageContent) {
+  MessageSender(MessageType messageType, String messageValue) {
     this.messageType = messageType;
-    this.messageContent = messageContent;
+    this.messageValue = messageValue;
   }
 
   public void sendTo(Player player) {
@@ -24,26 +25,26 @@ public final class MessageSender {
 
     switch (this.messageType) {
       case CHAT:
-        player.sendMessage(this.messageContent);
+        player.sendMessage(this.messageValue);
         break;
       case TITLE:
-        player.sendTitle(this.messageContent, "", -1, -1, -1);
+        player.sendTitle(this.messageValue, "", -1, -1, -1);
         break;
       case SUB_TITLE:
-        player.sendTitle("", this.messageContent, -1, -1, -1);
+        player.sendTitle("", this.messageValue, -1, -1, -1);
         break;
       case ACTION_BAR:
-        player.spigot().sendMessage(ChatMessageType.ACTION_BAR, new TextComponent(this.messageContent));
+        player.spigot().sendMessage(ChatMessageType.ACTION_BAR, new TextComponent(this.messageValue));
         break;
       default:
-        player.sendMessage(this.messageContent);
+        player.sendMessage(this.messageValue);
     }
   }
 
-  public void sendTo(User user) {
+  public <T extends User> void sendTo(T user) {
     Validate.notNull(user, "User cannot be null!");
 
-    this.sendTo(user.getBukkitPlayer());
+    this.sendTo(Bukkit.getPlayer(user.getIdentifier()));
   }
 
   public void sendTo(Collection<? extends Player> players) {

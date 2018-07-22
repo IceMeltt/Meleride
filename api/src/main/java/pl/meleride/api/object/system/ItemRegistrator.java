@@ -5,11 +5,11 @@ import java.util.Map;
 import org.apache.commons.lang.Validate;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
-import pl.meleride.api.MelerideAPI;
+import pl.meleride.api.MelerideApi;
 
 public class ItemRegistrator {
 
-  private static final MelerideAPI INSTANCE = JavaPlugin.getPlugin(MelerideAPI.class);
+  private static final MelerideApi INSTANCE = JavaPlugin.getPlugin(MelerideApi.class);
   private static Map<String, AbstractItem> objects = new HashMap<>();
 
   public static void register(AbstractItem... abstractItems) {
