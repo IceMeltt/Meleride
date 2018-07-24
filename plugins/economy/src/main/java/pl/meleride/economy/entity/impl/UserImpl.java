@@ -58,7 +58,7 @@ public class UserImpl implements User {
 
   @Override
   public Map<Currency, Double> getPocketBalance() {
-    return new HashMap<>(this.pocketBalance);
+    return this.pocketBalance;
   }
 
   @Override
