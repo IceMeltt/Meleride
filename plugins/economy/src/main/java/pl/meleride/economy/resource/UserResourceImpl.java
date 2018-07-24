@@ -2,7 +2,6 @@ package pl.meleride.economy.resource;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.Arrays;
 import java.util.UUID;
 import pl.meleride.api.helper.UniqueIdHelper;
 import pl.meleride.api.storage.Resource;
@@ -22,7 +21,7 @@ public class UserResourceImpl implements Resource<User> {
   }
 
   public void load(User user) {
-    String query = "SELECT * FROM `economy_users` WHERE `uuid` = '" + user.getIdentifier() + "';";
+    String query = "SELECT * FROM `economy_users` WHERE `uuid` = UNHEX('" + user.getIdentifier().toString().replace("-", "") + "');";
 
     try {
       ResultSet resultSet = this.plugin.getStorage().query(query);
