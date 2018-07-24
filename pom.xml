@@ -28,13 +28,18 @@
       <id>opengui</id>
       <url>https://repo.socketbyte.pl/repository/nexus-releases/</url>
     </repository>
+
+    <repository>
+      <id>dmulloy2-repo</id>
+      <url>http://repo.dmulloy2.net/nexus/repository/public/</url>
+    </repository>
   </repositories>
 
   <dependencyManagement>
     <dependencies>
       <dependency>
         <groupId>org.spigotmc</groupId>
-        <artifactId>spigot-api</artifactId>
+        <artifactId>spigot</artifactId>
         <version>1.12.2-R0.1-SNAPSHOT</version>
         <scope>provided</scope>
       </dependency>
@@ -62,6 +67,12 @@
         <groupId>com.zaxxer</groupId>
         <artifactId>HikariCP</artifactId>
         <version>3.2.0</version>
+      </dependency>
+
+      <dependency>
+        <groupId>com.comphenix.protocol</groupId>
+        <artifactId>ProtocolLib-API</artifactId>
+        <version>4.3.0</version>
       </dependency>
     </dependencies>
   </dependencyManagement>

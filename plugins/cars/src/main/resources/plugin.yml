@@ -1,0 +1,6 @@
+name: MeleCars
+main: pl.meleride.cars.MelerideCars
+version: 0.3.0
+author: Meleride
+website: https://meleride.pl
+depend: [MeleAPI]
