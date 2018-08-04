@@ -21,6 +21,8 @@ public class PlayerQuitListener implements Listener<PlayerQuitEvent> {
     User user = this.plugin.getUserManager().getUser(event.getPlayer().getUniqueId()).get();
 
     this.plugin.getUserResource().save(user);
+
+    this.plugin.getUserManager().removeUser(user);
   }
 
 }
