@@ -36,11 +36,11 @@ public class UserResourceImpl implements Resource<User> {
         });
 
         user.setName(resultSet.getString("name"));
-        this.plugin.getUserManager().add(user, Currency.PLN, resultSet.getDouble("handledpln"));
-        this.plugin.getUserManager().add(user, Currency.EUR, resultSet.getDouble("handledeur"));
-        this.plugin.getUserManager().add(user, Currency.CZK, resultSet.getDouble("handledczk"));
-        this.plugin.getUserManager().add(user, Currency.USD, resultSet.getDouble("handledusd"));
-        this.plugin.getUserManager().add(user, Currency.JPY, resultSet.getDouble("handledjpy"));
+        this.plugin.getUserManager().addMoney(user, Currency.PLN, resultSet.getDouble("handledpln"));
+        this.plugin.getUserManager().addMoney(user, Currency.EUR, resultSet.getDouble("handledeur"));
+        this.plugin.getUserManager().addMoney(user, Currency.CZK, resultSet.getDouble("handledczk"));
+        this.plugin.getUserManager().addMoney(user, Currency.USD, resultSet.getDouble("handledusd"));
+        this.plugin.getUserManager().addMoney(user, Currency.JPY, resultSet.getDouble("handledjpy"));
       }
     } catch (SQLException | StorageException ex) {
       ex.printStackTrace();

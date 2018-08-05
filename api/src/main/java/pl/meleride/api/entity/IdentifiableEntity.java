@@ -6,6 +6,4 @@ public interface IdentifiableEntity<T extends Serializable> {
 
   T getIdentifier();
 
-  void setIdentifier(T identifier);
-
 }
