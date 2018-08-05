@@ -7,11 +7,11 @@ import pl.meleride.economy.entity.User;
 
 public class UserManagerImpl extends AbstractUserManager<User> implements UserManager {
 
-  public boolean has(User user, Currency currency, double amount) {
+  public boolean hasMoney(User user, Currency currency, double amount) {
     return user.getPocketBalance().getOrDefault(currency, 0.0) >= amount;
   }
 
-  public boolean exchange(User user, Currency from, Currency to, double amount) {
+  public boolean exchangeMoney(User user, Currency from, Currency to, double amount) {
     if (user.getPocketBalance().get(from) == null || user.getPocketBalance().get(from) == 0.0) {
       return false;
     }
@@ -29,8 +29,8 @@ public class UserManagerImpl extends AbstractUserManager<User> implements UserMa
     return true;
   }
 
-  public boolean charge(User user, Currency currency, double amount) {
-    if (!this.has(user, currency, amount)) {
+  public boolean chargeMoney(User user, Currency currency, double amount) {
+    if (!this.hasMoney(user, currency, amount)) {
       return false;
     }
 
@@ -38,7 +38,7 @@ public class UserManagerImpl extends AbstractUserManager<User> implements UserMa
     return true;
   }
 
-  public void add(User user, Currency currency, double amount) {
+  public void addMoney(User user, Currency currency, double amount) {
     user.getPocketBalance().put(
         currency,
         user.getPocketBalance().getOrDefault(currency, 0.0) + amount

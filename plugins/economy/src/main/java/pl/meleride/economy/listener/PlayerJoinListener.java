@@ -32,7 +32,7 @@ public class PlayerJoinListener implements Listener<PlayerJoinEvent> {
     }
 
     if(user.getPocketBalance().get(Currency.PLN) == null) {
-      plugin.getUserManager().add(user, Currency.PLN, 0.0);
+      plugin.getUserManager().addMoney(user, Currency.PLN, 0.0);
     }
   }
 
