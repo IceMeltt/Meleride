@@ -47,18 +47,13 @@ public class UserImpl implements User {
   }
 
   @Override
-  public void setIdentifier(UUID identifier) {
-    this.identifier = identifier;
-  }
-
-  @Override
   public void setName(String name) {
     this.name = name;
   }
 
   @Override
   public Map<Currency, Double> getPocketBalance() {
-    return new HashMap<>(this.pocketBalance);
+    return this.pocketBalance;
   }
 
   @Override
