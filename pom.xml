@@ -28,6 +28,16 @@
       <id>opengui</id>
       <url>https://repo.socketbyte.pl/repository/nexus-releases/</url>
     </repository>
+
+    <repository>
+      <id>inventive-repo</id>
+      <url>https://repo.inventivetalent.org/content/repositories/releases</url>
+    </repository>
+
+    <repository>
+      <id>sk89q-repo</id>
+      <url>http://maven.sk89q.com/repo/</url>
+    </repository>
   </repositories>
 
   <dependencyManagement>
@@ -62,6 +72,34 @@
         <groupId>com.zaxxer</groupId>
         <artifactId>HikariCP</artifactId>
         <version>3.2.0</version>
+      </dependency>
+
+      <dependency>
+        <groupId>org.inventivetalent</groupId>
+        <artifactId>hologramapi</artifactId>
+        <version>1.6.0</version>
+        <scope>compile</scope>
+      </dependency>
+
+      <dependency>
+        <groupId>com.sk89q.worldedit</groupId>
+        <artifactId>worldedit-core</artifactId>
+        <version>6.1.4-SNAPSHOT</version>
+        <scope>provided</scope>
+      </dependency>
+
+      <dependency>
+        <groupId>com.sk89q.worldedit</groupId>
+        <artifactId>worldedit-bukkit</artifactId>
+        <version>6.1.5</version>
+        <scope>provided</scope>
+      </dependency>
+
+      <dependency>
+        <groupId>com.sk89q.worldguard</groupId>
+        <artifactId>worldguard-legacy</artifactId>
+        <version>6.2</version>
+        <scope>provided</scope>
       </dependency>
     </dependencies>
   </dependencyManagement>

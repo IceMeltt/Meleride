@@ -1,0 +1,7 @@
+name: MelerideShop
+version: 0.3.0
+main: pl.meleride.shop.MelerideShop
+authors: Meleride
+description: Prosty plugin na sklep
+
+depend: [HologramAPI, WorldEdit, WorldGuard]

@@ -1,0 +1,36 @@
+shop-items:
+#raczej zmienie wyglad tej konfiguracji bo wyglada slabo :c
+  diamenty:
+    cost-per-piece: 2.50 #1 sztuka
+    hologram:
+      title: "&6Przedmiot: &6DIAMENTY"
+      lines:
+        - "&62.50/szt"
+        - "{COST}/{AMOUNT}szt" #aktualny koszt za wszystkie sztuki gracza
+      location:
+        world: world
+        x: 1.2
+        y: 80.1
+        z: 31.5
+    inventory:
+      name: "&6Kupno przedmiotu: &bdiamenty"
+      item:
+        material: DIAMOND
+        name: "&6Diamenty"
+        lore:
+          - "&7Sztuki: &6{AMOUNT}"
+          - "&7Laczny koszt: &6{COST}"
+regions:
+  basket: "shop_basket" #jak region konczy sie na "shop_basket" to gdy gracz kliknie "f" (zmieni reke) to otwiera mu sie koszyk itemow ktore kupuje
+  buy: "shop_buy" #jak gracz wejdzie w region "shop_buy" to kupuje mu wszystkie itemy ktore ma w koszyku, no chyba ze nie ma kasy :D
+inventory:
+  basket:
+    name: "&6Koszyk"
+  buy:
+    items:
+      increase: #dodawanie 1 (+1) do amount
+        material: GOLD_INGOT #tu beda motyki z jakims durability
+        name: "&6Zwieksz ilosc"
+      decrease: #odejmowanie 1 (-1) z amount
+        material: IRON_INGOT
+        name: "&6Zmniejsz ilosc"

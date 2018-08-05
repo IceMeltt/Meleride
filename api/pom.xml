@@ -41,6 +41,11 @@
       <groupId>com.zaxxer</groupId>
       <artifactId>HikariCP</artifactId>
     </dependency>
+
+    <dependency>
+      <groupId>org.inventivetalent</groupId>
+      <artifactId>hologramapi</artifactId>
+    </dependency>
   </dependencies>
 
 </project>
