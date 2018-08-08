@@ -1,8 +1,6 @@
 package pl.meleride.base.listener;
 
-import java.util.Arrays;
 import java.util.List;
-import org.apache.commons.lang.StringUtils;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.player.PlayerJoinEvent;
@@ -36,53 +34,10 @@ public class PlayerJoinListener implements Listener<PlayerJoinEvent> {
       this.plugin.getUserResource().load(user);
     }
 
-    String titleToAnimate = colored("&eM&f_ "
-        + "&eMe&f_ "
-        + "&eMel&f_ "
-        + "&eMele&f_ "
-        + "&eMele&6r&f_ "
-        + "&eMele&6ri&f_ "
-        + "&eMele&6rid&f_ "
-        + "&eMele&6ride&f_ "
-        + "&eMele&6ride "
-        + "&e&lM&eele&6ride "
-        + "&e&lM&le&ele&6ride "
-        + "&e&lM&le&ll&ee&6ride "
-        + "&e&lM&le&ll&le&6ride "
-        + "&e&lM&le&ll&le&6&lr&6ide "
-        + "&e&lM&le&ll&le&6&lr&li&6de "
-        + "&e&lM&le&ll&le&6&lr&li&ld&6e "
-        + "&e&lM&le&ll&le&6&lr&li&ld&le "
-        + "&e&lM&le&ll&le&6&lr&li&ld&le "
-        + "&e&lM&le&ll&le&6&lr&li&ld&le "
-    );
-
-    String subTitleToAnimate = colored("&7▆&f▇██▇▆ "
-        + "&7▆▇&f██▇▆ "
-        + "&7▆▇█&f█▇▆ "
-        + "&7▆▇██&f▇▆ "
-        + "&7▆▇██▇&f▆ "
-        + "&7▆▇██▇▆ "
-        + "&7▆▇██▆▇ "
-        + "&7▆▇█▆▇▇ "
-        + "&7▆▇▆█▇▇ "
-        + "&7▆▆██▇▇ "
-        + "&7▆▇██▇▆ "
-        + "&7▆▆██▇▆ "
-        + "&7▆▇▆█▇▆ "
-        + "&7▆▇█▆▇▆ "
-        + "&7▆▇██▆▆ "
-        + "&7▆▇██▇▆ "
-        + "&e▆▇██▇▆ "
-        + "&6▆▇██▇▆ "
-        + "&e▆▇█&6█▇▆ "
-    );
-
-    List<String> titleAnimationContent = Arrays
-        .asList(StringUtils.splitByWholeSeparator(titleToAnimate, " "));
-
-    List<String> subTitleAnimationContent = Arrays
-        .asList(StringUtils.splitByWholeSeparator(subTitleToAnimate, " "));
+    List<String> titleAnimationContent = colored(
+        this.plugin.getConfig().getStringList("animation.title"));
+    List<String> subTitleAnimationContent = colored(
+        this.plugin.getConfig().getStringList("animation.subtitle"));
 
     new TitleAnimationTask(titleAnimationContent, subTitleAnimationContent, event.getPlayer(), 0)
         .runTaskTimerAsynchronously(this.plugin, 20, 4);

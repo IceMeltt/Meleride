@@ -42,6 +42,7 @@ public class MelerideBase extends JavaPlugin implements PluginModule {
 
     this.userResource.checkTable();
     this.drugShop = new DrugShop();
+
     this.registerListeners(
         new PlayerPreLoginListener(this),
         new PlayerJoinListener(this),
@@ -60,6 +61,8 @@ public class MelerideBase extends JavaPlugin implements PluginModule {
             .create(DrugTrait.class)
             .withName("dealerTrait"));
 
+    this.saveDefaultConfig();
+    this.getConfig().options().copyDefaults(true);
   }
 
   @Override
