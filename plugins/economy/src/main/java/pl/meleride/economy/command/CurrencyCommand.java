@@ -68,7 +68,7 @@ public class CurrencyCommand {
         }
 
         double amount = context.getParamDouble(1);
-        this.plugin.getUserManager().add(user, Currency.getCurrency(currencyName), amount);
+        this.plugin.getUserManager().addMoney(user, Currency.getCurrency(currencyName), amount);
         break;
     }
   }

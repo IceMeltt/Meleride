@@ -50,11 +50,6 @@ public class UserImpl implements User {
   }
 
   @Override
-  public void setIdentifier(UUID identifier) {
-    this.identifier = identifier;
-  }
-
-  @Override
   public Set<Disease> getDiseases() {
     return new HashSet<>(diseases);
   }

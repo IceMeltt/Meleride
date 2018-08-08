@@ -25,14 +25,14 @@ public class PlayerJoinListener implements Listener<PlayerJoinEvent> {
       user.setName(event.getPlayer().getName());
     }
 
-    if(user.getPocketBalance() == null) {
-      plugin.getUserManager().add(user, Currency.PLN, 0.0);
-    }
-
     if (!event.getPlayer().hasPlayedBefore()) {
         this.plugin.getUserResource().save(user);
       } else {
         this.plugin.getUserResource().load(user);
+    }
+
+    if(user.getPocketBalance().get(Currency.PLN) == null) {
+      plugin.getUserManager().addMoney(user, Currency.PLN, 0.0);
     }
   }
 
