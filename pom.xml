@@ -81,6 +81,15 @@
     </dependency>
   </dependencies>
 
+  <profiles>
+    <profile>
+      <id>bmstefanski</id>
+      <build>
+        <directory>/home/bmstefanski/minecraft/plugins/</directory>
+      </build>
+    </profile>
+  </profiles>
+
   <build>
     <finalName>${project.artifactId} v${project.version}</finalName>
 
@@ -129,7 +138,6 @@
           </execution>
         </executions>
       </plugin>
-
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-compiler-plugin</artifactId>
