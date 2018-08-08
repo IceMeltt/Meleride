@@ -14,29 +14,29 @@ import pl.meleride.cars.tasks.PublicCarsControllSystem;
 
 public class Main extends JavaPlugin {
 
-	private static Main instance;
+  private static Main instance;
 
-	@Override
-	public void onEnable() {
-		instance = this;
-		regListeners();
-		new PublicCarsControllSystem().runTaskTimerAsynchronously(this, 0, 20 * 30);
-		getCommand("ca").setExecutor(new CarAdminCommand());
-	}
+  @Override
+  public void onEnable() {
+    instance = this;
+    regListeners();
+    new PublicCarsControllSystem().runTaskTimerAsynchronously(this, 0, 20 * 30);
+    getCommand("ca").setExecutor(new CarAdminCommand());
+  }
 
-	@Override
-	public void onDisable() {
+  @Override
+  public void onDisable() {
 
-	}
+  }
 
-	private void regListeners() {
-		ProtocolLibrary.getProtocolManager().addPacketListener(new CarPacketListener(this, ListenerPriority.NORMAL,
-				new PacketType[] { PacketType.Play.Client.STEER_VEHICLE }));
-		Bukkit.getServer().getPluginManager().registerEvents(new SecondCarListener(), this);
-	}
+  private void regListeners() {
+    ProtocolLibrary.getProtocolManager().addPacketListener(new CarPacketListener(this, ListenerPriority.NORMAL,
+            new PacketType[]{PacketType.Play.Client.STEER_VEHICLE}));
+    Bukkit.getServer().getPluginManager().registerEvents(new SecondCarListener(), this);
+  }
 
-	public static Main getInstance() {
-		return instance;
-	}
+  public static Main getInstance() {
+    return instance;
+  }
 
 }

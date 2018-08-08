@@ -16,47 +16,47 @@ import pl.meleride.cars.objects.Car;
 
 public class SecondCarListener implements Listener {
 
-	@SuppressWarnings("deprecation")
-	@EventHandler
-	public void onEnterVehicle(PlayerInteractAtEntityEvent e) {
-		if (e.getRightClicked() instanceof ArmorStand) {
-			ArmorStand as = (ArmorStand) e.getRightClicked();
-			if (MelerideCarsAPI.getCarsMap().containsKey(as.getUniqueId())) {
-				Car car = MelerideCarsAPI.getCarsMap().get(as.getUniqueId());
-				MelerideCarEnterEvent event = new MelerideCarEnterEvent(e.getPlayer(), car);
-				Bukkit.getPluginManager().callEvent(event);
-				if (event.isCancelled())
-					return;
-				if(car.getCarType() != CarType.PUBLIC){
-					if(car.getOwner() != e.getPlayer()) return;
-				}
-				car.getSeat().setPassenger(e.getPlayer());
-			} else {
-				return;
-			}
-		}
+  @SuppressWarnings("deprecation")
+  @EventHandler
+  public void onEnterVehicle(PlayerInteractAtEntityEvent e) {
+    if (e.getRightClicked() instanceof ArmorStand) {
+      ArmorStand as = (ArmorStand) e.getRightClicked();
+      if (MelerideCarsAPI.getCarsMap().containsKey(as.getUniqueId())) {
+        Car car = MelerideCarsAPI.getCarsMap().get(as.getUniqueId());
+        MelerideCarEnterEvent event = new MelerideCarEnterEvent(e.getPlayer(), car);
+        Bukkit.getPluginManager().callEvent(event);
+        if (event.isCancelled())
+          return;
+        if (car.getCarType() != CarType.PUBLIC) {
+          if (car.getOwner() != e.getPlayer()) return;
+        }
+        car.getSeat().setPassenger(e.getPlayer());
+      } else {
+        return;
+      }
+    }
 
-	}
+  }
 
-	// BLOKADA BUGOWANIA AUT
-	@EventHandler
-	public void onArmorStandManipulate(PlayerArmorStandManipulateEvent e) {
-		if (MelerideCarsAPI.getCarsMap().containsKey(e.getRightClicked().getUniqueId()))
-			e.setCancelled(true);
-		return;
-	}
+  // BLOKADA BUGOWANIA AUT
+  @EventHandler
+  public void onArmorStandManipulate(PlayerArmorStandManipulateEvent e) {
+    if (MelerideCarsAPI.getCarsMap().containsKey(e.getRightClicked().getUniqueId()))
+      e.setCancelled(true);
+    return;
+  }
 
-	@EventHandler
-	public void onEnterCar(MelerideCarEnterEvent e) {
+  @EventHandler
+  public void onEnterCar(MelerideCarEnterEvent e) {
 
-	}
+  }
 
-	//DOTYCZY SYSTEMU KONTROLI PUBLICZNYCH AUT
-	@EventHandler
-	public void onExitCar(MelerideCarExitEvent e) {
-		if (e.getCar().getCarType() == CarType.PUBLIC) {
-			e.getCar().setLastExit(System.currentTimeMillis());
-		}
-	}
+  //DOTYCZY SYSTEMU KONTROLI PUBLICZNYCH AUT
+  @EventHandler
+  public void onExitCar(MelerideCarExitEvent e) {
+    if (e.getCar().getCarType() == CarType.PUBLIC) {
+      e.getCar().setLastExit(System.currentTimeMillis());
+    }
+  }
 
 }

@@ -12,131 +12,131 @@ import pl.meleride.cars.enums.CarType;
 
 public class Car {
 
-	private CarType carType;
-	private final int max_pass;
-	private double max;
-	private int durability;
-	private final byte model;
-	private final byte brand;
-	private ItemStack hoeModel;
-	private long lastExit;
-	private ArmorStand car;
-	private ArmorStand seat;
-	private final Location spawnLoc;
-	private double speed;
-	private Player owner;
+  private CarType carType;
+  private final int max_pass;
+  private double max;
+  private int durability;
+  private final byte model;
+  private final byte brand;
+  private ItemStack hoeModel;
+  private long lastExit;
+  private ArmorStand car;
+  private ArmorStand seat;
+  private final Location spawnLoc;
+  private double speed;
+  private Player owner;
 
-	public Car(ArmorStand car, CarType carType, double max_speed, int durability, int max_passengers, byte model,
-			byte brand, Location l, Player owner) {
+  public Car(ArmorStand car, CarType carType, double max_speed, int durability, int max_passengers, byte model,
+             byte brand, Location l, Player owner) {
 
-		if (max_passengers <= 2 && max_passengers > 0) {
-			this.max_pass = max_passengers;
-		} else {
-			this.max_pass = 1;
-		}
+    if (max_passengers <= 2 && max_passengers > 0) {
+      this.max_pass = max_passengers;
+    } else {
+      this.max_pass = 1;
+    }
 
-		this.seat = null;
-		this.car = car;
-		this.carType = carType;
-		this.max = max_speed;
-		this.durability = durability;
-		this.model = model;
-		this.brand = brand;
-		this.spawnLoc = l;
-		this.speed = 0;
-		this.setOwner(owner);
+    this.seat = null;
+    this.car = car;
+    this.carType = carType;
+    this.max = max_speed;
+    this.durability = durability;
+    this.model = model;
+    this.brand = brand;
+    this.spawnLoc = l;
+    this.speed = 0;
+    this.setOwner(owner);
 
-		this.lastExit = System.currentTimeMillis();
+    this.lastExit = System.currentTimeMillis();
 
-		setHoeModel(durability);
-		//this.car.setHelmet(this.hoeModel);
-		spawnSeat();
-	}
-	
-	public double getSpeed(){
-		return speed;
-	}
-	
-	public void setSpeed(double i){
-		this.speed = i;
-	}
-	
-	private void spawnSeat() {	
-		ArmorStand c2 = spawnLoc.getWorld().spawn(spawnLoc, ArmorStand.class);
-		c2.setHelmet(this.hoeModel);
-		c2.setVisible(false);
-		c2.setGravity(false);
-		c2.setCustomName("�rSiedzonko");
-		c2.setCustomNameVisible(false);
-		c2.setFireTicks(0);
-		c2.setMarker(true);
-		MelerideCarsAPI.getSeatConnect().put(c2.getUniqueId(), this.car.getUniqueId());
-		this.seat = c2;
-	}
+    setHoeModel(durability);
+    //this.car.setHelmet(this.hoeModel);
+    spawnSeat();
+  }
 
-	public Location getSpawnLocation() {
-		return spawnLoc;
-	}
+  public double getSpeed() {
+    return speed;
+  }
 
-	public ArmorStand getCar() {
-		return car;
-	}
-	
-	public ArmorStand getSeat() {
-		return seat;
-	}
+  public void setSpeed(double i) {
+    this.speed = i;
+  }
 
-	public ItemStack getHoeModel() {
-		return hoeModel;
-	}
+  private void spawnSeat() {
+    ArmorStand c2 = spawnLoc.getWorld().spawn(spawnLoc, ArmorStand.class);
+    c2.setHelmet(this.hoeModel);
+    c2.setVisible(false);
+    c2.setGravity(false);
+    c2.setCustomName("�rSiedzonko");
+    c2.setCustomNameVisible(false);
+    c2.setFireTicks(0);
+    c2.setMarker(true);
+    MelerideCarsAPI.getSeatConnect().put(c2.getUniqueId(), this.car.getUniqueId());
+    this.seat = c2;
+  }
 
-	public long getLastExit() {
-		return lastExit;
-	}
+  public Location getSpawnLocation() {
+    return spawnLoc;
+  }
 
-	public void setLastExit(long time) {
-		this.lastExit = time;
-	}
+  public ArmorStand getCar() {
+    return car;
+  }
 
-	private void setHoeModel(int dur) {
-		ItemStack hoe = new ItemStack(Material.DIAMOND_HOE, 1);
-		ItemMeta meta = hoe.getItemMeta();
-		meta.setUnbreakable(true);
-		hoe.setItemMeta(meta);
-		hoe.setDurability((short) dur);
-		this.hoeModel = hoe;
-	}
+  public ArmorStand getSeat() {
+    return seat;
+  }
 
-	public byte getBrand() {
-		return brand;
-	}
+  public ItemStack getHoeModel() {
+    return hoeModel;
+  }
 
-	public byte getModel() {
-		return model;
-	}
+  public long getLastExit() {
+    return lastExit;
+  }
 
-	public int getDurability() {
-		return durability;
-	}
+  public void setLastExit(long time) {
+    this.lastExit = time;
+  }
 
-	public double getMaxSpeed() {
-		return max;
-	}
+  private void setHoeModel(int dur) {
+    ItemStack hoe = new ItemStack(Material.DIAMOND_HOE, 1);
+    ItemMeta meta = hoe.getItemMeta();
+    meta.setUnbreakable(true);
+    hoe.setItemMeta(meta);
+    hoe.setDurability((short) dur);
+    this.hoeModel = hoe;
+  }
 
-	public int getMaxPassengers() {
-		return max_pass;
-	}
+  public byte getBrand() {
+    return brand;
+  }
 
-	public CarType getCarType() {
-		return carType;
-	}
+  public byte getModel() {
+    return model;
+  }
 
-	public Player getOwner() {
-		return owner;
-	}
+  public int getDurability() {
+    return durability;
+  }
 
-	public void setOwner(Player owner) {
-		this.owner = owner;
-	}
+  public double getMaxSpeed() {
+    return max;
+  }
+
+  public int getMaxPassengers() {
+    return max_pass;
+  }
+
+  public CarType getCarType() {
+    return carType;
+  }
+
+  public Player getOwner() {
+    return owner;
+  }
+
+  public void setOwner(Player owner) {
+    this.owner = owner;
+  }
 
 }
