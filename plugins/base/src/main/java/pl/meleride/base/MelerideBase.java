@@ -43,7 +43,6 @@ public class MelerideBase extends JavaPlugin implements PluginModule {
     this.userResource.checkTable();
     this.drugShop = new DrugShop();
 
-
     ItemRegistrator.register(
         new MDMA(this),
         new Cannabis(this),
@@ -85,7 +84,6 @@ public class MelerideBase extends JavaPlugin implements PluginModule {
   private HikariConfig dataSourceConfiguration() {
     HikariConfig config = new HikariConfig();
     config.setJdbcUrl(MessageBundler.create("database.jdbc").toString());
-
     return config;
   }
 
