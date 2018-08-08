@@ -1,11 +1,11 @@
-package pl.meleride.cars.events;
+package pl.meleride.cars.event;
 
 import org.bukkit.entity.Player;
 import org.bukkit.event.Cancellable;
 import org.bukkit.event.Event;
 import org.bukkit.event.HandlerList;
 
-import pl.meleride.cars.objects.Car;
+import pl.meleride.cars.car.Car;
 
 public class MelerideCarSpawnEvent extends Event implements Cancellable {
 
@@ -17,7 +17,6 @@ public class MelerideCarSpawnEvent extends Event implements Cancellable {
   public MelerideCarSpawnEvent(Player player, Car car) {
     this.player = player;
     this.car = car;
-    cancelled = false;
   }
 
   public Car getCar() {

@@ -1,10 +1,10 @@
-package pl.meleride.cars.tasks;
+package pl.meleride.cars.task;
 
 import org.bukkit.scheduler.BukkitRunnable;
 
 import pl.meleride.cars.api.MelerideCarsAPI;
-import pl.meleride.cars.enums.CarType;
-import pl.meleride.cars.objects.Car;
+import pl.meleride.cars.car.CarType;
+import pl.meleride.cars.car.Car;
 
 public class PublicCarsControllSystem extends BukkitRunnable {
 

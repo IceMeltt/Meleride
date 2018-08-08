@@ -8,9 +8,9 @@ import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.entity.ArmorStand;
 import org.bukkit.entity.Player;
-import pl.meleride.cars.enums.CarType;
-import pl.meleride.cars.events.MelerideCarSpawnEvent;
-import pl.meleride.cars.objects.Car;
+import pl.meleride.cars.car.CarType;
+import pl.meleride.cars.event.MelerideCarSpawnEvent;
+import pl.meleride.cars.car.Car;
 
 public class MelerideCarsAPI {
 

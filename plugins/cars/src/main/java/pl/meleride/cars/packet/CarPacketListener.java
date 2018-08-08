@@ -15,7 +15,7 @@ import com.comphenix.protocol.events.PacketContainer;
 import com.comphenix.protocol.events.PacketEvent;
 
 import pl.meleride.cars.api.MelerideCarsAPI;
-import pl.meleride.cars.objects.Car;
+import pl.meleride.cars.car.Car;
 import pl.meleride.cars.util.SomeShit;
 import net.minecraft.server.v1_12_R1.EnumParticle;
 import net.minecraft.server.v1_12_R1.PacketPlayInSteerVehicle;
@@ -52,7 +52,7 @@ public class CarPacketListener extends PacketAdapter {
       Block b = car2.getLocation().getBlock();
 
       // PAKIECIKI
-      float forward = pc.getFloat().read(1).floatValue(); // RUCH PRZOD/TYL
+      float forward = pc.getFloat().read(1); // RUCH PRZOD/TYL
       float sideways = packet.a(); // RUCH NA BOKI
       boolean space = packet.c(); // SPACJA
 
@@ -149,10 +149,10 @@ public class CarPacketListener extends PacketAdapter {
       return;
 
     }
+
     car.setVelocity(p.getLocation().getDirection().setY(0.3));
     ((CraftArmorStand) seat).getHandle().setPosition(car.getLocation().getX(), car.getLocation().getY(),
             car.getLocation().getZ());
-    return;
   }
 
 }

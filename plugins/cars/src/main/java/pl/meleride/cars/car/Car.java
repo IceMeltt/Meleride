@@ -1,4 +1,4 @@
-package pl.meleride.cars.objects;
+package pl.meleride.cars.car;
 
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -7,10 +7,12 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
+import pl.meleride.api.entity.IdentifiableEntity;
 import pl.meleride.cars.api.MelerideCarsAPI;
-import pl.meleride.cars.enums.CarType;
 
-public class Car {
+import java.util.UUID;
+
+public class Car implements IdentifiableEntity<UUID> {
 
   private CarType carType;
   private final int max_pass;
@@ -51,6 +53,11 @@ public class Car {
     setHoeModel(durability);
     //this.car.setHelmet(this.hoeModel);
     spawnSeat();
+  }
+
+  @Override
+  public UUID getIdentifier() {
+    return car.getUniqueId();
   }
 
   public double getSpeed() {

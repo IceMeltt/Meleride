@@ -1,4 +1,4 @@
-package pl.meleride.cars.enums;
+package pl.meleride.cars.car;
 
 public enum CarType {
 

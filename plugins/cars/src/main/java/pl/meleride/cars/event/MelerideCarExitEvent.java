@@ -1,10 +1,10 @@
-package pl.meleride.cars.events;
+package pl.meleride.cars.event;
 
 import org.bukkit.entity.Player;
 import org.bukkit.event.Event;
 import org.bukkit.event.HandlerList;
 
-import pl.meleride.cars.objects.Car;
+import pl.meleride.cars.car.Car;
 
 public class MelerideCarExitEvent extends Event {
 

@@ -1,4 +1,4 @@
-package pl.meleride.cars.commands;
+package pl.meleride.cars.command;
 
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -6,7 +6,7 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 import pl.meleride.cars.api.MelerideCarsAPI;
-import pl.meleride.cars.enums.CarType;
+import pl.meleride.cars.car.CarType;
 
 public class CarAdminCommand implements CommandExecutor {
 
