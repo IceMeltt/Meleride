@@ -14,8 +14,9 @@ import com.comphenix.protocol.events.PacketAdapter;
 import com.comphenix.protocol.events.PacketContainer;
 import com.comphenix.protocol.events.PacketEvent;
 
+import org.bukkit.util.Vector;
 import pl.meleride.cars.api.MelerideCarsAPI;
-import pl.meleride.cars.car.Car;
+import pl.meleride.cars.car.BasicCar;
 import pl.meleride.cars.util.SomeShit;
 import net.minecraft.server.v1_12_R1.EnumParticle;
 import net.minecraft.server.v1_12_R1.PacketPlayInSteerVehicle;
@@ -26,7 +27,7 @@ import java.util.List;
 
 public class CarPacketListener extends PacketAdapter {
 
-  private final double ROTATION_SPEED = 1.5;
+  private final double ROTATION_SPEED = 2;
   private final List<Material> materialList = new ArrayList<>();
 
   public CarPacketListener(Plugin plugin, ListenerPriority listenerPriority, PacketType[] types) {
@@ -57,9 +58,9 @@ public class CarPacketListener extends PacketAdapter {
     if (!MelerideCarsAPI.getSeatConnect().containsKey(something.getUniqueId())) return;
     if (!MelerideCarsAPI.getCarsMap().containsKey(MelerideCarsAPI.getSeatConnect().get(something.getUniqueId())))
       return;
-    Car car = MelerideCarsAPI.getCarsMap().get(MelerideCarsAPI.getSeatConnect().get(something.getUniqueId()));
-    ArmorStand seat = car.getSeat();
-    ArmorStand car2 = car.getCar();
+    BasicCar basicCar = MelerideCarsAPI.getCarsMap().get(MelerideCarsAPI.getSeatConnect().get(something.getUniqueId()));
+    ArmorStand seat = basicCar.getSeat();
+    ArmorStand car2 = basicCar.getCar();
 
     if (!(seat.getPassengers().get(0) instanceof Player)) {
       return;
@@ -74,11 +75,11 @@ public class CarPacketListener extends PacketAdapter {
     boolean space = packet.c(); // SPACJA
 
     if (forward > 0) { // [W]
-      if (!(MelerideCarsAPI.getCarsMap().get(car2.getUniqueId()).getSpeed() >= 1)) {
+      if (!(MelerideCarsAPI.getCarsMap().get(car2.getUniqueId()).getSpeed() >= 2)) {
         MelerideCarsAPI.getCarsMap().get(car2.getUniqueId()).setSpeed(MelerideCarsAPI.getCarsMap().get(car2.getUniqueId()).getSpeed() + 0.01);
       }
     } else if (forward < 0) { // [S]
-      if (!(MelerideCarsAPI.getCarsMap().get(car2.getUniqueId()).getSpeed() <= -1)) {
+      if (!(MelerideCarsAPI.getCarsMap().get(car2.getUniqueId()).getSpeed() <= -2)) {
         MelerideCarsAPI.getCarsMap().get(car2.getUniqueId()).setSpeed(MelerideCarsAPI.getCarsMap().get(car2.getUniqueId()).getSpeed() - 0.01);
       }
 				/*if (MelerideCarsAPI.getCarsMap().get(car2.getUniqueId()).getSpeed() >= 0.1) {
@@ -147,7 +148,7 @@ public class CarPacketListener extends PacketAdapter {
     ((CraftArmorStand) seat).getHandle().setPosition(car2.getLocation().getX(), car2.getLocation().getY(),
             car2.getLocation().getZ());
 
-    Location dym = seat.getLocation().add(seat.getLocation().getDirection().multiply(-2));
+    Location dym = seat.getLocation().clone().add(new Vector(0, -1.25, 0));
     SomeShit.particle(dym, EnumParticle.SMOKE_NORMAL);
   }
 

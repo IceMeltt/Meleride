@@ -10,14 +10,14 @@ import org.bukkit.entity.ArmorStand;
 import org.bukkit.entity.Player;
 import pl.meleride.cars.car.CarType;
 import pl.meleride.cars.event.MelerideCarSpawnEvent;
-import pl.meleride.cars.car.Car;
+import pl.meleride.cars.car.BasicCar;
 
 public class MelerideCarsAPI {
 
-  private static Map<UUID, Car> cars = new HashMap<>();
+  private static Map<UUID, BasicCar> cars = new HashMap<>();
   private static Map<UUID, UUID> seatconnect = new HashMap<>();
 
-  public void registerPublicCar(Location loc, Car car) {
+  public void registerPublicCar(Location loc, BasicCar basicCar) {
 
   }
 
@@ -32,19 +32,19 @@ public class MelerideCarsAPI {
     c2.setFireTicks(0);
     c2.setMarker(false);
 
-    Car car = new Car(c2, carType, max_speed, durability, max_passengers, model, brand, l, p);
+    BasicCar basicCar = new BasicCar(c2, carType, max_speed, durability, max_passengers, model, brand, l, p);
 
-    MelerideCarSpawnEvent event = new MelerideCarSpawnEvent(p, car);
+    MelerideCarSpawnEvent event = new MelerideCarSpawnEvent(p, basicCar);
     Bukkit.getServer().getPluginManager().callEvent(event);
     if (event.isCancelled()) {
-      car.getSeat().remove();
-      car.getCar().remove();
+      basicCar.getSeat().remove();
+      basicCar.getCar().remove();
       return;
     }
-    cars.put(c2.getUniqueId(), car);
+    cars.put(c2.getUniqueId(), basicCar);
   }
 
-  public static Map<UUID, Car> getCarsMap() {
+  public static Map<UUID, BasicCar> getCarsMap() {
     return cars;
   }
 

@@ -12,7 +12,7 @@ import pl.meleride.cars.car.CarType;
 
 import pl.meleride.cars.event.MelerideCarEnterEvent;
 import pl.meleride.cars.event.MelerideCarExitEvent;
-import pl.meleride.cars.car.Car;
+import pl.meleride.cars.car.BasicCar;
 
 public class SecondCarListener implements Listener {
 
@@ -29,19 +29,19 @@ public class SecondCarListener implements Listener {
       return;
     }
 
-    Car car = MelerideCarsAPI.getCarsMap().get(as.getUniqueId());
-    MelerideCarEnterEvent event = new MelerideCarEnterEvent(e.getPlayer(), car);
+    BasicCar basicCar = MelerideCarsAPI.getCarsMap().get(as.getUniqueId());
+    MelerideCarEnterEvent event = new MelerideCarEnterEvent(e.getPlayer(), basicCar);
     Bukkit.getPluginManager().callEvent(event);
 
     if (event.isCancelled()) {
       return;
     }
 
-    if (car.getCarType() != CarType.PUBLIC) {
-      if (car.getOwner() != e.getPlayer()) return;
+    if (basicCar.getCarType() != CarType.PUBLIC) {
+      if (basicCar.getOwner() != e.getPlayer().getUniqueId()) return;
     }
 
-    car.getSeat().setPassenger(e.getPlayer());
+    basicCar.getSeat().setPassenger(e.getPlayer());
   }
 
   // BLOKADA BUGOWANIA AUT
@@ -62,11 +62,11 @@ public class SecondCarListener implements Listener {
   //DOTYCZY SYSTEMU KONTROLI PUBLICZNYCH AUT
   @EventHandler
   public void onExitCar(MelerideCarExitEvent e) {
-    if (!(e.getCar().getCarType() == CarType.PUBLIC)) {
+    if (!(e.getBasicCar().getCarType() == CarType.PUBLIC)) {
       return;
     }
 
-    e.getCar().setLastExit(System.currentTimeMillis());
+    e.getBasicCar().setLastExit(System.currentTimeMillis());
   }
 
 }

@@ -5,22 +5,22 @@ import org.bukkit.event.Cancellable;
 import org.bukkit.event.Event;
 import org.bukkit.event.HandlerList;
 
-import pl.meleride.cars.car.Car;
+import pl.meleride.cars.car.BasicCar;
 
 public class MelerideCarEnterEvent extends Event implements Cancellable {
 
   private static final HandlerList handlers = new HandlerList();
   private Player player;
-  private Car car;
+  private BasicCar basicCar;
   private boolean cancelled;
 
-  public MelerideCarEnterEvent(Player player, Car car) {
+  public MelerideCarEnterEvent(Player player, BasicCar basicCar) {
     this.player = player;
-    this.car = car;
+    this.basicCar = basicCar;
   }
 
-  public Car getCar() {
-    return car;
+  public BasicCar getBasicCar() {
+    return basicCar;
   }
 
   public Player getPlayer() {

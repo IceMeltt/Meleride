@@ -10,9 +10,10 @@ import pl.meleride.cars.car.CarType;
 
 public class CarAdminCommand implements CommandExecutor {
 
+  @Override
   public boolean onCommand(CommandSender sender, Command arg1, String arg2, String[] args) {
     MelerideCarsAPI api = new MelerideCarsAPI();
-    api.spawnCar((Player) sender, CarType.NORMAL, 500, 105, 1, (byte) 1, (byte) 1, ((Player) sender).getLocation().add(1, 0, 1));
+    api.spawnCar((Player) sender, CarType.NORMAL, Integer.parseInt(args[0]), 105, 1, (byte) 1, (byte) 1, ((Player) sender).getLocation().add(1, 0, 1));
     return true;
   }
 
