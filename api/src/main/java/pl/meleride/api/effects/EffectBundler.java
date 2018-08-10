@@ -3,12 +3,12 @@ package pl.meleride.api.effects;
 import org.bukkit.Effect;
 import org.bukkit.Particle;
 import org.bukkit.Sound;
-import pl.newdimension.api.effects.impl.effect.EffectBuilder;
-import pl.newdimension.api.effects.impl.effect.EffectObject;
-import pl.newdimension.api.effects.impl.particle.ParticleBuilder;
-import pl.newdimension.api.effects.impl.particle.ParticleObject;
-import pl.newdimension.api.effects.impl.sound.SoundBuilder;
-import pl.newdimension.api.effects.impl.sound.SoundObject;
+import pl.meleride.api.effects.impl.effect.EffectBuilder;
+import pl.meleride.api.effects.impl.effect.EffectObject;
+import pl.meleride.api.effects.impl.particle.ParticleBuilder;
+import pl.meleride.api.effects.impl.particle.ParticleObject;
+import pl.meleride.api.effects.impl.sound.SoundBuilder;
+import pl.meleride.api.effects.impl.sound.SoundObject;
 
 public final class EffectBundler {
   
