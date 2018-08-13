@@ -15,5 +15,19 @@
   <name>Meleride :: Plugins :: Base</name>
   <description>Plugin wprowadzający na serwer firmy.</description>
 
+  <dependencies>
+    <dependency>
+      <groupId>net.wesjd</groupId>
+      <artifactId>anvilgui</artifactId>
+      <version>1.2-SNAPSHOT</version>
+    </dependency>
+  </dependencies>
+
+  <repositories>
+    <repository>
+      <id>wesjd-repo</id>
+      <url>https://nexus.wesjd.net/repository/thirdparty/</url>
+    </repository>
+  </repositories>
 
 </project>

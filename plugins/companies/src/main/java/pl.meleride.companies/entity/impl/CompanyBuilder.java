@@ -11,7 +11,7 @@ public final class CompanyBuilder implements Buildable<Company> {
   private UUID identifier;
   private String name;
   private User owner;
-  private List<String> workers;
+  private List<User> workers;
   private int level;
 
   public CompanyBuilder withIdentifier(UUID identifier) {
@@ -29,7 +29,7 @@ public final class CompanyBuilder implements Buildable<Company> {
     return this;
   }
 
-  public CompanyBuilder withWorkers(List<String> workers) {
+  public CompanyBuilder withWorkers(List<User> workers) {
     this.workers = workers;
     return this;
   }
