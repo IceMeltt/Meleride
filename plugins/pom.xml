@@ -22,6 +22,7 @@
     <module>world</module>
     <module>economy</module>
     <module>user</module>
+    <module>companies</module>
   </modules>
 
   <dependencies>
