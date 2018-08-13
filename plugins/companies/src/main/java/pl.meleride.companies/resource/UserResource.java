@@ -12,7 +12,7 @@ import pl.meleride.companies.MelerideCompanies;
 import pl.meleride.companies.entity.User;
 import pl.meleride.companies.entity.impl.UserImpl;
 
-public class UserResource implements Resource<User> {
+public final class UserResource implements Resource<User> {
 
   private final MelerideCompanies plugin;
 

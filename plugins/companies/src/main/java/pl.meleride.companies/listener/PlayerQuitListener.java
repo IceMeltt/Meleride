@@ -5,7 +5,7 @@ import pl.meleride.api.helper.Listener;
 import pl.meleride.companies.MelerideCompanies;
 import pl.meleride.companies.entity.User;
 
-public class PlayerQuitListener implements Listener<PlayerQuitEvent> {
+public final class PlayerQuitListener implements Listener<PlayerQuitEvent> {
 
   private final MelerideCompanies plugin;
 

@@ -9,7 +9,7 @@ import pl.meleride.companies.MelerideCompanies;
 import pl.meleride.companies.entity.User;
 import pl.meleride.companies.entity.impl.UserImpl;
 
-public class PlayerPreLoginListener implements Listener<AsyncPlayerPreLoginEvent> {
+public final class PlayerPreLoginListener implements Listener<AsyncPlayerPreLoginEvent> {
 
   private final MelerideCompanies plugin;
 

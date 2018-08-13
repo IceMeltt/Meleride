@@ -5,7 +5,7 @@ import pl.meleride.api.helper.Listener;
 import pl.meleride.companies.MelerideCompanies;
 import pl.meleride.companies.entity.User;
 
-public class PlayerJoinListener implements Listener<PlayerJoinEvent> {
+public final class PlayerJoinListener implements Listener<PlayerJoinEvent> {
 
   private final MelerideCompanies plugin;
 

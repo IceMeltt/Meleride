@@ -11,10 +11,10 @@ public final class CompanyImpl implements Company {
   private final UUID identifier;
   private String name;
   private User owner;
-  private List<String> workers;
+  private List<User> workers;
   private int level;
 
-  CompanyImpl(UUID identifier, String name, User owner, List<String> workers, int level) {
+  CompanyImpl(UUID identifier, String name, User owner, List<User> workers, int level) {
     this.identifier = identifier;
     this.name = name;
     this.owner = owner;
@@ -38,7 +38,7 @@ public final class CompanyImpl implements Company {
   }
 
   @Override
-  public List<String> getWorkers() {
+  public List<User> getWorkers() {
     return this.workers;
   }
 
@@ -58,7 +58,7 @@ public final class CompanyImpl implements Company {
   }
 
   @Override
-  public void setWorkers(List<String> workers) {
+  public void setWorkers(List<User> workers) {
     this.workers = workers;
   }
 

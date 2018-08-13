@@ -10,7 +10,7 @@ public interface Company extends IdentifiableEntity<UUID> {
 
   User getOwner();
 
-  List<String> getWorkers();
+  List<User> getWorkers();
 
   int getLevel();
 
@@ -18,7 +18,7 @@ public interface Company extends IdentifiableEntity<UUID> {
 
   void setOwner(User owner);
 
-  void setWorkers(List<String> workers);
+  void setWorkers(List<User> workers);
 
   void setLevel(int level);
 

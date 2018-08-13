@@ -4,12 +4,14 @@ import com.google.common.base.Objects;
 import java.util.Optional;
 import java.util.UUID;
 import org.bukkit.Bukkit;
+import pl.meleride.companies.entity.Company;
 import pl.meleride.companies.entity.User;
 
 public final class UserImpl implements User {
 
   private final UUID identifier;
   private String name;
+  private Company company;
 
   public UserImpl(UUID identifier) {
     this.identifier = identifier;
@@ -27,8 +29,18 @@ public final class UserImpl implements User {
   }
 
   @Override
+  public Optional<Company> getCompany() {
+    return Optional.ofNullable(this.company);
+  }
+
+  @Override
   public void setName(String name) {
     this.name = name;
+  }
+
+  @Override
+  public void setCompany(Company company) {
+    this.company = company;
   }
 
   @Override
