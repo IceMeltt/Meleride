@@ -1,0 +1,6 @@
+name: MeleCompanies
+main: pl.meleride.companies.MelerideCompaniesPlugin
+version: 0.3.0
+author: Meleride
+website: https://meleride.pl
+depend: [MeleAPI]
