@@ -6,6 +6,8 @@ import pl.meleride.api.storage.Resource;
 import pl.meleride.api.storage.StorageException;
 import pl.meleride.api.storage.sql.SqlStorage;
 import pl.meleride.api.storage.sql.hikari.SqlHikariStorage;
+import pl.meleride.commands.bukkit.BukkitCommands;
+import pl.meleride.companies.command.CompanyCommand;
 import pl.meleride.companies.entity.User;
 import pl.meleride.companies.helper.HikariConfigurationHelper;
 import pl.meleride.companies.listener.PlayerJoinListener;
@@ -30,11 +32,15 @@ public final class MelerideCompaniesPlugin extends JavaPlugin implements Melerid
 
   @Override
   public void onEnable() {
+    BukkitCommands bukkitCommands = new BukkitCommands(this);
+
     this.registerListeners(
         new PlayerPreLoginListener(this),
         new PlayerJoinListener(this),
         new PlayerQuitListener(this)
     );
+
+    bukkitCommands.registerCommandObjects(new CompanyCommand(this));
 
     this.saveDefaultConfig();
     this.getConfig().options().copyDefaults(true);
