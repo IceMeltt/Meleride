@@ -9,10 +9,6 @@ import java.util.Collection;
 
 public abstract class AbstractPlayableEffect implements PlayableEffect {
   
-  protected AbstractPlayableEffect() {
-  
-  }
-  
   public void play(Location location) {
     Bukkit.getOnlinePlayers().stream()
         .filter((p) -> p.getLocation().distance(location) <= 50)

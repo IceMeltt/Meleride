@@ -40,7 +40,7 @@ public final class TimeUnit implements Cloneable {
   public boolean equals(Object obj) {
     if (obj.getClass() != TimeUnit.class)
       return false;
-    return this.time == ((TimeUnit) obj).time; //Math.abs(this.time - ((TimeUnit) obj).time) <= 0.01;
+    return this.time == ((TimeUnit) obj).time;
   }
   
   @Override
