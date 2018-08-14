@@ -60,6 +60,9 @@ public class MelerideBase extends JavaPlugin implements PluginModule {
         new PlayerJoinListener(this),
         new PlayerQuitListener(this)
     );
+
+    this.saveDefaultConfig();
+    this.getConfig().options().copyDefaults(true);
   }
 
   @Override
@@ -81,7 +84,6 @@ public class MelerideBase extends JavaPlugin implements PluginModule {
   private HikariConfig dataSourceConfiguration() {
     HikariConfig config = new HikariConfig();
     config.setJdbcUrl(MessageBundler.create("database.jdbc").toString());
-
     return config;
   }
 
