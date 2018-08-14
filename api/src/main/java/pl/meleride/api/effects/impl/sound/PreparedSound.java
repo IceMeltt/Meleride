@@ -1,20 +1,20 @@
 package pl.meleride.api.effects.impl.sound;
 
+import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Sound;
 import org.bukkit.SoundCategory;
 import org.bukkit.entity.Player;
-import pl.meleride.api.effects.PlayerPlayable;
-import pl.meleride.api.effects.WorldPlayable;
+import pl.meleride.api.effects.impl.AbstractPlayableEffect;
 
-public class SoundObject implements WorldPlayable, PlayerPlayable, Cloneable {
+public class PreparedSound extends AbstractPlayableEffect {
   
   private final Sound sound;
   private SoundCategory soundCategory;
   private float volume;
   private float pitch;
   
-  public SoundObject(Sound sound) {
+  public PreparedSound(Sound sound) {
     this.sound = sound;
     this.soundCategory = SoundCategory.NEUTRAL;
     this.volume = 1;
@@ -51,11 +51,9 @@ public class SoundObject implements WorldPlayable, PlayerPlayable, Cloneable {
   
   @Override
   public void play(Location location) {
-    location.getWorld().playSound(location,
-        this.sound,
-        this.soundCategory,
-        this.volume,
-        this.pitch);
+    Bukkit.getOnlinePlayers().stream()
+        .filter((p) -> p.getLocation().distance(location) <= 150)
+        .forEach((p) -> this.play(p, location));
   }
   
   @Override
@@ -68,12 +66,12 @@ public class SoundObject implements WorldPlayable, PlayerPlayable, Cloneable {
   }
   
   @Override
-  public SoundObject clone() {
-    SoundObject soundObject = new SoundObject(this.sound);
-    soundObject.soundCategory = this.soundCategory;
-    soundObject.volume = this.volume;
-    soundObject.pitch = this.pitch;
-    return this;
+  public PreparedSound clone() {
+    PreparedSound clone = new PreparedSound(this.sound);
+    clone.soundCategory = this.soundCategory;
+    clone.volume = this.volume;
+    clone.pitch = this.pitch;
+    return clone;
   }
   
 }

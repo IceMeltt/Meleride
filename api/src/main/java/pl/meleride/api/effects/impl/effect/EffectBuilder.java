@@ -3,25 +3,28 @@ package pl.meleride.api.effects.impl.effect;
 import org.bukkit.Effect;
 import pl.meleride.api.helper.Buildable;
 
-public final class EffectBuilder implements Buildable<EffectObject> {
+public final class EffectBuilder implements Buildable<PreparedEffect> {
   
-  private final EffectObject effectObject;
+  private final PreparedEffect preparedEffect;
   
   public EffectBuilder(Effect effect) {
-    this.effectObject = new EffectObject(effect);
+    this.preparedEffect = new PreparedEffect(effect);
   }
   
-  public EffectBuilder(EffectObject effectObject) {
-    this.effectObject = effectObject;
+  public EffectBuilder(PreparedEffect preparedEffect) {
+    this.preparedEffect = preparedEffect;
   }
   
-  public void data(Object data) {
-    effectObject.setData(data);
+  public EffectBuilder setData(Object data) {
+    this.preparedEffect.setData(data);
+    return this;
   }
   
   @Override
-  public EffectObject build() {
-    return this.effectObject.clone();
+  public PreparedEffect build() {
+    if (this.preparedEffect.isDataRequired())
+      this.preparedEffect.validateData(this.preparedEffect.getData());
+    return this.preparedEffect.clone();
   }
   
 }

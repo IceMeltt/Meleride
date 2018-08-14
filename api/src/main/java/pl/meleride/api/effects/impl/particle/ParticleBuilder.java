@@ -2,46 +2,51 @@ package pl.meleride.api.effects.impl.particle;
 
 import org.bukkit.Particle;
 import org.bukkit.util.Vector;
+import pl.meleride.api.effects.impl.particle.pattern.ParticlePattern;
+import pl.meleride.api.effects.impl.particle.pattern.PreparedParticlePattern;
 import pl.meleride.api.helper.Buildable;
 
-public final class ParticleBuilder implements Buildable<ParticleObject> {
-
-  private final ParticleObject particleObject;
+public final class ParticleBuilder implements Buildable<PreparedParticle> {
   
-  public ParticleBuilder(ParticleObject particleObject) {
-    this.particleObject = particleObject;
-  }
+  private final PreparedParticle preparedParticle;
   
   public ParticleBuilder(Particle particle) {
-    this.particleObject = new ParticleObject(particle);
+    this.preparedParticle = new PreparedParticle(particle);
   }
   
-  public ParticleBuilder offsets(Vector offsets) {
-    particleObject.setOffsets(offsets);
+  public ParticleBuilder(PreparedParticle preparedParticle) {
+    this.preparedParticle = preparedParticle;
+  }
+  
+  public ParticleBuilder setOffsets(Vector offsets) {
+    this.preparedParticle.setOffsets(offsets);
     return this;
   }
   
-  public ParticleBuilder count(int count) {
-    particleObject.setCount(count);
+  public ParticleBuilder setCount(int count) {
+    this.preparedParticle.setCount(count);
     return this;
   }
   
-  public ParticleBuilder extra(float extra) {
-    particleObject.setExtra(extra);
+  public ParticleBuilder setExtra(float extra) {
+    this.preparedParticle.setExtra(extra);
     return this;
   }
   
-  public ParticleBuilder withData(Object data) {
-    particleObject.setData(data);
+  public ParticleBuilder setData(Object data) {
+    this.preparedParticle.setData(data);
     return this;
+  }
+  
+  public PreparedParticlePattern pattern(ParticlePattern pattern) {
+    return new PreparedParticlePattern(this.build(), pattern);
   }
   
   @Override
-  public ParticleObject build() {
-    if (this.particleObject.getParticle().getDataType() != Void.class)
-      this.particleObject.validateData(this.particleObject.getData());
-    
-    return this.particleObject.clone();
+  public PreparedParticle build() {
+    if (this.preparedParticle.isDataRequired())
+      this.preparedParticle.validateData(this.preparedParticle.getData());
+    return this.preparedParticle.clone();
   }
   
 }
