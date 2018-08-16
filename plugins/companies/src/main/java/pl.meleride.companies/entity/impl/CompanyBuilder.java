@@ -10,6 +10,7 @@ public final class CompanyBuilder implements Buildable<Company> {
 
   private UUID identifier;
   private String name;
+  private String business;
   private User owner;
   private List<User> workers;
   private int level;
@@ -21,6 +22,11 @@ public final class CompanyBuilder implements Buildable<Company> {
 
   public CompanyBuilder withName(String name) {
     this.name = name;
+    return this;
+  }
+
+  public CompanyBuilder withBusiness(String business) {
+    this.business = business;
     return this;
   }
 
@@ -41,7 +47,8 @@ public final class CompanyBuilder implements Buildable<Company> {
 
   @Override
   public Company build() {
-    return new CompanyImpl(this.identifier, this.name, this.owner, this.workers, this.level);
+    return new CompanyImpl(this.identifier, this.name, this.business, this.owner, this.workers,
+        this.level);
   }
 
 }

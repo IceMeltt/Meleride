@@ -38,6 +38,8 @@ public final class UserResource implements Resource<User> {
 
         user.setName(resultSet.getString("name"));
       }
+
+      this.plugin.getStorage().getConnection().close();
     } catch (SQLException | StorageException ex) {
       ex.printStackTrace();
     }

@@ -10,13 +10,16 @@ public final class CompanyImpl implements Company {
 
   private final UUID identifier;
   private String name;
+  private String business;
   private User owner;
   private List<User> workers;
   private int level;
 
-  CompanyImpl(UUID identifier, String name, User owner, List<User> workers, int level) {
+  CompanyImpl(UUID identifier, String name, String business,
+      User owner, List<User> workers, int level) {
     this.identifier = identifier;
     this.name = name;
+    this.business = business;
     this.owner = owner;
     this.workers = workers;
     this.level = level;
@@ -48,6 +51,11 @@ public final class CompanyImpl implements Company {
   }
 
   @Override
+  public String getBusiness() {
+    return this.business;
+  }
+
+  @Override
   public void setName(String name) {
     this.name = name;
   }
@@ -65,6 +73,11 @@ public final class CompanyImpl implements Company {
   @Override
   public void setLevel(int level) {
     this.level = level;
+  }
+
+  @Override
+  public void setBusiness(String business) {
+    this.business = business;
   }
 
   @Override

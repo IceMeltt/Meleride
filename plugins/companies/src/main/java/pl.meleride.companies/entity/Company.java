@@ -14,6 +14,8 @@ public interface Company extends IdentifiableEntity<UUID> {
 
   int getLevel();
 
+  String getBusiness();
+
   void setName(String name);
 
   void setOwner(User owner);
@@ -21,5 +23,7 @@ public interface Company extends IdentifiableEntity<UUID> {
   void setWorkers(List<User> workers);
 
   void setLevel(int level);
+
+  void setBusiness(String business);
 
 }

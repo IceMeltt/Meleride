@@ -4,7 +4,7 @@ import org.bukkit.command.CommandSender;
 import pl.meleride.commands.context.CommandContext;
 import pl.meleride.companies.MelerideCompanies;
 
-class CompanyListCommand {
+final class CompanyListCommand {
 
   private final MelerideCompanies plugin;
 

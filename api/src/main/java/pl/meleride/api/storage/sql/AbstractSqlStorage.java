@@ -50,7 +50,6 @@ public abstract class AbstractSqlStorage implements SqlStorage {
     try (Connection connection = this.getConnection()) {
       PreparedStatement statement = connection.prepareStatement(query);
       consumer.accept(statement);
-
       return statement.executeQuery();
     } catch (SQLException ex) {
       throw new StorageException(ex);
