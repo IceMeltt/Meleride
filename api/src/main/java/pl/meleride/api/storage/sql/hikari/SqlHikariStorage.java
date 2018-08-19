@@ -38,39 +38,6 @@ public class SqlHikariStorage extends AbstractSqlStorage {
   }
   
   @Override
-  public ResultSet query(String query, SQLStorageConsumer consumer) throws StorageException {
-    try(Connection connection = this.source.getConnection()) {
-      PreparedStatement statement = connection.prepareStatement(query);
-      consumer.accept(statement);
-        
-      return statement.executeQuery();
-    } catch (SQLException ex) {
-      throw new StorageException(ex);
-    } finally {
-      try {
-        this.source.getConnection().close();
-      } catch (SQLException ex) {
-        throw new StorageException(ex);
-      }
-    }
-  }
-  
-  @Override
-  public ResultSet query(String query) throws StorageException {
-    try {
-      return this.source.getConnection().prepareStatement(query).executeQuery();
-    } catch (SQLException ex) {
-      throw new StorageException(ex);
-    } finally {
-      try {
-        this.source.getConnection().close();
-      } catch (SQLException ex) {
-        throw new StorageException(ex);
-      }
-    }
-  }
-  
-  @Override
   public boolean state() throws StorageException {
     try {
       return this.source.isRunning();
