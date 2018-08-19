@@ -8,7 +8,7 @@ import pl.meleride.api.storage.StorageException;
 
 public abstract class AbstractSqlStorage implements SqlStorage {
 
-  protected abstract Connection getConnection() throws StorageException;
+  public abstract Connection getConnection() throws StorageException;
 
   @Override
   public void open() throws StorageException {
@@ -43,20 +43,16 @@ public abstract class AbstractSqlStorage implements SqlStorage {
   }
 
   @Override
-  public ResultSet query(String query) throws StorageException {
-    Connection connection = this.getConnection();
+  public ResultSet query(Connection connection, String query) throws StorageException {
     try {
       return connection.prepareStatement(query).executeQuery();
     } catch (SQLException ex) {
       throw new StorageException(ex);
-    } finally {
-      this.closeConnection(connection);
     }
   }
 
   @Override
-  public ResultSet query(String query, SQLStorageConsumer consumer) throws StorageException {
-    Connection connection = this.getConnection();
+  public ResultSet query(Connection connection, String query, SQLStorageConsumer consumer) throws StorageException {
     try {
       PreparedStatement statement = connection.prepareStatement(query);
       consumer.accept(statement);
@@ -64,12 +60,10 @@ public abstract class AbstractSqlStorage implements SqlStorage {
       return statement.executeQuery();
     } catch (SQLException ex) {
       throw new StorageException(ex);
-    } finally {
-      this.closeConnection(connection);
     }
   }
 
-  private void closeConnection(Connection connection) throws StorageException {
+  public void closeConnection(Connection connection) throws StorageException {
     try {
       connection.close();
     } catch (SQLException e) {

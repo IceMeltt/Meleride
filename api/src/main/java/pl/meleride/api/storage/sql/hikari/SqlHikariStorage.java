@@ -47,7 +47,7 @@ public class SqlHikariStorage extends AbstractSqlStorage {
   }
 
   @Override
-  protected Connection getConnection() throws StorageException {
+  public Connection getConnection() throws StorageException {
     try {
       return this.source.getConnection();
     } catch (SQLException ex) {

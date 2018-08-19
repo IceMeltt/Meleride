@@ -5,6 +5,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.player.PlayerJoinEvent;
 import pl.meleride.api.helper.Listener;
+import pl.meleride.api.storage.StorageException;
 import pl.meleride.base.MelerideBase;
 import pl.meleride.base.entity.User;
 import pl.meleride.base.task.TitleAnimationTask;
@@ -21,7 +22,7 @@ public class PlayerJoinListener implements Listener<PlayerJoinEvent> {
 
   @EventHandler(priority = EventPriority.LOWEST)
   @Override
-  public void performEvent(PlayerJoinEvent event) {
+  public void performEvent(PlayerJoinEvent event) throws StorageException {
     User user = this.plugin.getUserManager().getUser(event.getPlayer().getUniqueId()).get();
 
     if (!user.getName().isPresent()) {

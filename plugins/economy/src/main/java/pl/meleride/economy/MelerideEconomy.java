@@ -34,7 +34,7 @@ public class MelerideEconomy extends JavaPlugin implements PluginModule {
   private UserManager userManager;
   private Resource<User> userResource;
   private CurrencySignManager currencySignManager;
-  private SqlStorage storage;
+  private SqlHikariStorage storage;
 
   @Override
   public void onEnable() {
@@ -102,7 +102,7 @@ public class MelerideEconomy extends JavaPlugin implements PluginModule {
   }
 
   @Override
-  public SqlStorage getStorage() {
+  public SqlHikariStorage getStorage() {
     return this.storage;
   }
 

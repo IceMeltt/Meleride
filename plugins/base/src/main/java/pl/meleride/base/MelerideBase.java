@@ -31,7 +31,7 @@ public class MelerideBase extends JavaPlugin implements PluginModule {
 
   private UserManager<User> userManager;
   private Resource<User> userResource;
-  private SqlStorage storage;
+  private SqlHikariStorage storage;
   private DrugShop drugShop;
 
   @Override
@@ -93,7 +93,7 @@ public class MelerideBase extends JavaPlugin implements PluginModule {
   }
 
   @Override
-  public SqlStorage getStorage() {
+  public SqlHikariStorage getStorage() {
     return this.storage;
   }
 
