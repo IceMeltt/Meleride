@@ -47,7 +47,11 @@ public class SqlHikariStorage extends AbstractSqlStorage {
     } catch (SQLException ex) {
       throw new StorageException(ex);
     } finally {
-      this.source.close();
+      try {
+        this.source.getConnection().close();
+      } catch (SQLException ex) {
+        throw new StorageException(ex);
+      }
     }
   }
   
@@ -58,7 +62,11 @@ public class SqlHikariStorage extends AbstractSqlStorage {
     } catch (SQLException ex) {
       throw new StorageException(ex);
     } finally {
-      this.source.close();
+      try {
+        this.source.getConnection().close();
+      } catch (SQLException ex) {
+        throw new StorageException(ex);
+      }
     }
   }
   

@@ -42,6 +42,12 @@ public abstract class AbstractSqlStorage implements SqlStorage {
       return this.getConnection().prepareStatement(query).executeQuery();
     } catch (SQLException ex) {
       throw new StorageException(ex);
+    } finally {
+      try {
+        this.getConnection().close();
+      } catch (SQLException e) {
+        e.printStackTrace();
+      }
     }
   }
 
@@ -54,6 +60,12 @@ public abstract class AbstractSqlStorage implements SqlStorage {
       return statement.executeQuery();
     } catch (SQLException ex) {
       throw new StorageException(ex);
+    }finally {
+      try {
+        this.getConnection().close();
+      } catch (SQLException e) {
+        e.printStackTrace();
+      }
     }
   }
 
