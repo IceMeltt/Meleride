@@ -3,6 +3,7 @@ package pl.meleride.api.storage.sql.hikari;
 import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Properties;
@@ -38,10 +39,13 @@ public class SqlHikariStorage extends AbstractSqlStorage {
   
   @Override
   public ResultSet query(String query, SQLStorageConsumer consumer) throws StorageException {
-    try {
-      return super.query(query, consumer);
-    } catch (StorageException e) {
-      throw e;
+    try(Connection connection = this.source.getConnection()) {
+      PreparedStatement statement = connection.prepareStatement(query);
+      consumer.accept(statement);
+        
+      return statement.executeQuery();
+    } catch (SQLException ex) {
+      throw new StorageException(ex);
     } finally {
       this.source.close();
     }
@@ -50,9 +54,9 @@ public class SqlHikariStorage extends AbstractSqlStorage {
   @Override
   public ResultSet query(String query) throws StorageException {
     try {
-      return super.query(query);
-    } catch (StorageException e) {
-      throw e;
+      return this.source.getConnection().prepareStatement(query).executeQuery();
+    } catch (SQLException ex) {
+      throw new StorageException(ex);
     } finally {
       this.source.close();
     }
