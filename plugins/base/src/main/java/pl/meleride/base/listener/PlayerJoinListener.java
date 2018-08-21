@@ -20,7 +20,7 @@ public class PlayerJoinListener implements Listener<PlayerJoinEvent> {
     this.plugin = plugin;
   }
 
-  @EventHandler(priority = EventPriority.LOWEST)
+  @EventHandler(priority = EventPriority.HIGHEST)
   @Override
   public void performEvent(PlayerJoinEvent event) throws StorageException {
     User user = this.plugin.getUserManager().getUser(event.getPlayer().getUniqueId()).get();
@@ -34,6 +34,8 @@ public class PlayerJoinListener implements Listener<PlayerJoinEvent> {
     } else {
       this.plugin.getUserResource().load(user);
     }
+
+    event.setJoinMessage("");
 
     List<String> titleAnimationContent = colored(
         this.plugin.getConfig().getStringList("animation.title"));
