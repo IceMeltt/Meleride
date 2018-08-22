@@ -21,9 +21,7 @@ final class CompanyCreateCommand {
     Player player = (Player) commandSender;
     User user = this.plugin.getUserManager().getUser(player.getUniqueId()).get();
 
-    new AnvilGUI(this.plugin, player, "Wpisz nazwę firmy", (creator, reply) -> {
-      return colored("&8» &fPrzejdz dalej");
-    });
+    new AnvilGUI(this.plugin, player, "Wpisz nazwę firmy", (creator, reply) -> colored("&8» &fPrzejdz dalej"));
   }
 
 }

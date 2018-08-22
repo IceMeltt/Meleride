@@ -1,5 +1,5 @@
 name: MeleCompanies
-main: pl.meleride.companies.MelerideCompaniesPlugin
+main: pl.meleride.companies.MelerideCompanies
 version: 0.3.0
 author: Meleride
 website: https://meleride.pl

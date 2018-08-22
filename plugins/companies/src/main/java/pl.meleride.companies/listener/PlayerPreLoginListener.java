@@ -17,7 +17,7 @@ public final class PlayerPreLoginListener implements Listener<AsyncPlayerPreLogi
     this.plugin = plugin;
   }
 
-  @EventHandler(priority = EventPriority.LOWEST)
+  @EventHandler(priority = EventPriority.HIGHEST)
   @Override
   public void performEvent(AsyncPlayerPreLoginEvent event) {
     Optional<User> optionalUser = this.plugin.getUserManager().getUser(event.getUniqueId());
