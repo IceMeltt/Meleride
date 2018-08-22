@@ -1,11 +1,11 @@
-package pl.meleride.api.particles.patterns;
+package pl.meleride.api.effects.impl.particle.pattern;
 
 import org.bukkit.util.Vector;
 
 import java.util.List;
 
 public interface ParticlePattern {
-
-  List<Vector> create();
-
+  
+  List<Vector> createPattern();
+  
 }

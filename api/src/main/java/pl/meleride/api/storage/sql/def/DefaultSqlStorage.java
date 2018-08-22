@@ -42,7 +42,7 @@ public class DefaultSqlStorage extends AbstractSqlStorage {
   }
 
   @Override
-  protected Connection getConnection() throws StorageException {
+  public Connection getConnection() throws StorageException {
     try {
       if (!state()) {
         Class.forName(JDBC);

@@ -27,7 +27,7 @@ public class MelerideUser extends JavaPlugin implements PluginModule {
 
   private UserManager userManager;
   private Resource<User> userResource;
-  private SqlStorage storage;
+  private SqlHikariStorage storage;
   private Commands commands;
 
   @Override
@@ -78,7 +78,7 @@ public class MelerideUser extends JavaPlugin implements PluginModule {
   }
 
   @Override
-  public SqlStorage getStorage() {
+  public SqlHikariStorage getStorage() {
     return this.storage;
   }
 
