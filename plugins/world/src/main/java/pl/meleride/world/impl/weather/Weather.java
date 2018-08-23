@@ -47,14 +47,15 @@ public class Weather {
 
     this.actualTemp = Integer.parseInt(template.get("temp").toString());
 
-    this.olderForecast = this.newForecast;
-    this.newForecast = template.get("text").toString();
-
-    if (!this.newForecast.equalsIgnoreCase(this.olderForecast)) {
-      MessageBundler.create("forecast.newforecast")
-          .withField("FORECAST", this.newForecast)
-          .target(MessageType.CHAT)
-          .sendTo(Bukkit.getOnlinePlayers());
+    String downloadedForecast = template.get("text").toString();
+    
+    if (!downloadedForecast.equalsIgnoreCase(this.newForecast))  {
+      WeatherChangedEvent event = new WeatherChangedEvent(this.newForecast, downloadedForecast);
+      Bukkit.getPluginManager().callEvent(event);
+      if (event.isCancelled()) {
+        this.olderForecast = this.newForecast;
+        this.newForecast = downloadedForecast;
+      }
     }
   }
 

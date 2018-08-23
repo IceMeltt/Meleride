@@ -35,7 +35,7 @@ public final class ReputationCommand {
       completer = "reputationCommandCompleter")
   public void reputationCommandHandler(CommandSender sender, CommandContext context) {
     Player senderPlayer = CommandUtils.toPlayer(sender);
-
+    
     if(context.getParamsLength() == 0 || context.getParamsLength() >= 3) {
       senderPlayer.playSound(senderPlayer.getLocation(), Sound.ENTITY_PLAYER_LEVELUP, 50, 1);
       this.reputationActionHandler.viewPlayerReputation(senderPlayer, senderPlayer.getName());
