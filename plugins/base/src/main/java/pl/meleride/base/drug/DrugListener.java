@@ -49,30 +49,32 @@ public class DrugListener {
     }
 
     User user = this.plugin.getUserManager().getUser(player).get();
-    if (System.currentTimeMillis() - user.getDrugCooldown() >= 1000 * 60L) {
-      user.setDrugCooldown(System.currentTimeMillis());
-
-      for (PotionEffect effect : effects) {
-        player.addPotionEffect(effect);
-      }
-
-      player.getInventory().remove(drug.getItemStack());
-      player.sendMessage(usage);
-      e.setCancelled(true);
-    } else {
-
-      MessageBundler.create("drugs.isUsing")
-          .withField("PLAYER", player.getName())
-          .target(MessageType.CHAT)
-          .sendTo(player);
-    }
+//    if (System.currentTimeMillis() - user.getDrugCooldown() >= 1000 * 60L) {
+//      user.setDrugCooldown(System.currentTimeMillis());
+//
+//      for (PotionEffect effect : effects) {
+//        player.addPotionEffect(effect);
+//      }
+//
+//      player.getInventory().remove(drug.getItemStack());
+//      player.sendMessage(usage);
+//      e.setCancelled(true);
+//    } else {
+//
+//      MessageBundler.create("drugs.isUsing")
+//          .withField("PLAYER", player.getName())
+//          .target(MessageType.CHAT)
+//          .sendTo(player);
+//    }
   }
 
   public void invoke(Player player, AbstractItem drug, DrugShop shop, InventoryClickEvent e) {
     Inventory inv = e.getClickedInventory();
     ItemStack itemStack = e.getCurrentItem();
 
-    if (!inv.getName().equals(shop.getInventory().getName())) {
+    if (!inv.getName().equals(shop.getInventory().getName())
+        || e.getCurrentItem() == null
+        || e.getSlot() < 0) {
       return;
     }
 
