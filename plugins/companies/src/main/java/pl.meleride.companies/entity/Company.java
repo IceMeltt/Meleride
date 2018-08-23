@@ -1,12 +1,13 @@
 package pl.meleride.companies.entity;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 import pl.meleride.api.entity.IdentifiableEntity;
 
 public interface Company extends IdentifiableEntity<UUID> {
 
-  String getName();
+  Optional<String> getName();
 
   User getOwner();
 

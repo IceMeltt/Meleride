@@ -2,6 +2,7 @@ package pl.meleride.companies.entity.impl;
 
 import com.google.common.base.Objects;
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 import pl.meleride.companies.entity.Company;
 import pl.meleride.companies.entity.User;
@@ -31,8 +32,8 @@ public final class CompanyImpl implements Company {
   }
 
   @Override
-  public String getName() {
-    return this.name;
+  public Optional<String> getName() {
+    return Optional.ofNullable(this.name);
   }
 
   @Override

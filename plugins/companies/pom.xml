@@ -12,7 +12,7 @@
 
   <artifactId>companies</artifactId>
 
-  <name>Meleride :: Plugins :: Base</name>
+  <name>Meleride :: Plugins :: Companies</name>
   <description>Plugin wprowadzający na serwer firmy.</description>
 
   <dependencies>
