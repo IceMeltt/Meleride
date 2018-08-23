@@ -69,7 +69,7 @@ public class UserResourceImpl implements Resource<User> {
   }
 
   public void checkTable() {
-    String query = "CREATE TABLE IF NOT EXISTS `base_users` (`uuid` BINARY(16) PRIMARY KEY, `name` VARCHAR(16) NOT NULL UNIQUE";
+    String query = "CREATE TABLE IF NOT EXISTS `base_users` (`uuid` BINARY(16) PRIMARY KEY, `name` VARCHAR(16) NOT NULL UNIQUE)";
         //+ ", `drugcooldown` BIGINT NOT NULL)";
 
     try {
