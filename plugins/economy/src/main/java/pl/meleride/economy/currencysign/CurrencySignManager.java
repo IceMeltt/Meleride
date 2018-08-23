@@ -26,7 +26,10 @@ public class CurrencySignManager {
   }
 
   public Optional<CurrencySign> getCurrencySign(Location location) {
-    return Optional.of(this.currencySignMap.getOrDefault(location, null));
+    return this.currencySignMap.values()
+        .stream()
+        .filter(sign -> sign.getSignLocation().equals(location))
+        .findFirst();
   }
 
 }
