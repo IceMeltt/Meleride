@@ -1,5 +1,6 @@
 package pl.meleride.user.resource;
 
+import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Arrays;
@@ -21,11 +22,12 @@ public class UserResourceImpl implements Resource<User> {
     this.plugin = plugin;
   }
 
-  public void load(User user) {
+  public void load(User user) throws StorageException {
     String query = "SELECT * FROM `funcuser_users` WHERE `uuid` = UNHEX('" + user.getIdentifier().toString().replace("-", "") + "');";
+    Connection connection = this.plugin.getStorage().getConnection();
 
     try {
-      ResultSet resultSet = this.plugin.getStorage().query(query);
+      ResultSet resultSet = this.plugin.getStorage().query(connection, query);
 
       while (resultSet.next()) {
         UUID uniqueId = UniqueIdHelper.getUUIDFromBytes(resultSet.getBytes("uuid"));
@@ -52,6 +54,8 @@ public class UserResourceImpl implements Resource<User> {
       }
     } catch (SQLException | StorageException ex) {
       ex.printStackTrace();
+    } finally {
+      this.plugin.getStorage().closeConnection(connection);
     }
   }
 

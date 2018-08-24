@@ -4,7 +4,7 @@ import pl.meleride.api.entity.IdentifiableEntity;
 
 public interface Resource<T extends IdentifiableEntity<?>> {
 
-  void load(T entity);
+  void load(T entity) throws StorageException;
 
   void save(T entity);
 
