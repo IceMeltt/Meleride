@@ -11,6 +11,7 @@ import java.util.UUID;
 public interface Car extends IdentifiableEntity<UUID> {
 
   void setup();
+  void update();
 
   CarType getCarType();
 

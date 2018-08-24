@@ -2,6 +2,7 @@ package pl.meleride.cars.car.impl;
 
 import org.bukkit.Location;
 import org.bukkit.Material;
+import org.bukkit.craftbukkit.v1_12_R1.entity.CraftArmorStand;
 import org.bukkit.entity.ArmorStand;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.util.Vector;
@@ -15,7 +16,7 @@ import java.util.UUID;
 
 public abstract class AbstractCarImpl implements Car {
 
-  private static final Vector[] seatsCombination = new Vector[]{new Vector(0, 0, -1), new Vector(0, 0, 0.25), new Vector(-1, 0, -1), new Vector(-1, 0, 0.25)};
+  private static final double[] SEATS_COMBINATION = new double[]{180, 135, 90, 45};
 
   private final CarType carType;
 
@@ -57,15 +58,26 @@ public abstract class AbstractCarImpl implements Car {
     this.rootArmorStand.setHelmet(this.hoeItem);
 
     for (int i = 0; i < getMaxPassengers(); i++) {
-      ArmorStand seat = this.spawnLocation.getWorld().spawn(this.spawnLocation.clone().add(seatsCombination[i]), ArmorStand.class);
+      ArmorStand seat = this.spawnLocation.getWorld().spawn(this.spawnLocation.clone(), ArmorStand.class);
       seat.setVisible(false);
       seat.setGravity(false);
-      seat.setCustomName("Seat");
+      seat.setCustomName("Seat" + i);
       seat.setCustomNameVisible(false);
       seat.setFireTicks(0);
       seat.setMarker(true);
 
       this.carSeats.add(seat);
+    }
+  }
+
+  @Override
+  public void update() {
+    for (int i = 0; i < this.carSeats.size(); i++) {
+      Vector offset = new Vector(Math.cos(SEATS_COMBINATION[i] + this.rootArmorStand.getLocation().getPitch()) * 2, 0, Math.sin(SEATS_COMBINATION[i] + this.rootArmorStand.getLocation().getPitch()) * 2);
+      Location location = this.rootArmorStand.getLocation().add(offset);
+      ((CraftArmorStand) this.carSeats.get(i)).getHandle().setPosition(location.getX(), location.getY(), location.getZ());
+      this.carSeats.get(i).getLocation().setPitch(this.rootArmorStand.getLocation().getPitch());
+      this.carSeats.get(i).getLocation().setYaw(this.rootArmorStand.getLocation().getYaw());
     }
   }
 

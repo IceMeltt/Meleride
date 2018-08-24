@@ -16,4 +16,9 @@ public class LamborghiniCar extends AbstractCarImpl {
     return 2;
   }
 
+  @Override
+  public double getMaxSpeed() {
+    return 2D;
+  }
+
 }
