@@ -37,7 +37,7 @@ public class UserResourceImpl implements Resource<User> {
         });
 
         user.setName(resultSet.getString("name"));
-        user.setDrugCooldown(resultSet.getLong("drugcooldown"));
+//        user.setDrugCooldown(resultSet.getLong("drugcooldown"));
       }
     } catch (SQLException | StorageException ex) {
       ex.printStackTrace();
@@ -47,16 +47,15 @@ public class UserResourceImpl implements Resource<User> {
   }
 
   public void save(User user) {
-    String query = "INSERT INTO `base_users` (uuid, name, drugcooldown) VALUES (?, ?, ?) ON DUPLICATE KEY UPDATE `name` = ?, "
-        + "`drugcooldown` = ?";
+    String query = "INSERT INTO `base_users` (uuid, name) VALUES (?, ?) ON DUPLICATE KEY UPDATE `name` = ?";
 
     SQLStorageConsumer sqlStorageConsumer = preparedStatement -> {
       try {
         preparedStatement.setBytes(1, UniqueIdHelper.getBytesFromUUID(user.getIdentifier()));
         preparedStatement.setString(2, user.getName().get());
-        preparedStatement.setLong(3, user.getDrugCooldown());
-        preparedStatement.setString(4, user.getName().get());
-        preparedStatement.setLong(5, user.getDrugCooldown());
+//        preparedStatement.setLong(3, user.getDrugCooldown());
+        preparedStatement.setString(3, user.getName().get()); //4
+//        preparedStatement.setLong(5, user.getDrugCooldown());
       } catch (SQLException e) {
         e.printStackTrace();
       }
@@ -70,7 +69,8 @@ public class UserResourceImpl implements Resource<User> {
   }
 
   public void checkTable() {
-    String query = "CREATE TABLE IF NOT EXISTS `base_users` (`uuid` BINARY(16) PRIMARY KEY, `name` VARCHAR(16) NOT NULL UNIQUE, `drugcooldown` BIGINT NOT NULL)";
+    String query = "CREATE TABLE IF NOT EXISTS `base_users` (`uuid` BINARY(16) PRIMARY KEY, `name` VARCHAR(16) NOT NULL UNIQUE)";
+        //+ ", `drugcooldown` BIGINT NOT NULL)";
 
     try {
       this.plugin.getStorage().update(query);
