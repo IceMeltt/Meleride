@@ -16,6 +16,7 @@ import pl.meleride.user.disease.Disease;
 import pl.meleride.user.entity.User;
 import pl.meleride.world.MelerideWorld;
 import pl.meleride.world.impl.weather.Weather;
+import pl.meleride.world.impl.weather.types.WeatherType;
 
 public class PlayerCheckAboveRunnable extends BukkitRunnable {
 
@@ -34,11 +35,11 @@ public class PlayerCheckAboveRunnable extends BukkitRunnable {
     World world;
     this.weather = instance.getWeatherInstance();
 
-    if (this.weather.getNewerForecast().equalsIgnoreCase("hurricane")
-        || this.weather.getNewerForecast().contains("storm")
-        || this.weather.getNewerForecast().contains("thunder")
-        || this.weather.getNewerForecast().contains("rain")
-        || this.weather.getNewerForecast().contains("snow")) {
+    if (this.weather.getNewerForecast().equals(WeatherType.HURRICANE)
+        || this.weather.getNewerForecast().equals(WeatherType.THUNDERSTORMS)
+        || this.weather.getNewerForecast().equals(WeatherType.TROPICAL_STORM)
+        || this.weather.getNewerForecast().equals(WeatherType.FREEZING_DRIZZLE)
+        || this.weather.getNewerForecast().equals(WeatherType.FREEZING_RAIN)) {
 
       for (Player player : Bukkit.getOnlinePlayers()) {
         location = player.getLocation();

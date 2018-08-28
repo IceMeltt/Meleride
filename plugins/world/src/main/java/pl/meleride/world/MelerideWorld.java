@@ -6,7 +6,6 @@ import org.bukkit.plugin.java.JavaPlugin;
 import pl.meleride.world.impl.runnable.PlayerCheckAboveRunnable;
 import pl.meleride.world.impl.runnable.WeatherUpdaterRunnable;
 import pl.meleride.world.impl.weather.Weather;
-import pl.meleride.world.impl.weather.events.ChangeWeatherEvent;
 import pl.meleride.world.impl.weather.events.NewWeatherAnnounceEvent;
 
 public class MelerideWorld extends JavaPlugin {
