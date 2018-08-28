@@ -12,7 +12,6 @@ import pl.meleride.api.i18n.MessageBundler;
 import pl.meleride.api.manager.UserManager;
 import pl.meleride.api.object.system.ItemRegistrator;
 import pl.meleride.api.storage.Resource;
-import pl.meleride.api.storage.sql.SqlStorage;
 import pl.meleride.api.storage.sql.hikari.SqlHikariStorage;
 import pl.meleride.base.drug.DrugShop;
 import pl.meleride.base.drug.DrugTrait;
@@ -31,8 +30,8 @@ public class MelerideBase extends JavaPlugin implements PluginModule {
 
   private UserManager<User> userManager;
   private Resource<User> userResource;
-  private SqlStorage storage;
-  private DrugShop drugShop;
+  private SqlHikariStorage storage;
+//  private DrugShop drugShop;
 
   @Override
   public void onEnable() {
@@ -41,19 +40,19 @@ public class MelerideBase extends JavaPlugin implements PluginModule {
     this.storage = new SqlHikariStorage(this.dataSourceConfiguration());
 
     this.userResource.checkTable();
-    this.drugShop = new DrugShop();
+//    this.drugShop = new DrugShop();
 
-    ItemRegistrator.register(
-        new MDMA(this),
-        new Cannabis(this),
-        new Heroine(this),
-        new Cocaine(this)
-    );
+//    ItemRegistrator.register(
+//        new MDMA(this),
+//        new Cannabis(this),
+//        new Heroine(this),
+//        new Cocaine(this)
+//    );
 
-    CitizensAPI.getTraitFactory()
-        .registerTrait(TraitInfo
-            .create(DrugTrait.class)
-            .withName("dealerTrait"));
+//    CitizensAPI.getTraitFactory()
+//        .registerTrait(TraitInfo
+//            .create(DrugTrait.class)
+//            .withName("dealerTrait"));
 
     this.registerListeners(
         new PlayerPreLoginListener(this),
@@ -93,7 +92,7 @@ public class MelerideBase extends JavaPlugin implements PluginModule {
   }
 
   @Override
-  public SqlStorage getStorage() {
+  public SqlHikariStorage getStorage() {
     return this.storage;
   }
 
@@ -101,8 +100,8 @@ public class MelerideBase extends JavaPlugin implements PluginModule {
     return this.userResource;
   }
 
-  public DrugShop getDrugShop() {
-    return this.drugShop;
-  }
+//  public DrugShop getDrugShop() {
+//    return this.drugShop;
+//  }
 
 }

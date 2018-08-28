@@ -27,7 +27,7 @@ public class DrugTrait extends Trait {
         return;
       }
 
-      player.openInventory(main.getDrugShop().getInventory());
+//      player.openInventory(main.getDrugShop().getInventory());
     }
   }
 

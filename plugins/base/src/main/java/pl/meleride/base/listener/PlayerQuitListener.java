@@ -15,7 +15,7 @@ public class PlayerQuitListener implements Listener<PlayerQuitEvent> {
     this.plugin = plugin;
   }
 
-  @EventHandler(priority = EventPriority.LOWEST)
+  @EventHandler(priority = EventPriority.HIGHEST)
   @Override
   public void performEvent(PlayerQuitEvent event) {
     User user = this.plugin.getUserManager().getUser(event.getPlayer().getUniqueId()).get();
@@ -23,6 +23,8 @@ public class PlayerQuitListener implements Listener<PlayerQuitEvent> {
     this.plugin.getUserResource().save(user);
 
     this.plugin.getUserManager().removeUser(user);
+
+    event.setQuitMessage("");
   }
 
 }
