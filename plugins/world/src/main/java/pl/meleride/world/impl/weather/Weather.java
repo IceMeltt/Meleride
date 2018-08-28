@@ -52,7 +52,7 @@ public class Weather {
     if (!downloadedForecast.equalsIgnoreCase(this.newForecast))  {
       WeatherChangedEvent event = new WeatherChangedEvent(this.newForecast, downloadedForecast);
       Bukkit.getPluginManager().callEvent(event);
-      if (event.isCancelled()) {
+      if (!event.isCancelled()) {
         this.olderForecast = this.newForecast;
         this.newForecast = downloadedForecast;
       }
