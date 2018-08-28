@@ -6,12 +6,14 @@ import java.util.UUID;
 import org.bukkit.Bukkit;
 import pl.meleride.companies.entity.Company;
 import pl.meleride.companies.entity.User;
+import pl.meleride.companies.enums.MakeStatus;
 
 public final class UserImpl implements User {
 
   private final UUID identifier;
   private String name;
   private Company company;
+  private MakeStatus status;
 
   public UserImpl(UUID identifier) {
     this.identifier = identifier;
@@ -41,6 +43,16 @@ public final class UserImpl implements User {
   @Override
   public void setCompany(Company company) {
     this.company = company;
+  }
+
+  @Override
+  public MakeStatus getMakingStatus() {
+    return this.status;
+  }
+
+  @Override
+  public void setMakingStatus(MakeStatus status) {
+    this.status = status;
   }
 
   @Override

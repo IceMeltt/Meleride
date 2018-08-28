@@ -7,6 +7,7 @@ import pl.meleride.api.helper.Listener;
 import pl.meleride.api.storage.StorageException;
 import pl.meleride.companies.MelerideCompanies;
 import pl.meleride.companies.entity.User;
+import pl.meleride.companies.enums.MakeStatus;
 
 public final class PlayerJoinListener implements Listener<PlayerJoinEvent> {
 
@@ -31,6 +32,8 @@ public final class PlayerJoinListener implements Listener<PlayerJoinEvent> {
     }
 
     this.plugin.getUserResource().load(user);
+
+    user.setMakingStatus(MakeStatus.NOT_CREATING);
   }
 
 }
