@@ -18,7 +18,6 @@ public class MelerideWorld extends JavaPlugin {
     weather = new Weather();
     
     registerListener(
-        new ChangeWeatherEvent(),
         new NewWeatherAnnounceEvent()
     );
 
