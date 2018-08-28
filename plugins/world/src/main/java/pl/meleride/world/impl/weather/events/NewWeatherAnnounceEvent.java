@@ -12,7 +12,7 @@ public class NewWeatherAnnounceEvent implements Listener {
   @EventHandler(priority = EventPriority.LOWEST)
   public void onWeatherChanged(WeatherChangedEvent event) {
     MessageBundler.create("forecast.newforecast")
-        .withField("FORECAST",event.getNewWeather().getName())
+        .withField("FORECAST", event.getNewWeather().getName())
         .target(MessageType.CHAT)
         .sendTo(Bukkit.getOnlinePlayers());
   }
