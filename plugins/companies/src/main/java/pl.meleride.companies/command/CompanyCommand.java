@@ -27,24 +27,36 @@ public final class CompanyCommand {
     User user = this.plugin.getUserManager().getUser(player).get();
 
     if(context.getParamsLength() == 0) {
+      if(!user.getCompany().isPresent()) {
+        player.sendMessage(colored("&7&m -----------&f &8[ &9Firmy &8] &7&m-----------"));
+        player.sendMessage(colored("&7» Firmy sa uniwersalnym systemem posiadania wlasnych dzialalnosci."));
+        player.sendMessage(colored("&7» /company (potrzebna firma) - wyswietlenie szczegolow firmy"));
+        player.sendMessage(colored("&7» PPM na NPC Urzad miasta, /company create - tworzenie firmy"));
+        player.sendMessage(colored("&7» /company list - lista aktualnych firm"));
+
+        return;
+      }
       CompanyInventory inventory = new CompanyInventory(player);
       inventory.openInventory(player);
     } else {
       switch (context.getParam(0)) {
-        case "create":
+        case "create": {
           if(user.getCompany().isPresent()) {
             player.sendMessage(colored("&8» &cNie mozesz ponownie zakladac firmy! Juz posiadasz jedna."));
-            return;
+            break;
           }
 
           new CompanyConfigurator("Nie ustawiona", null, Collections.emptyList(), user).nextStep(player, MakeStatus.NAME);
           break;
-        case "list":
+        }
+        case "list": {
           new CompanyListCommand(this.plugin).execute(commandSender, context);
           break;
-          default:
-            player.sendMessage(colored("&8» &7Nie ma takiego argumentu!"));
-            player.sendMessage(colored("&8» &7Sprobouj uzyc argumentu \"list\"!"));
+        }
+        default: {
+          player.sendMessage(colored("&8» &7Nie ma takiego argumentu!"));
+          player.sendMessage(colored("&8» &7Sprobuj uzyc argumentu \"list\"!"));
+        }
       }
     }
   }

@@ -67,6 +67,7 @@ public class CompanyConfigurator {
         .withLevel(0)
         .build();
 
+    this.owner.setCompany(preparedCompany);
     this.plugin.getCompanyManager().addCompany(preparedCompany);
   }
 

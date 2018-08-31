@@ -1,6 +1,8 @@
 package pl.meleride.companies;
 
 import com.zaxxer.hikari.HikariConfig;
+import net.citizensnpcs.api.CitizensAPI;
+import net.citizensnpcs.api.trait.TraitInfo;
 import org.bukkit.plugin.java.JavaPlugin;
 import pl.meleride.api.PluginModule;
 import pl.meleride.api.helper.Listener;
@@ -19,6 +21,7 @@ import pl.meleride.companies.manager.UserManager;
 import pl.meleride.companies.manager.impl.CompanyManagerImpl;
 import pl.meleride.companies.manager.impl.UserManagerImpl;
 import pl.meleride.companies.resource.UserResource;
+import pl.meleride.companies.trait.CompanyTrait;
 import pl.socketbyte.opengui.OpenGUI;
 
 public final class MelerideCompanies extends JavaPlugin implements PluginModule {
@@ -46,6 +49,8 @@ public final class MelerideCompanies extends JavaPlugin implements PluginModule 
         new PlayerJoinListener(this),
         new PlayerQuitListener(this)
     );
+
+    CitizensAPI.getTraitFactory().registerTrait(TraitInfo.create(CompanyTrait.class));
 
     bukkitCommands.registerCommandObjects(new CompanyCommand(this));
   }

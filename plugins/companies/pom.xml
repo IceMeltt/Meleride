@@ -21,12 +21,24 @@
       <artifactId>anvilgui</artifactId>
       <version>1.2-SNAPSHOT</version>
     </dependency>
+
+    <dependency>
+      <groupId>net.citizensnpcs</groupId>
+      <artifactId>citizensapi</artifactId>
+      <version>2.0.22-SNAPSHOT</version>
+      <scope>provided</scope>
+    </dependency>
   </dependencies>
 
   <repositories>
     <repository>
       <id>wesjd-repo</id>
       <url>https://nexus.wesjd.net/repository/thirdparty/</url>
+    </repository>
+
+    <repository>
+      <id>citizens-repo</id>
+      <url>http://repo.citizensnpcs.co/</url>
     </repository>
   </repositories>
 

@@ -56,7 +56,7 @@ public final class UserResource implements Resource<User> {
       try {
         preparedStatement.setBytes(1, UniqueIdHelper.getBytesFromUUID(user.getIdentifier()));
         preparedStatement.setString(2, user.getName().get());
-        preparedStatement.setString(4, user.getName().get());
+        preparedStatement.setString(3, user.getName().get());
       } catch (SQLException e) {
         e.printStackTrace();
       }

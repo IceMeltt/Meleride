@@ -45,13 +45,14 @@ public class CreateSelectTradeInventory extends GUIExtender {
     List<ItemPack> packs = new ArrayList<>();
 
     for(Trade trade : Trade.values()) {
-      StringBuilder lore = new StringBuilder(colored("&8» &7" + trade.getTitle() + System.getProperty("line.separator")));
-      lore.append(colored("&8» Powiazane prace: \n"));
-      trade.getLinkedJobs().forEach(string -> lore.append(colored("&8» &e" + string + System.getProperty("line.separator"))));
+      List<String> lore = new ArrayList<>();
+      lore.add(colored("&8» &7" + trade.getTitle()));
+      lore.add(colored("&8» &7Powiazane prace:"));
+      trade.getLinkedJobs().forEach(string -> lore.add(colored("&8» &e")));
 
       ItemBuilder tradeItem = new ItemBuilder(trade.getMaterial())
           .setName(colored(trade.getName()))
-          .setLore(lore.toString())
+          .setLore(lore)
           .update();
 
       packs.add(new ItemPack(trade.getSlot(), tradeItem));

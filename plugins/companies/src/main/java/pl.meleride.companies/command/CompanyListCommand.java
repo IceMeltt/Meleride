@@ -22,7 +22,7 @@ final class CompanyListCommand {
     StringBuilder sb = new StringBuilder()
         .append(colored("&8» &7Aktualna lista zalozonych firm:"));
     for(Company company : this.plugin.getCompanyManager().getAllCompanies()) {
-      sb.append(colored("&7» &e" + company + "\n"));
+      sb.append(colored("&7» &e" + company.getName().get() + "\n"));
     }
     player.sendMessage(sb.toString());
   }

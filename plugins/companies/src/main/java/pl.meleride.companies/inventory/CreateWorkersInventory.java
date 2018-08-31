@@ -7,9 +7,6 @@ import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-import java.util.stream.Collectors;
-import java.util.stream.IntStream;
-import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.InventoryAction;
@@ -54,10 +51,10 @@ public class CreateWorkersInventory extends GUIExtender {
     Set<ItemPack> packs = new HashSet<>();
     ItemBuilder builder;
     Set<? extends Player> users = new HashSet<>(this.plugin.getServer().getOnlinePlayers());
-    //users.remove(executor);
+    users.remove(executor);
 
-    for (int i = 0; i < users.size(); i++) {
-      for(Player player : users) {
+    for (int i = 0; i <= users.size(); i++)
+      for (Player player : users) {
         builder = new ItemBuilder(Material.SKULL_ITEM)
             .setName(executor.getName())
             .update();
@@ -83,7 +80,6 @@ public class CreateWorkersInventory extends GUIExtender {
       }
 
       packs.add(new ItemPack(53, new ItemBuilder(Material.BARRIER).setName(colored("&8» &aNastepny krok!")).update(), event -> new CompanyConfigurator(this.name, this.trade, this.workers, this.user).nextStep(this.executor, MakeStatus.CONFIRMATION)));
-    }
     return packs;
   }
 
