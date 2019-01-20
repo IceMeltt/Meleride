@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <parent>
+    <groupId>pl.meleride</groupId>
+    <artifactId>plugins-parent</artifactId>
+    <version>0.3.0</version>
+  </parent>
+
+  <artifactId>companies</artifactId>
+
+  <name>Meleride :: Plugins :: Companies</name>
+  <description>Plugin wprowadzający na serwer firmy.</description>
+
+  <dependencies>
+    <dependency>
+      <groupId>net.wesjd</groupId>
+      <artifactId>anvilgui</artifactId>
+      <version>1.2-SNAPSHOT</version>
+    </dependency>
+
+    <dependency>
+      <groupId>net.citizensnpcs</groupId>
+      <artifactId>citizensapi</artifactId>
+      <version>2.0.22-SNAPSHOT</version>
+      <scope>provided</scope>
+    </dependency>
+  </dependencies>
+
+  <repositories>
+    <repository>
+      <id>wesjd-repo</id>
+      <url>https://nexus.wesjd.net/repository/thirdparty/</url>
+    </repository>
+
+    <repository>
+      <id>citizens-repo</id>
+      <url>http://repo.citizensnpcs.co/</url>
+    </repository>
+  </repositories>
+
+</project>
